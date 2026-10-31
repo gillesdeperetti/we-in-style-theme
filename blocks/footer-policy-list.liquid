@@ -1,6 +1,5 @@
 {% if shop.policies.size > 0 %}
   <anchored-popover-component
-    class="footer-utilities__policy-list footer-utilities__text"
     data-hover-triggered="true"
   >
     <button
@@ -8,13 +7,16 @@
       popovertarget="terms-policies-popover"
       popovertargetaction="toggle"
       ref="trigger"
-      style="{% render 'typography-style', preset: 'custom', settings: block.settings %}"
+      style="
+        {% render 'typography-style', preset: 'custom', settings: block.settings %}
+        {% if block.settings.text_color != blank %}--color-utilities: {{ block.settings.text_color }};{% endif %}
+      "
       {{ block.shopify_attributes }}
     >
       {{ 'content.terms_and_policies' | t }}
     </button>
     <div
-      class="terms-policies-popover color-{{ settings.popover_color_scheme }}"
+      class="terms-policies-popover color-custom-popover"
       id="terms-policies-popover"
       popover="auto"
       ref="popover"
@@ -76,7 +78,7 @@
     position-anchor: --terms-policies-trigger;
     inset: unset;
     bottom: calc(anchor(top) + 1rem);
-    left: anchor(left);
+    inset-inline-start: anchor(start);
     border-radius: var(--style-border-radius-popover);
     background: linear-gradient(var(--color-background) 0 100%),
       linear-gradient(rgb(var(--color-background-rgb) / 0.15) 0 100%);
@@ -88,7 +90,16 @@
     opacity: 0;
     scale: 0.94;
     translate: 0 6px;
-    transform-origin: 6ch 100%;
+    transform-origin: 3.9em 100%;
+  }
+
+  /* Mirror the scale animation origin onto the trigger in RTL */
+  [dir='rtl'] .terms-policies-popover {
+    transform-origin: calc(100% - 3.9em) 100%;
+
+    @media screen and (max-width: 749px) {
+      transform-origin: 100% 100%;
+    }
   }
 
   .terms-policies-popover.\:popover-open,
@@ -98,8 +109,10 @@
     scale: 1;
   }
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 749px) {
+    /* Centering on the trigger is direction-neutral, so physical left is kept */
     .terms-policies-popover {
+      inset-inline-start: unset;
       left: anchor(center);
       transform: translate(-50%, 0);
       transform-origin: 0% 100%;
@@ -110,16 +123,19 @@
     .terms-policies-popover {
       bottom: unset;
       top: calc(var(--anchor-top) * 1px);
-      left: calc(var(--anchor-left) * 1px);
+      inset-inline-start: calc(var(--anchor-inline-start) * 1px);
       transform: translate(0, calc(-100% - 1.25rem));
     }
-    @media screen and (max-width: 750px) {
+
+    @media screen and (max-width: 749px) {
       .terms-policies-popover {
+        inset-inline-start: unset;
         left: calc((var(--anchor-left) + (var(--anchor-width) / 2)) * 1px);
         transform: translate(-50%, calc(-100% - 1.25rem));
       }
     }
   }
+
   @media (prefers-reduced-motion: no-preference) {
     .terms-policies-popover {
       transition-property: display, overlay, opacity, scale, translate;
@@ -127,6 +143,7 @@
       transition-duration: 0.3s;
       transition-timing-function: var(--ease-out-quad);
     }
+
     @starting-style {
       .terms-policies-popover.\:popover-open,
       .terms-policies-popover:popover-open {
@@ -146,6 +163,16 @@
     {
       "type": "paragraph",
       "content": "t:content.manage_policies"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:settings.text_color",
+      "placeholder": "t:settings.default"
     },
     {
       "type": "select",

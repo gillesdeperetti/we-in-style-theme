@@ -7,14 +7,33 @@ import { Component } from '@theme/component';
  * @property {(oldNode: Node, newNode: Node) => void} [onBeforeUpdate] - Pre-update hook
  * @property {(node: Node) => void} [onAfterUpdate] - Post-update hook
  * @property {(oldNode: Node, newNode: Node) => boolean} [reject] - Reject a node from being morphed
+ * @property {boolean} [hydrationMode] - If true, only morph subtrees whose elements have `data-hydration-key="<non-empty>"`, matched by that value
  */
+
+const HYDRATION_KEY_ATTRIBUTE = 'data-hydration-key';
+
+// onBeforeUpdate runs for every node pair, so keep these off its hot path.
+const PRESERVED_ATTRIBUTES = [
+  'product-grid-view',
+  'data-current-checked',
+  'data-previous-checked',
+  'cart-summary-sticky',
+  // Live-only marker the client sets while a shopper is editing a quantity input. The
+  // server re-render never carries it, so without preserving it onto the new node here
+  // copyAttributes would strip it off the live node before syncFormControlState runs, and
+  // skipsValueUpdate (which needs both nodes to carry it) could never hold — the typed
+  // value would be overwritten mid-edit by a concurrent cart-items morph.
+  'data-skip-value-update',
+];
+const PRESERVED_ATTRIBUTES_SET = new Set(PRESERVED_ATTRIBUTES);
 
 /**
  * The options for the morph
  * @type {Options}
  */
-const MORPH_OPTIONS = {
+export const MORPH_OPTIONS = {
   childrenOnly: true,
+  hydrationMode: false,
   reject(oldNode, newNode) {
     if (newNode.nodeType === Node.TEXT_NODE && newNode.nodeValue?.trim() === '') {
       return true;
@@ -40,39 +59,39 @@ const MORPH_OPTIONS = {
     return false;
   },
   onBeforeUpdate(oldNode, newNode) {
-    if (oldNode instanceof Element && newNode instanceof Element) {
-      const attributes = ['product-grid-view', 'data-current-checked', 'data-previous-checked'];
+    if (!(oldNode instanceof Element) || !(newNode instanceof Element)) return;
 
-      for (const attribute of attributes) {
-        const oldValue = oldNode.getAttribute(attribute);
-        const newValue = newNode.getAttribute(attribute);
-
-        if (oldValue && oldValue !== newValue) {
-          newNode.setAttribute(attribute, oldValue);
+    // Elements usually carry fewer attributes than the preserved list, so scan the
+    // element's own attributes rather than probing each preserved name.
+    const oldAttrs = oldNode.attributes;
+    for (let i = 0; i < oldAttrs.length; i++) {
+      const attr = /** @type {Attr} */ (oldAttrs[i]);
+      if (PRESERVED_ATTRIBUTES_SET.has(attr.name)) {
+        const oldValue = attr.value;
+        if (oldValue && oldValue !== newNode.getAttribute(attr.name)) {
+          newNode.setAttribute(attr.name, oldValue);
         }
       }
+    }
 
-      // Special case for elements that need to keep their style
-      const elements = ['floating-panel-component', 'fieldset.variant-option'];
-      const ids = ['account-popover'];
-
-      for (const element of elements) {
-        if (oldNode.matches(element) && newNode.matches(element)) {
+    // These elements carry runtime-applied inline styles that the re-render doesn't
+    // include, so copy the old style across before it's overwritten.
+    const tagName = oldNode.tagName;
+    if (tagName === 'FLOATING-PANEL-COMPONENT' || tagName === 'FIELDSET') {
+      const isFloating = tagName === 'FLOATING-PANEL-COMPONENT';
+      const matchesOld = isFloating || oldNode.classList.contains('variant-option');
+      if (matchesOld && newNode.tagName === tagName) {
+        const matchesNew = isFloating || newNode.classList.contains('variant-option');
+        if (matchesNew) {
           const oldStyle = oldNode.getAttribute('style');
           if (oldStyle) newNode.setAttribute('style', oldStyle);
         }
       }
-      for (const id of ids) {
-        if (oldNode.id === id && newNode.id === id) {
-          const oldStyle = oldNode.getAttribute('style');
-          if (oldStyle) newNode.setAttribute('style', oldStyle);
-        }
-      }
+    }
 
-      // Preserve temporary view transition name
-      if (oldNode instanceof HTMLElement && newNode instanceof HTMLElement && oldNode.style.viewTransitionName) {
-        newNode.style.viewTransitionName = oldNode.style.viewTransitionName;
-      }
+    // Preserve temporary view transition name
+    if (oldNode instanceof HTMLElement && newNode instanceof HTMLElement && oldNode.style.viewTransitionName) {
+      newNode.style.viewTransitionName = oldNode.style.viewTransitionName;
     }
   },
   onAfterUpdate(node) {
@@ -102,16 +121,91 @@ export function morph(oldTree, newTree, options = MORPH_OPTIONS) {
     newTree = parsedNewTree;
   }
 
-  if (options.childrenOnly) {
-    updateChildren(newTree, oldTree, options);
+  if (options.hydrationMode && oldTree instanceof Element && newTree instanceof Element) {
+    morphHydrationByKey(oldTree, newTree, options);
     return oldTree;
   }
 
-  if (newTree.nodeType === 11) {
+  let result;
+  if (options.childrenOnly) {
+    updateChildren(newTree, oldTree, options);
+    result = oldTree;
+  } else if (newTree.nodeType === 11) {
     throw new Error('newTree should have one root node (not a DocumentFragment)');
+  } else {
+    result = walk(newTree, oldTree, options);
   }
 
-  return walk(newTree, oldTree, options);
+  // Recreate once for the whole tree, not per updateChildren recursion, so scripts aren't re-created repeatedly.
+  if (result instanceof Element) {
+    recreateAppBlockScripts(result);
+  }
+  return result;
+}
+
+/**
+ * Collect targets under a root element that have a non-empty key for the attribute.
+ * Includes the root itself if it matches.
+ *
+ * @param {Element} root
+ * @returns {Element[]}
+ */
+function collectHydrationTargets(root) {
+  const targets = [];
+  if (root.hasAttribute(HYDRATION_KEY_ATTRIBUTE)) targets.push(root);
+  targets.push(...root.querySelectorAll(`[${HYDRATION_KEY_ATTRIBUTE}]`));
+  return targets;
+}
+
+/**
+ * Morph only keyed targets from `newRoot` into `oldRoot` (a.k.a. "keyed lazy hydration").
+ *
+ * Philosophy:
+ * - This updates the *contents* of pre-existing targets. We intentionally do NOT insert new targets (or remove missing ones).
+ * - By requiring targets to already exist in `oldRoot`, we preserve runtime state that may already
+ *   be attached to the existing DOM (custom elements, listeners, focus, transient UI state) and preserve the layout and UI behavior.
+ * - Intended use-case: avoid expensive server-side rendering operations in the initial render, and hydrate targeted sections after page load. e.g. Querying all product and collection drops in off-screen menus.
+ *
+ * Contract:
+ * - An element is eligible only if it has `data-hydration-key="<non-empty>"`.
+ * - Matching uses ONLY that key value (no fallbacks) to avoid accidental cross-updates.
+ * - Once a target is matched, we run a normal morph *within that target* (attributes + children).
+ *
+ * @param {Element} oldRoot
+ * @param {Element} newRoot
+ * @param {Options} options
+ */
+function morphHydrationByKey(oldRoot, newRoot, options) {
+  const oldTargets = collectHydrationTargets(oldRoot);
+  const newTargets = collectHydrationTargets(newRoot);
+
+  /** @type {Map<string, Element[]>} */
+  const oldTargetsByKey = new Map();
+
+  for (const oldTarget of oldTargets) {
+    const key = oldTarget.getAttribute(HYDRATION_KEY_ATTRIBUTE);
+    if (key == null || key === '') continue;
+
+    const existing = oldTargetsByKey.get(key) ?? [];
+    existing.push(oldTarget);
+    oldTargetsByKey.set(key, existing);
+  }
+
+  for (const newTarget of newTargets) {
+    const key = newTarget.getAttribute(HYDRATION_KEY_ATTRIBUTE);
+    if (key == null || key === '') continue;
+
+    const matches = oldTargetsByKey.get(key);
+    const oldTarget = matches?.shift();
+    if (!oldTarget) continue;
+
+    // For keyed targets we want attribute updates as well, regardless of the caller's childrenOnly default.
+    morph(oldTarget, newTarget, {
+      ...options,
+      hydrationMode: false,
+      childrenOnly: false,
+    });
+  }
 }
 
 /**
@@ -126,35 +220,51 @@ function walk(newNode, oldNode, options) {
   if (!oldNode) return newNode;
   if (!newNode) return oldNode;
 
-  // Skip morphing if nodes are identical
-  if (newNode.isSameNode?.(oldNode)) return oldNode;
+  if (newNode === oldNode) return oldNode;
 
-  // Check node type and tag name first
-  if (newNode.nodeType !== oldNode.nodeType) return newNode;
-  if (newNode instanceof Element && oldNode instanceof Element) {
+  const newType = newNode.nodeType;
+  if (newType !== oldNode.nodeType) return newNode;
+
+  if (newType === 1 /* ELEMENT_NODE */) {
+    // newType === 1 guarantees both are Elements; cast rather than re-checking with instanceof.
+    const oldEl = /** @type {Element} */ (oldNode);
+    const newEl = /** @type {Element} */ (newNode);
     // Skip morphing if the node is shopify-accelerated-checkout-cart https://shopify.dev/docs/storefronts/themes/pricing-payments/accelerated-checkout#implement-accelerated-checkout-buttons-on-cart
-    if (oldNode.tagName === 'SHOPIFY-ACCELERATED-CHECKOUT-CART') return oldNode;
+    if (oldEl.tagName === 'SHOPIFY-ACCELERATED-CHECKOUT-CART') return oldNode;
+    if (newEl.tagName !== oldEl.tagName) return newNode;
 
-    if (newNode.tagName !== oldNode.tagName) return newNode;
+    // isEqualNode compares serialized markup, so it's blind to live form state (input
+    // value/checked, option selected, textarea value). Replay that sync across the subtree, then
+    // return the untouched DOM. Skipping also avoids updatedCallback on the subtree, which is
+    // safe: it only rebuilds a component's refs from its own subtree, unchanged here.
+    // syncFormControlsInSubtree honors data-skip-node-update directly. data-skip-value-update
+    // is safe here for a different reason worth writing down: it is client-only, so a marked
+    // live node can never be isEqualNode-equal to the unmarked server node, and isEqualNode is
+    // deep, so no ancestor containing a marked control matches either. This path is therefore
+    // unreachable while an edit is in progress. If the marker ever became server-rendered, both
+    // nodes would carry it and the transitive guard in updateInput/updateTextarea would apply.
+    if (oldNode.isEqualNode(newNode)) {
+      syncFormControlsInSubtree(newEl, oldEl);
+      return oldNode;
+    }
 
     // Only check keys for elements, and only if both nodes have keys
     const newKey = getNodeKey(newNode, options);
     const oldKey = getNodeKey(oldNode, options);
     if (newKey && oldKey && newKey !== oldKey) return newNode;
-  }
 
-  // We can morph, update the node and its children
-  if (
-    oldNode instanceof Element &&
-    oldNode.hasAttribute('data-skip-node-update') &&
-    newNode instanceof Element &&
-    newNode.hasAttribute('data-skip-node-update')
-  ) {
-    // This is a special case where we don't want to morph the node, but we want to morph the children
-    updateChildren(newNode, oldNode, options);
+    // For elements we already know both are Elements; collapse the second instanceof
+    // pair from the original code into a single nodeType-gated branch.
+    if (oldEl.hasAttribute('data-skip-node-update') && newEl.hasAttribute('data-skip-node-update')) {
+      // Special case: don't morph this node, but recurse into its children.
+      updateChildren(newNode, oldNode, options);
+    } else {
+      updateNode(newNode, oldNode, options);
+      updateChildren(newNode, oldNode, options);
+    }
   } else {
+    // Text and comment nodes are leaves, so there are no children to reconcile.
     updateNode(newNode, oldNode, options);
-    updateChildren(newNode, oldNode, options);
   }
 
   options.onAfterUpdate?.(newNode);
@@ -171,37 +281,59 @@ function walk(newNode, oldNode, options) {
 function updateNode(newNode, oldNode, options) {
   options.onBeforeUpdate?.(oldNode, newNode);
 
-  if (
-    (newNode instanceof HTMLDetailsElement && oldNode instanceof HTMLDetailsElement) ||
-    (newNode instanceof HTMLDialogElement && oldNode instanceof HTMLDialogElement)
-  ) {
-    if (!newNode.hasAttribute('declarative-open')) {
-      newNode.open = oldNode.open;
-    }
-  }
+  const newType = newNode.nodeType;
 
-  if (oldNode instanceof HTMLElement && newNode instanceof HTMLElement) {
-    for (const attr of ['slot', 'sizes']) {
-      const oldValue = oldNode.getAttribute(attr);
-      const newValue = newNode.getAttribute(attr);
-
-      if (oldValue !== newValue) {
-        oldValue == null ? newNode.removeAttribute(attr) : newNode.setAttribute(attr, oldValue);
+  if (newType === 1 /* ELEMENT_NODE */) {
+    const oldEl = /** @type {Element} */ (oldNode);
+    const newEl = /** @type {Element} */ (newNode);
+    // Only reconcile attributes when they differ. A shallow compare is enough here;
+    // updateChildren recurses into the subtree separately.
+    if (!attributesEqual(oldEl, newEl)) {
+      // The open/slot/sizes preservations below act on attributes, so they're only
+      // meaningful when attributes differ.
+      if (
+        (newNode instanceof HTMLDetailsElement && oldNode instanceof HTMLDetailsElement) ||
+        (newNode instanceof HTMLDialogElement && oldNode instanceof HTMLDialogElement)
+      ) {
+        if (!newNode.hasAttribute('declarative-open')) {
+          newNode.open = oldNode.open;
+        }
       }
-    }
-  }
 
-  if (newNode instanceof Element && oldNode instanceof Element) {
-    if (!oldNode.isEqualNode(newNode)) {
-      copyAttributes(newNode, oldNode);
+      if (oldNode instanceof HTMLElement && newNode instanceof HTMLElement) {
+        // Preserve slot/sizes on the new node before copyAttributes overwrites them.
+        for (const attr of ['slot', 'sizes']) {
+          const oldValue = oldNode.getAttribute(attr);
+          const newValue = newNode.getAttribute(attr);
+          if (oldValue !== newValue) {
+            oldValue == null ? newNode.removeAttribute(attr) : newNode.setAttribute(attr, oldValue);
+          }
+        }
+      }
+
+      copyAttributes(newEl, oldEl);
     }
-  } else if (newNode instanceof Text || newNode instanceof Comment) {
+
+    // value/checked/selected/textarea aren't always reflected as content attributes, so this
+    // runs regardless of attributesEqual. walk's subtree-skip replays the same sync.
+    syncFormControlState(newNode, oldNode);
+  } else if (newType === 3 /* TEXT_NODE */ || newType === 8 /* COMMENT_NODE */) {
     if (oldNode.nodeValue !== newNode.nodeValue) {
       oldNode.nodeValue = newNode.nodeValue;
     }
   }
+}
 
-  // Handle special elements
+/**
+ * Syncs live form-control state that serialized markup doesn't carry: input
+ * value/checked/indeterminate, option selected, and textarea value. updateNode runs this
+ * regardless of attribute equality, and walk's isEqualNode subtree-skip replays it across the
+ * subtree (syncFormControlsInSubtree), so both paths share one definition of which elements
+ * need it. instanceof is the gate.
+ * @param {Node} newNode
+ * @param {Node} oldNode
+ */
+function syncFormControlState(newNode, oldNode) {
   if (newNode instanceof HTMLInputElement && oldNode instanceof HTMLInputElement) {
     updateInput(newNode, oldNode);
   } else if (newNode instanceof HTMLOptionElement && oldNode instanceof HTMLOptionElement) {
@@ -209,6 +341,94 @@ function updateNode(newNode, oldNode, options) {
   } else if (newNode instanceof HTMLTextAreaElement && oldNode instanceof HTMLTextAreaElement) {
     updateTextarea(newNode, oldNode);
   }
+}
+
+/**
+ * True when both nodes opt out of morphing via data-skip-node-update, matching walk's guard.
+ * Such controls must keep their live state (e.g. a cart note or discount code the shopper
+ * typed), so the subtree-skip must not reconcile them back to the server-parsed value.
+ * @param {Element} newNode
+ * @param {Element} oldNode
+ * @returns {boolean}
+ */
+function skipsNodeUpdate(newNode, oldNode) {
+  return newNode.hasAttribute('data-skip-node-update') && oldNode.hasAttribute('data-skip-node-update');
+}
+
+/**
+ * True when both controls keep their live value during a morph but still accept fresh
+ * server attributes such as limits, disabled state, and cart line indexes.
+ *
+ * Marker presence alone is not enough, because the marker can outlive the edit it describes.
+ * The server renders this input disabled when a line can no longer be updated, and copying
+ * that disabled attribute onto a focused input blurs it, which ends the edit. The blur handler
+ * clears the marker, but onBeforeUpdate has already preserved it onto the incoming node by
+ * then, so the same copyAttributes pass writes it straight back onto the live node. Presence
+ * would therefore stay true forever and freeze the input against every later server render,
+ * which is the stale-value bug this opt-out exists to prevent.
+ *
+ * Live focus is the authoritative signal that an edit is still in progress, so require it on
+ * the live node and require the incoming node to still be editable. This also makes any other
+ * path that leaks the marker harmless rather than permanent.
+ * @param {Element} newNode
+ * @param {Element} oldNode
+ * @returns {boolean}
+ */
+function skipsValueUpdate(newNode, oldNode) {
+  return (
+    oldNode.matches(':focus') &&
+    !newNode.matches(':disabled') &&
+    newNode.hasAttribute('data-skip-value-update') &&
+    oldNode.hasAttribute('data-skip-value-update')
+  );
+}
+
+/**
+ * Replays syncFormControlState across an element and its descendants. walk uses this when
+ * isEqualNode reports a subtree unchanged: that comparison is blind to live form state, so a
+ * dirty control (e.g. a quantity a shopper typed) would otherwise keep stale state after a
+ * re-render. isEqualNode guarantees identical structure, so the old/new control lists line up
+ * by index. Controls flagged data-skip-node-update are left untouched, mirroring walk's guard.
+ * @param {Element} newNode
+ * @param {Element} oldNode
+ */
+function syncFormControlsInSubtree(newNode, oldNode) {
+  if (!skipsNodeUpdate(newNode, oldNode)) {
+    syncFormControlState(newNode, oldNode);
+  }
+  const newControls = newNode.querySelectorAll('input, option, textarea');
+  if (newControls.length === 0) return;
+  const oldControls = oldNode.querySelectorAll('input, option, textarea');
+  for (let i = 0; i < newControls.length; i++) {
+    const newControl = /** @type {Element} */ (newControls[i]);
+    const oldControl = /** @type {Element} */ (oldControls[i]);
+    if (skipsNodeUpdate(newControl, oldControl)) continue;
+    syncFormControlState(newControl, oldControl);
+  }
+}
+
+/**
+ * True when both elements have identical attribute sets (names, values, namespaces). Gates
+ * copyAttributes. Deliberately shallow: isEqualNode would re-walk the subtree that
+ * updateChildren already recurses into.
+ *
+ * @param {Element} a
+ * @param {Element} b
+ * @returns {boolean}
+ */
+function attributesEqual(a, b) {
+  const aAttrs = a.attributes;
+  const bAttrs = b.attributes;
+  const len = aAttrs.length;
+  if (len !== bAttrs.length) return false;
+  // Same-template re-renders emit attributes in the same order, so compare positionally.
+  // A different order only yields a false-unequal (falls through to copyAttributes), never a false-equal.
+  for (let i = 0; i < len; i++) {
+    const aAttr = /** @type {Attr} */ (aAttrs[i]);
+    const bAttr = /** @type {Attr} */ (bAttrs[i]);
+    if (!aAttr.isEqualNode(bAttr)) return false;
+  }
+  return true;
 }
 
 /**
@@ -258,6 +478,12 @@ function copyAttributes(newNode, oldNode) {
       if (oldNode.getAttribute(attrName) === attrValue) continue;
     }
 
+    // An input whose dirty value flag is still false mirrors its value attribute into its
+    // value property, and focus plus select() does not set that flag. Writing the server's
+    // value attribute here would therefore change what a shopper sees mid-edit, before
+    // updateInput's gate ever runs. Checked only for the 'value' name to keep this loop cheap.
+    if (attrName === 'value' && skipsValueUpdate(newNode, oldNode)) continue;
+
     if (attrNamespaceURI) {
       const fromValue = oldNode.getAttributeNS(attrNamespaceURI, localName);
       if (fromValue !== attrValue) {
@@ -291,6 +517,9 @@ function copyAttributes(newNode, oldNode) {
         oldNode.removeAttributeNS(attrNamespaceURI, localName);
       }
     } else if (!newNode.hasAttribute(attrName)) {
+      // Same reasoning as the copy pass above: removing the value attribute from a control
+      // that is not dirty blanks what the shopper sees.
+      if (attrName === 'value' && skipsValueUpdate(newNode, oldNode)) continue;
       oldNode.removeAttribute(attrName);
     }
   }
@@ -304,6 +533,7 @@ function copyAttributes(newNode, oldNode) {
  */
 function updateInput(newNode, oldNode) {
   const newValue = newNode.value;
+  const shouldSkipValueUpdate = skipsValueUpdate(newNode, oldNode);
 
   updateAttribute(newNode, oldNode, 'checked');
   updateAttribute(newNode, oldNode, 'disabled');
@@ -316,19 +546,19 @@ function updateInput(newNode, oldNode) {
   // Skip file inputs since they can't be changed programmatically
   if (oldNode.type === 'file') return;
 
-  if (newValue !== oldNode.value) {
+  if (!shouldSkipValueUpdate && newValue !== oldNode.value) {
     oldNode.setAttribute('value', newValue);
     oldNode.value = newValue;
   }
 
-  if (newValue === 'null') {
+  if (!shouldSkipValueUpdate && newValue === 'null') {
     oldNode.value = '';
     oldNode.removeAttribute('value');
   }
 
-  if (!newNode.hasAttributeNS(null, 'value')) {
+  if (!shouldSkipValueUpdate && !newNode.hasAttributeNS(null, 'value')) {
     oldNode.removeAttribute('value');
-  } else if (oldNode.type === 'range') {
+  } else if (!shouldSkipValueUpdate && oldNode.type === 'range') {
     // Update range input UI
     oldNode.value = newValue;
   }
@@ -355,6 +585,33 @@ function updateTextarea(newNode, oldNode) {
 }
 
 /**
+ * If app scripts store references to the DOM on initialization, they will be invalidated by the morph because browsers don't re-execute them.
+ * This function removes and recreates them to force re-execution.
+ * @param {Element} container - The container element to search for app block scripts
+ */
+function recreateAppBlockScripts(container) {
+  const scripts = container.querySelectorAll('.shopify-app-block script[src]');
+
+  for (const script of scripts) {
+    if (!(script instanceof HTMLScriptElement)) continue;
+
+    const parent = script.parentElement;
+    if (!parent) continue;
+
+    const newScript = document.createElement('script');
+    for (const attr of Array.from(script.attributes)) {
+      newScript.setAttribute(attr.name, attr.value);
+    }
+    if (script.textContent) {
+      newScript.textContent = script.textContent;
+    }
+
+    script.remove();
+    parent.appendChild(newScript);
+  }
+}
+
+/**
  * Update the children of elements
  * @param {Node} newNode - The new node to update children on
  * @param {Node} oldNode - The existing node to update children on
@@ -370,12 +627,16 @@ function updateChildren(newNode, oldNode, options) {
     return;
   }
 
+  const oldChildren = oldNode.childNodes;
+  const newChildren = newNode.childNodes;
+  const reject = options.reject;
+
   let oldChild, newChild, morphed, oldMatch;
   let offset = 0;
 
   for (let i = 0; ; i++) {
-    oldChild = oldNode.childNodes[i];
-    newChild = newNode.childNodes[i - offset];
+    oldChild = oldChildren[i];
+    newChild = newChildren[i - offset];
 
     // Both nodes are empty, do nothing
     if (!oldChild && !newChild) {
@@ -406,17 +667,17 @@ function updateChildren(newNode, oldNode, options) {
       continue;
     }
 
-    if (options.reject?.(oldChild, newChild)) {
+    if (reject !== undefined && reject(oldChild, newChild)) {
       newNode.removeChild(newChild);
       i--;
       continue;
     }
 
-    // Try to find a matching node to reorder
+    // Scan the remaining old children for one matching newChild, to reorder rather than replace.
     oldMatch = null;
-    for (let j = i; j < oldNode.childNodes.length; j++) {
-      const potentialOldNode = oldNode.childNodes[j];
-
+    const oldChildrenLen = oldChildren.length;
+    for (let j = i; j < oldChildrenLen; j++) {
+      const potentialOldNode = oldChildren[j];
       if (potentialOldNode && same(potentialOldNode, newChild, options)) {
         oldMatch = potentialOldNode;
         break;
@@ -428,14 +689,12 @@ function updateChildren(newNode, oldNode, options) {
       if (morphed !== oldMatch) offset++;
       oldNode.insertBefore(morphed, oldChild);
     } else if (!getNodeKey(newChild, options) && !getNodeKey(oldChild, options)) {
-      // Safe to morph in-place if neither has a key
       morphed = walk(newChild, oldChild, options);
       if (morphed !== oldChild) {
         oldNode.replaceChild(morphed, oldChild);
         offset++;
       }
     } else {
-      // Insert the node if we couldn't morph or find a match
       oldNode.insertBefore(newChild, oldChild);
       offset++;
     }
@@ -450,11 +709,13 @@ function updateChildren(newNode, oldNode, options) {
  * @returns {boolean} True if the nodes are the same, false otherwise
  */
 function same(a, b, options) {
+  const aType = a.nodeType;
+  const bType = b.nodeType;
   // If node types don't match, they're not the same
-  if (a.nodeType !== b.nodeType) return false;
+  if (aType !== bType) return false;
 
   // For elements, check tag name first
-  if (a.nodeType === Node.ELEMENT_NODE) {
+  if (aType === Node.ELEMENT_NODE) {
     if (a instanceof Element && b instanceof Element && a.tagName !== b.tagName) return false;
 
     // Only compare keys if both nodes have them
@@ -463,11 +724,14 @@ function same(a, b, options) {
     if (aKey && bKey && aKey !== bKey) return false;
   }
 
-  // For text/comment nodes, compare content
-  if (a.nodeType === Node.TEXT_NODE && b.nodeType === Node.TEXT_NODE)
-    // Trim whitespace to avoid false negatives
-    return a.nodeValue?.trim() === b.nodeValue?.trim();
-  if (a.nodeType === Node.COMMENT_NODE && b.nodeType === Node.COMMENT_NODE) return a.nodeValue === b.nodeValue;
+  // For text nodes, match exactly first and only fall back to a trimmed compare when
+  // the raw values differ, so the common path doesn't allocate.
+  if (aType === Node.TEXT_NODE && bType === Node.TEXT_NODE) {
+    const av = a.nodeValue;
+    const bv = b.nodeValue;
+    return av === bv || av?.trim() === bv?.trim();
+  }
+  if (aType === Node.COMMENT_NODE && bType === Node.COMMENT_NODE) return a.nodeValue === b.nodeValue;
 
   // If we get here and nodes are elements with same tag (and compatible keys), they're the same
   return true;

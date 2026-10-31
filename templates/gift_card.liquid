@@ -1,7 +1,10 @@
 {% layout none %}
 
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html
+  lang="{{ request.locale.iso_code }}"
+  dir="{{ request.locale.direction | default: 'ltr' }}"
+>
   <head>
     {%- render 'stylesheets' -%}
     {{ 'template-giftcard.css' | asset_url | stylesheet_tag }}
@@ -9,20 +12,12 @@
     <script type="importmap">
       {
         "imports": {
-          "@theme/critical": "{{ 'critical.js' | asset_url }}",
           "@theme/component": "{{ 'component.js' | asset_url }}",
           "@theme/utilities": "{{ 'utilities.js' | asset_url }}",
           "@theme/qr-code-generator": "{{ 'qr-code-generator.js' | asset_url }}"
         }
       }
     </script>
-
-    <script
-      src="{{ 'critical.js' | asset_url }}"
-      type="module"
-      async
-      blocking="render"
-    ></script>
 
     <script
       src="{{ 'qr-code-image.js' | asset_url }}"
@@ -41,11 +36,11 @@
     >
     <meta
       name="viewport"
-      content="width=device-width,initial-scale=1"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
     >
     <meta
       name="theme-color"
-      content="{{ settings.color_schemes.scheme-1.settings.background }}"
+      content="{{ settings.color_palette.background }}"
     >
     <link
       rel="canonical"
@@ -114,7 +109,7 @@
     {%- endunless -%}
     {% # theme-check-enable AssetPreload %}
     {%- render 'theme-styles-variables' -%}
-    {%- render 'color-schemes' -%}
+    {%- render 'color-palette' -%}
   </head>
 
   <body class="gift-card">
@@ -142,16 +137,16 @@
       </div>
       <div class="gift-card__price">
         <h2>
-          {{ gift_card.balance | money_with_currency }}
+          <bdi>{{ gift_card.balance | money_with_currency }}</bdi>
         </h2>
         {%- if gift_card.enabled == false or gift_card.expired -%}
           <p class="gift-card__badge gift-card__badge--expired">{{ 'gift_cards.issued.expired' | t }}</p>
         {%- endif -%}
       </div>
       {% if gift_card.expires_on %}
-        {%- assign gift_card_expiration_date = gift_card.expires_on | date: '%B %e, %Y' -%}
+        {%- assign expires_on_formatted = gift_card.expires_on | date: '%B %e, %Y' -%}
         <p class="gift-card__text-wrapper">
-          {{ 'gift_cards.issued.expiration_date' | t: expires_on: gift_card_expiration_date }}
+          {{ 'gift_cards.issued.expiration_date_html' | t: expires_on: expires_on_formatted }}
         </p>
       {% endif %}
       <div class="gift-card__text-wrapper">
@@ -159,7 +154,7 @@
         <h3
           class="gift-card__code"
         >
-          {{ gift_card.code | format_code }}
+          <bdi>{{ gift_card.code | format_code }}</bdi>
         </h3>
       </div>
       <qr-code-image

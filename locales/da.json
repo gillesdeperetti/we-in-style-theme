@@ -16,7 +16,8 @@
       "comment": "Kommentar",
       "post_success": "Tak for din henvendelse. Vi kontakter dig hurtigst muligt.",
       "error_heading": "Juster følgende:"
-    }
+    },
+    "slider_label": "Billedkarrusel"
   },
   "accessibility": {
     "play_model": "Afspil 3D-model",
@@ -60,16 +61,30 @@
     "increase_quantity": "Øg antal",
     "quantity": "Antal",
     "rating": "Bedømmelsen af dette produkt er {{ rating }} ud af 5",
-    "nested_product": "{{ product_title }} for {{ parent_title }}"
+    "nested_product": "{{ product_title }} for {{ parent_title }}",
+    "remove": "Fjern",
+    "view_pricing_info": "Vis prisoplysninger",
+    "slideshow": "Diasshow",
+    "header_navigation_label": "Primær",
+    "home_logo_alt": "{{ store_name }} - Start",
+    "active_filters": "Aktive filtre:",
+    "product_details": "Produktoplysninger",
+    "show_product_details": "Vis produktoplysninger for {{ product_name }}",
+    "featured_product": "Udvalgt produkt",
+    "search_suggestions_available": "Søgeforslag tilgængelige for \"{{ query }}\"",
+    "price_filter_low": "Lav pris",
+    "price_filter_high": "Høj pris",
+    "view_disclosure_information_for_product": "Se deklarationsoplysninger for {{ product_title }}",
+    "show_submenu": "Vis undermenu for {{ title }}"
   },
   "actions": {
     "add_to_cart": "Læg i indkøbskurven",
-    "clear_all": "Ryd alt",
+    "clear_all": "Ryd alle",
     "remove": "Fjern",
-    "view_in_your_space": "Se den i dit område",
+    "view_in_your_space": "Se i dit rum",
     "show_filters": "Filtrer",
     "clear": "Ryd",
-    "continue_shopping": "Tilbage til butikken",
+    "continue_shopping": "Fortsæt med at handle",
     "log_in_html": "Har du en konto? <a href=\"{{ link }}\">Log ind</a> for at betale hurtigere.",
     "see_items": {
       "one": "Se {{ count }} vare",
@@ -100,7 +115,10 @@
     "sign_in_options": "Andre muligheder for at logge ind",
     "sort": "Sortér",
     "show_all_options": "Vis alle muligheder",
-    "open": "Åbn"
+    "open": "Åbn",
+    "back_to": "Tilbage til {{ title }}",
+    "zoom_media": "Zoom medie {{ index }}",
+    "back_to_main_menu": "Tilbage til hovedmenu"
   },
   "content": {
     "reviews": "anmeldelser",
@@ -229,11 +247,36 @@
     "product_custom_property_character_count": "{{ used_chars }}/{{ max_chars }} tegn brugt",
     "terms_and_policies": "Vilkår og politikker",
     "pagination": {
-      "nav_label": "Navigation med sideinddeling",
+      "nav_label": "Sideinddeling",
       "previous": "Forrige",
       "next": "Næste",
       "page": "Side {{ page }}"
-    }
+    },
+    "volume_pricing_available": "Mængdebaseret pris er tilgængelig",
+    "volume_pricing": "Mængdebaseret pris",
+    "at_price_each": "til {{ price }} pr. stk.",
+    "each": "{{ price }}/stk.",
+    "each_abbreviation": "stk.",
+    "price_at": "til",
+    "price_range": "Prisinterval",
+    "cancel": "Annuller",
+    "product_subtotal": "Subtotal for produkt",
+    "quantity_per_item": " pr. stk.",
+    "remove_all": "Fjern alle",
+    "remove_all_items_confirmation": "Vil du fjerne alle {{ count }} varer fra din indkøbskurv?",
+    "remove_one_item_confirmation": "Vil du fjerne 1 vare fra din indkøbskurv?",
+    "total_items": "Varer i alt",
+    "variant": "Variant",
+    "variant_total": "Variant i alt",
+    "view_cart": "Se indkøbskurv",
+    "your_cart": "Din indkøbskurv",
+    "items_added_to_cart": {
+      "one": "1 vare er lagt i indkøbskurven",
+      "other": "{{ count }} varer lagt i indkøbskurven"
+    },
+    "item_count_cutoff": "Mere end {{ count }} varer",
+    "quick_order_list": "Hurtig ordreliste",
+    "product_disclosures": "Produktdeklarationer"
   },
   "gift_cards": {
     "issued": {
@@ -244,9 +287,9 @@
       "add_to_apple_wallet": "Føj til Apple Wallet",
       "qr_image_alt": "QR-kode – scan for at indløse gavekort",
       "copy_code": "Kopiér gavekortskode",
-      "expiration_date": "Udløber {{ expires_on }}",
       "copy_code_success": "Koden er blevet kopieret",
-      "expired": "Udløbet"
+      "expired": "Udløbet",
+      "expiration_date_html": "Udløber <bdi>{{ expires_on }}</bdi>"
     }
   },
   "placeholders": {
@@ -273,7 +316,9 @@
       "quantity_increments": "Intervaller på {{ increment }}",
       "quantity_minimum": "Minimum på {{ minimum }}",
       "quantity_maximum": "Maksimum på {{ maximum }}",
-      "in_cart": "i indkøbskurv"
+      "in_cart": "i indkøbskurv",
+      "default_title": "Standardtitel",
+      "sticky_add_to_cart": "Bjælken “Læg hurtigt i indkøbskurv”"
     }
   },
   "fields": {

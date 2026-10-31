@@ -26,7 +26,9 @@ class LocalizationFormComponent extends Component {
     this.refs.countryList && this.refs.countryList.addEventListener('keydown', this.#onContainerKeyDown);
     this.refs.countryList && this.refs.countryList.addEventListener('scroll', this.#onCountryListScroll);
 
-    this.resizeLanguageInput();
+    // Resizing the language input can be expensive for browsers that don't support field-sizing: content.
+    // Spliting it into separate tasks at least helps when there are multiple localization forms on the page.
+    setTimeout(() => this.resizeLanguageInput(), 0);
   }
 
   disconnectedCallback() {
@@ -116,7 +118,7 @@ class LocalizationFormComponent extends Component {
   resizeLanguageInput() {
     const { languageInput } = this.refs;
 
-    if (!languageInput) return;
+    if (!languageInput || CSS.supports('field-sizing', 'content')) return;
 
     // Hide all options except the selected option
     for (const option of languageInput.options) {
@@ -262,10 +264,6 @@ class LocalizationFormComponent extends Component {
 
     resetButton.toggleAttribute('hidden', !searchValue);
 
-    if (popularCountries) {
-      popularCountries.toggleAttribute('hidden', Boolean(searchValue));
-    }
-
     const wrapper = this.querySelector('.country-selector-form__wrapper');
     if (wrapper) {
       wrapper.classList.toggle('is-searching', !!searchValue);
@@ -295,6 +293,15 @@ class LocalizationFormComponent extends Component {
           countryEl.setAttribute('hidden', '');
         }
       }
+    }
+
+    // Popular countries are only listed in their own list, so it stays visible while it still has a match.
+    if (popularCountries) {
+      const hasVisiblePopularCountry = Array.from(popularCountries.children).some(
+        (country) => !country.hasAttribute('hidden')
+      );
+
+      popularCountries.toggleAttribute('hidden', !hasVisiblePopularCountry);
     }
 
     if (liveRegion && labelResultsCount) {
