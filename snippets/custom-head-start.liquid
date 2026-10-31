@@ -29,4 +29,11 @@
       .media--loading, .product-card__image-wrapper {
         background-color: #f4f4f4;
       }
+      /* [CUSTOM-GILLES] Mobile : dans les carrousels de produits, toujours la 1re image de la carte.
+         Sans ça, le glissement du doigt fait défiler les images à l'intérieur des cartes. */
+      @media (hover: none) {
+        .card-gallery slideshow-component[disabled='true'] slideshow-slide:not(:first-of-type) {
+          display: none !important;
+        }
+      }
     </style>
