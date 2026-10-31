@@ -64,6 +64,12 @@ if [ -n "$COPY_ID" ]; then
   echo "▶ 5/6  Récupération des réglages migrés par Shopify (thème $COPY_ID)…"
   shopify theme pull --store "$STORE" --theme "$COPY_ID" --path . \
     --only 'templates/*.json' --only 'sections/*.json' --only 'config/settings_data.json'
+  echo "  Réinjection de ce que la migration Shopify a supprimé (tes sections, tes réglages)…"
+  TMP=$(mktemp -d); mkdir -p "$TMP/old" "$TMP/stock"
+  git archive main | tar -x -C "$TMP/old"
+  git archive upstream | tar -x -C "$TMP/stock"
+  python3 -I tools/restore_custom_settings.py "$TMP/old" "$TMP/stock" . | sed 's/^/    /'
+  rm -rf "$TMP"
   git add -A templates sections config
 else
   echo "▶ 5/6  (pas d'ID de copie migrée : réglages et contenus conservés tels quels)"

@@ -73,7 +73,7 @@
   }
 </style>
 
-<div class="blocked-page color-{{ section.settings.color_scheme }}">
+<div class="blocked-page"> {% # [CUSTOM-GILLES] color_scheme retiré (Horizon 4.x) %}
   <div class="blocked-container">
     <h1 class="blocked-title">{{ section.settings.title | default: 'Access Restricted' }}</h1>
     
@@ -124,12 +124,6 @@
       "id": "message",
       "label": "Message",
       "default": "Unusual activity detected. Please sign in to continue."
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
     }
   ]
 }

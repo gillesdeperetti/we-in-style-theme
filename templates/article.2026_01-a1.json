@@ -1,1 +1,1898 @@
-{"sections":{"section":{"type":"main-blog-post","blocks":{"blog-post-title":{"type":"text","name":"Title","static":true,"settings":{"text":"<h1>{{ article.title }}<\/h1>","width":"100%","max_width":"normal","alignment":"center","type_preset":"h2","font":"var(--font-primary--family)","font_size":"","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"blog-post-details":{"type":"_blog-post-info-text","name":"Blog post details","disabled":true,"static":true,"settings":{"show_date":true,"show_author":false,"type_preset":"","alignment":"center","show_alignment":true,"padding-block-start":24,"padding-block-end":0},"blocks":{}},"blog-post-image":{"type":"_blog-post-featured-image","disabled":true,"static":true,"settings":{"image_ratio":"adapt","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"blog-post-content":{"type":"_blog-post-content","disabled":true,"static":true,"settings":{},"blocks":{}}},"settings":{"content_direction":"column","gap":32,"color_scheme":"","padding-block-start":40,"padding-block-end":20}},"hero_V8Bi6A":{"type":"hero","blocks":{"text_Dc3qqA":{"type":"text","settings":{"text":"<h2>The Wardrobe Dispatch: What Women Should Buy (and Wear) in 2026<\/h2>","width":"fit-content","max_width":"narrow","alignment":"left","type_preset":"h1","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_hUgLhf":{"type":"text","settings":{"text":"","width":"fit-content","max_width":"narrow","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":32,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_Dc3qqA","text_hUgLhf"],"name":"t:names.hero","settings":{"media_type_1":"image","image_1":"{{ article.image }}","media_type_2":"image","stack_media_on_mobile":false,"custom_mobile_media":true,"media_type_1_mobile":"image","image_1_mobile":"shopify:\/\/shop_images\/Mobile_post_banner_What_Women_Should_Wear_in_2026.webp","media_type_2_mobile":"image","link":"","open_in_new_tab":false,"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"center","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":16,"section_width":"page-width","section_height":"large","section_height_custom":50,"color_scheme":"scheme-5","toggle_overlay":true,"overlay_color":"#afa26a7d","overlay_style":"gradient","gradient_direction":"to top","blurred_reflection":false,"reflection_opacity":75,"padding-block-start":40,"padding-block-end":40}},"section_NYF8dB":{"type":"section","blocks":{"text_nkMLhX":{"type":"text","settings":{"text":"<p>January always asks a question of taste: what do you keep, what do you let go of, and what will actually earn its place in the seasons ahead? This is not a shopping list but a point of view, a rigorous short-list for the woman who wants currency, not clutter. The SS26 runways arrived with a mixture of bravado and restraint: an insistence on color (the shock-of-blue moments reported widely), an affection for technique (leather and technical fabrics that behave like second skins), and a polish that acknowledges real life, tailoring with pockets, draped shapes that forgive half a life, and denim that prefers room to cling. Here you will find six trends culled from the editors’ reports, runway imagery and cultural momentum, each rigorously matched to pieces we can sell now. Expect writing that presumes style literacy: shorthand references to Yves Klein blue or the band jacket are used sparingly and with purpose. Expect also an edit that is commercial by design. Every trend that follows has been verified against the shop: the point of this dossier is not speculation but activation. Consider this your seasonal briefing: a refined set of directives, grounded in runway thesis and translated into wearable realities, with two exact product picks beneath each trend so that pages turn into outfits. Read, decide, and then wear something that looks like it means something.<\/p>","width":"100%","max_width":"none","alignment":"center","type_preset":"h5","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_nkMLhX"],"name":"t:names.pull_quote","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":16,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":20,"padding-block-end":20}},"section_jRWEj7":{"type":"section","blocks":{"image_PqwtNA":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/20956929_51047170_1000.webp","link":"shopify:\/\/products\/black-leather-skirt-fendi-women","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_Ppxth3":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_KQyVEx":{"type":"text","name":"t:names.heading","settings":{"text":"<h3><strong>Leather Finishes<\/strong><\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_WJQBMX":{"type":"text","settings":{"text":"<p>1. The Runway Thesis. Leather returned to SS26 as texture and tone rather than mere rebellion. From buttery nappa skirts to lacquered jackets and aprons that flirt with costume, designers treated leather as a language, one that could be playful, architectural or quietly luxe. As Who What Wear noted in its spring preview, leather finishes will carry across seasons because they address both warmth and structure: they read modern, hold shape and serve as a counterpoint to flowing silhouettes. The runway argument for leather in 2026 is pragmatic theatre: it is glamorous without ostentation, and tactile in a way that photographs rarely capture but everyone feels. For women who want to make a considered purchase that will outlive a single season, the material logic is persuasive: leather transcends trend cycles when cut and color are chosen with restraint. Read the trend on Who What Wear: <a href=\"https:\/\/www.whowhatwear.com\/fashion\/trends\/winter-spring-transitional-trends-2026\" target=\"_blank\">Who What Wear — Winter-to-Spring 2026 Trends<\/a>.<br\/>2. The Styling Masterclass. Treat leather as punctuation, not proclamation. Pair a smooth leather jacket over a draped dress for friction; let a heavy bordeaux jacket temper a satin slip, or allow a cream blouson to act as the neat architectural note against slouchy denim. For office-to-evening logic, leather accessories: belts, small sacs, anchor otherwise dematerialized looks. Texture is everything: a soft nappa will read modern and grown-up, while glossy finishes are for nights that ask for a little performance. Aim for balance: when leather is the center of gravity, keep jewelry minimal and shoes refined. The modern equilibirum is always between the tactile and the tailored.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"image_jxDaMR":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/31813025_61447424_2048.webp","link":"shopify:\/\/products\/bordeaux-leather-jacket-iro-women-15641552978300","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_MViWMT":{"type":"text","name":"t:names.text","settings":{"text":"<p>3. The Curated Choice. Two sellable, runway-aligned pieces from the shop that embody this idea: <a href=\"https:\/\/we-in-style.com\/products\/bordeaux-leather-jacket-iro-women-15641552978300\" target=\"_blank\">Bordeaux Leather Jacket<\/a> and <a href=\"https:\/\/we-in-style.com\/products\/cream-leather-blouson-jacket-women-white\" target=\"_blank\">Cream Leather Blouson Jacket<\/a>. The first anchors the color-forward leather moment, a deep, wearable burgundy that nods to 2026's richer palettes, while the second proves leather's softer, more democratic side in cream. Both pieces map directly back to the runway thesis: structure, tactility and season-spanning utility.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_KQyVEx","text_WJQBMX","image_jxDaMR","text_MViWMT"]}},"block_order":["image_PqwtNA","group_Ppxth3"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40}},"section_e8htxn":{"type":"section","blocks":{"image_GwfPyW":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/31310063_61179892_1000.webp","link":"shopify:\/\/products\/asymmetrical-draped-dress-christopher-esber-women-15495056916860","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_HhXriF":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_hVz9f3":{"type":"text","name":"t:names.heading","settings":{"text":"<h3><strong>Draped Shapes<\/strong><\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_Ui97jP":{"type":"text","settings":{"text":"<p>1. The Runway Thesis. Draping is not a flirtation this season; it is an argument about movement and architecture. SS26 showcased cowl necks, asymmetric hems and fluid jersey manipulated into exacting shapes, designers used gravity as a collaborator. The draped silhouette reads simultaneously sensual and authoritative: it softens tailoring and gives form to the otherwise demure. Draping in 2026 is less about excess and more about deliberate folds: a single cowl or an engineered asymmetric gather becomes an architectural signature. Publications and runways alike signaled a return to these calculated curves as the antidote to hard minimalism, the fabric does the talking. See the runway examples collated in Who What Wear’s trend notes on draped shapes: <a href=\"https:\/\/www.whowhatwear.com\/fashion\/trends\/winter-spring-transitional-trends-2026\" target=\"_blank\">Who What Wear — Draped Shapes<\/a><\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_bptjHj":{"type":"text","settings":{"text":"<p>2. The Styling Masterclass. The drape deserves quiet company: layer a sharply cut blazer over a cowl dress for a metropolitan shorthand, or pair fluid asymmetric hems with a low, structured boot for tension. When a garment drapes, accessories should be architectural, an angular bag or a compact pump will counterbalance the fluidity. For casual translation, a draped top with tailored trousers keeps the silhouette readable: the key is proportion. Never fight the fabric; instead, let the fold define where the eye rests. Use draped dresses under coats with deliberate slits to reveal movement when you walk: that is the modern feminine reveal.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"image_ymmcgd":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/24465891_54623025_1000.webp","link":"shopify:\/\/products\/draped-viscose-dress-rabanne-women-15576653955452","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_LAAWmX":{"type":"text","settings":{"text":"<p>3. The Curated Choice. Two shop-ready options that embody the draped thesis: <a href=\"https:\/\/we-in-style.com\/products\/asymmetrical-draped-dress-christopher-esber-women-15495056916860\" target=\"_blank\">Asymmetrical Draped Dress<\/a> and <a href=\"\/products\/draped-viscose-dress-rabanne-women-15576653955452\" target=\"_blank\" title=\"Draped Viscose Dress\">Draped Viscose Dress<\/a>. The Christopher Esber piece gives the architectural asymmetry editors love, while the Rabanne long drape proves the versatility of the silhouette, both slip easily into evening or a punctuated daytime uniform.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_hVz9f3","text_Ui97jP","text_bptjHj","image_ymmcgd","text_LAAWmX"]}},"block_order":["image_GwfPyW","group_HhXriF"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40}},"section_eUDXmV":{"type":"section","blocks":{"image_KeKdXJ":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/28069413_57812541_1000.webp","link":"shopify:\/\/products\/reversible-blue-flip-bag-rabanne-women-bleu","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_p73qCx":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_87i4Nm":{"type":"text","name":"t:names.heading","settings":{"text":"<h3><strong>Blue: Navy to Electric<\/strong><\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_J8wC6Y":{"type":"text","name":"t:names.text","settings":{"text":"<p>1. The Runway Thesis. The color story for 2026 is less about returning to beige than about recommitting to color as conviction. The most electric moments this season were blue: not timid sky notes but saturated, often saturated-to-the-point-of-theatrical Yves Klein-influenced chromas and, conversely, deep navy that reads as serious, almost formal. Cosmopolitan’s early brief for 2026 highlighted these shock-of-blue moments that dominated runways; designers used blue to assert presence without the transparency of red. The broad spectrum, from kinetic cobalt to contemplative navy, creates a useful duality: some blues shout, others stand quietly expensive. Reference: the Cosmopolitan runway summary on Electric Blues and SS26 color direction: <a href=\"https:\/\/www.cosmopolitan.com\/style-beauty\/fashion\/a69800583\/fashion-trends-2026\/\" target=\"_blank\">Cosmopolitan — Fashion Trends 2026<\/a>.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_6imbC9":{"type":"text","name":"t:names.text","settings":{"text":"<p>2. The Styling Masterclass. Choose your blue by intent. For a moment that reads contemporary and decisive, wear saturated blue head-to-toe and let texture differentiate (for example, a satin dress with matte boots). If your aim is nuance, navy is your neutral: match it with chocolate-brown boots or a camel coat for grown-up contrast. Blue also excels in volume: an oversized coat or a sculptural dress in navy reads modern rather than moody when punctuated with metallic hardware or a crisp white accessory. The trick is to commit to one blue family per outfit and use accessories to signal the mood — bright for youthful drama, navy for considered refinement. Call out the navy tones with tonal shoes and an understated bag.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"image_UJXydr":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/25724452_56781346_1000.webp","link":"shopify:\/\/products\/satin-long-dress-rabanne-women-blue","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_NtHerG":{"type":"text","name":"t:names.text","settings":{"text":"<p>3. The Curated Choice. Two precise shop translations: <a href=\"https:\/\/we-in-style.com\/products\/yael-dress-khaite-women-bleu-fonce\" target=\"_blank\">Yael Dress<\/a> (Khaite, a deep, authoritative blue) and <a href=\"https:\/\/we-in-style.com\/products\/satin-long-dress-rabanne-women-blue\" target=\"_blank\">Satin Long Dress<\/a> (Rabanne, a saturated, evening-ready blue). Each piece answers the runway call: one for austere elegance, the other for liquid, photographic color that reads as modern glamour.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_87i4Nm","text_J8wC6Y","text_6imbC9","image_UJXydr","text_NtHerG"]}},"block_order":["image_KeKdXJ","group_p73qCx"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40}},"section_hJtGkk":{"type":"section","blocks":{"image_MEhPmV":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/29861159_59008385_1000.webp","link":"shopify:\/\/products\/gray-wool-blazer-saint-laurent-women-15218001150332","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_waYYfm":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_kqbWnm":{"type":"text","name":"t:names.heading","settings":{"text":"<h3><strong>Grey Tailoring<\/strong><\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_HPGpFU":{"type":"text","settings":{"text":"<p>1. The Runway Thesis. Tailoring in 2026 returned to the language of nostalgia but made it softer. Grey tailoring was everywhere, an ’80s echo softened into slouch and slouch refined into easy luxury. Who What Wear and multiple runway roundups noted the revival of grey suiting in slouchy cuts and relaxed proportions: the jacket is no longer purely armor; it is the container for layered expression. Designers are pairing grey with sheer fabrics, color pops or draping, it is a middle ground between power dressing and the new relaxed codes of everyday luxury. Grey reads expensive because it is quietly decisive and infinitely versatile.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"image_NM49n6":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/30213817_59334250_1000.webp","link":"shopify:\/\/products\/gray-wool-blazer-mm6-women-15468783534460","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_mWjjTE":{"type":"text","settings":{"text":"<p>2. The Styling Masterclass. Invest in fit, not flash. A softly structured grey blazer worn over a silk camisole and wide-leg trouser signals intelligence; pair a double-breasted grey piece with a leather belt for waist definition. For a modern spin, choose sleeveless or asymmetrical tailoring to keep proportions interesting. The rule of thumb: when you wear grey tailoring, treat the suit as the canvas and introduce one strong textural element: a knit scarf, a leather boot, or a sequinned bag to complete the composition without defeating the restraint. Embrace oversized blazers but mind shoulder balance and sleeve length.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_xkhWnH":{"type":"text","settings":{"text":"<p>3. The Curated Choice. Two shop selections that echo the runway: <a href=\"https:\/\/we-in-style.com\/products\/gray-wool-blazer-saint-laurent-women-15218001150332\" target=\"_blank\">Gray Wool Blazer<\/a> (Saint Laurent) and <a href=\"https:\/\/we-in-style.com\/products\/gray-wool-blazer-mm6-women-15468783534460\" target=\"_blank\">Gray Wool Blazer<\/a> (MM6). Both articulate the season’s grey tailoring story, classic foundations that accommodate modern styling and layered dressing.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_kqbWnm","text_HPGpFU","image_NM49n6","text_mWjjTE","text_xkhWnH"]}},"block_order":["image_MEhPmV","group_waYYfm"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40}},"section_gQM7DJ":{"type":"section","blocks":{"image_6ahrA3":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/A03624_09L21_01_C.jpg","link":"shopify:\/\/products\/large-dakemi-jeans-diesel-women-blue","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_AmUEpG":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_8BjLt3":{"type":"text","name":"t:names.heading","settings":{"text":"<h3><strong>Baggy Denim & Low-Rise Proportions<\/strong><\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_CfFRjH":{"type":"text","settings":{"text":"<p>1. The Runway Thesis. Denim’s 2026 grammar is roomy: baggy silhouettes and a low-slung waist reinterpreted, refined, and often rendered in luxe washes or surprising finishes. Street vantage and runway align: baggy jeans are not youth-exclusive but rather an everywoman aesthetic when cut well. Teen Vogue and InStyle have both chronicled the denim pivot the baggy, the low-rise and the wide-leg, as durable cultural idioms that allow for individual voice. On the runway, denim paired with structured tops or long coats created an attractive tension between relaxed bottoms and tailored tops.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_PCptg4":{"type":"text","settings":{"text":"<p>2. The Styling Masterclass. Baggy denim is always about proportion. When the jeans are generous, tighten the upper silhouette or tuck in a smart fitted top to define the waist, or purposefully play with volume head to toe for modern maximalist charm. A low-rise baggy should be worn with confidence: a cropped blazer or a tucked silk blouse will create a deliberate line. For shoes, choose architecture, a clean square-toe boot or a polished loafer makes the look feel curated rather than careless. Think of baggy denim as the wardrobe’s exhale; style it with purposeful companion pieces to keep it editorial and wearable.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"image_MRftyn":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/857c13c8-aa7c-4202-8716-e4f28808bfc320231018110052.jpg","link":"shopify:\/\/products\/v-waist-long-baggy-denim-jeans-saint-laurent-women-15518605115772","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_MckW9r":{"type":"text","settings":{"text":"<p>3. The Curated Choice. Two pieces from the edit that prove the category and translate the runway: <a href=\"https:\/\/we-in-style.com\/products\/v-waist-long-baggy-denim-jeans-saint-laurent-women-15518605115772\" target=\"_blank\">V-Waist Long Baggy Denim Jeans<\/a> and <a href=\"https:\/\/we-in-style.com\/products\/large-dakemi-jeans-diesel-women-blue\" target=\"_blank\">Large D-Akemi Jeans<\/a>. One is couture-leaning, the other approachable, both adhere to the baggy, low-slung logic that will dominate street and runway in 2026.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_8BjLt3","text_CfFRjH","text_PCptg4","image_MRftyn","text_MckW9r"]}},"block_order":["image_6ahrA3","group_AmUEpG"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40}},"section_gQqdr9":{"type":"section","blocks":{"image_xGR73H":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/31146660_60727200_1000.webp","link":"shopify:\/\/products\/floral-lace-short-dress-rabanne-women-15546867941756","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_9N4nEe":{"type":"group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"width":"custom","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_3dE7Bq":{"type":"text","name":"t:names.heading","settings":{"text":"<h3>Vintage Florals Reworked<\/h3>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_neyLTW":{"type":"text","settings":{"text":"<p>1. The Runway Thesis. Florals keep returning but 2026's version leans toward the antique: vintage-inspired prints that read more curated than cottagecore, often in darker palettes or rendered on unexpected textiles. Who What Wear and runway coverage highlighted this turn toward brash, vintage-referenced florals, the prints are familiar but amplified by scale, placement and texture. The result is a floral that wears like a statement, not a costume: it is slightly nostalgic and entirely contemporary because designers are pairing blooms with tailoring, leather, and unexpected layering.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_B6bhmD":{"type":"text","settings":{"text":"<p>2. The Styling Masterclass. Treat vintage florals like a focal print and ground them immediately. Layer a floral dress under a structured coat or pair a floral skirt with a chunky knit and ankle boots. For day, add a heavy shoe to anchor the delicacy; for evening, choose tonal accessories to let the print sing. A small florals-on-black piece reads moody and modern; a larger bloom in saturated tones reads theatrical and confident. In 2026, florals are not timid: they are carefully edited statements that require restrained supporting elements. Use vintage floral pieces with modern hardware and architectural shoes for that curatorial tension.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"image_3HnjxR":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/TAJA-DRESS_BLACK-MULTI_55953372-283_D_jpg.webp","link":"shopify:\/\/products\/taja-long-dress-khaite-women-15778084258172","image_ratio":"square","width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_6p6fWV":{"type":"text","settings":{"text":"<p>3. The Curated Choice. Two curated, shop-available pieces that epitomize the trend: <a href=\"https:\/\/we-in-style.com\/products\/taja-long-dress-khaite-women-15778084258172\" target=\"_blank\">Taja Long Dress<\/a> (Khaite, a refined floral silk) and <a href=\"https:\/\/we-in-style.com\/products\/floral-lace-short-dress-rabanne-women-15546867941756\" target=\"_blank\">Floral Lace Short Dress<\/a> (Rabanne, floral lace with a modern cut). Both map back to the runway thesis: floral as considered, feminine armor.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_3dE7Bq","text_neyLTW","text_B6bhmD","image_3HnjxR","text_6p6fWV"]}},"block_order":["image_xGR73H","group_9N4nEe"],"name":"t:names.image_with_text","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40}},"section_KWNT9f":{"type":"section","blocks":{"text_QAJV3L":{"type":"text","name":"t:names.heading","settings":{"text":"<h3>Frequently asked questions<\/h3>","width":"fit-content","max_width":"narrow","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"accordion_pN8P8b":{"type":"accordion","name":"t:names.accordion","settings":{"enable_faq_schema":true,"icon":"caret","dividers":true,"type_preset":"h5","inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"accordion_row_8WP7ah":{"type":"_accordion-row","settings":{"heading":"How should leather be sized for longevity?","open_by_default":false,"icon":"none","width":20},"blocks":{"text_CXWMgi":{"type":"text","settings":{"text":"<p>Choose leather that accommodates a light layer underneath: leather will not only sit on your body but also crease and soften over time. If you prefer the jacket to layer over sweaters, size up. For a sleek, long-lived silhouette, buy to fit a blazer or thin knit — that choice preserves tailoring and prevents over-stressing seams while ensuring the piece will settle into a flattering shape over seasons.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_CXWMgi"]},"accordion_row_gcxmnq":{"type":"_accordion-row","settings":{"heading":"How do I make a draped dress wearable in daytime?","open_by_default":false,"icon":"none","width":20},"blocks":{"text_fqTaEX":{"type":"text","settings":{"text":"<p>Balance fluidity with structure: pair a draped dress with a cropped blazer or a short leather jacket to ground the silhouette and give it daytime credibility. Choose knit or leather boots and a compact bag to keep proportions modern. The key is thoughtful counterpoint: the drape provides movement while the structured piece retains city logic and practicality.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_fqTaEX"]},"accordion_row_tPBLBi":{"type":"_accordion-row","settings":{"heading":"Which blue should I choose for my skin tone?","open_by_default":false,"icon":"none","width":20},"blocks":{"text_jHJzxH":{"type":"text","settings":{"text":"<p>Deep navy is universally flattering and reads as a neutral for most complexions, while electric or cobalt blues flatter cooler undertones and create striking contrast on warmer complexions. If you are unsure, test a saturated blue near your face in natural light; if it brightens your complexion, it is a confident choice. A navy base is always a dependable starting point.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_jHJzxH"]},"accordion_row_AfjmbX":{"type":"_accordion-row","settings":{"heading":"How do I style baggy jeans without looking sloppy?","open_by_default":false,"icon":"none","width":20},"blocks":{"text_p6CBTf":{"type":"text","settings":{"text":"<p>Focus on proportion. Pair baggy denim with a fitted top, a cropped blazer, or a tucked shirt to define the waistline. For polished balance, add an elevated shoe — a loafer or block-heeled boot — and minimal, architectural accessories. The point is intentionality: every voluminous item should be balanced with a considered, often slimmer, counterpiece.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_p6CBTf"]},"accordion_row_JVf4nH":{"type":"_accordion-row","settings":{"heading":"How do I care for leather items from the shop?","open_by_default":false,"icon":"none","width":20},"blocks":{"text_kmXTRL":{"type":"text","settings":{"text":"<p>Treat leather as you would a fine shoe: keep it away from direct heat and sunlight, store it on a shaped hanger to maintain its form, and clean spills promptly with a soft cloth. Condition occasionally using a product suited to the specific leather type — always test first on an inconspicuous area. For serious stains or structural damage, consult a professional leather cleaner to preserve the material’s finish and shape.<br\/><strong>Please refer to the washing and care instructions available on each product page or contact us if needed. <\/strong><\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_kmXTRL"]},"accordion_row_KDWwTH":{"type":"_accordion-row","settings":{"heading":"Are vintage florals appropriate for professional settings?","open_by_default":false,"icon":"none","width":20},"blocks":{"text_tzDEdF":{"type":"text","settings":{"text":"<p>Yes — when scaled and styled with restraint. Choose a floral rendered on darker grounds or a refined silk piece, and anchor it with tailored outerwear or a neutral blazer. Limit bold accessories and let the floral be the statement; in this configuration, the print reads deliberate and polished rather than casual or costume-like.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_tzDEdF"]}},"block_order":["accordion_row_8WP7ah","accordion_row_gcxmnq","accordion_row_tPBLBi","accordion_row_AfjmbX","accordion_row_JVf4nH","accordion_row_KDWwTH"]}},"block_order":["text_QAJV3L","accordion_pN8P8b"],"name":"t:names.faq_section","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":48,"padding-block-end":48}}},"order":["section","hero_V8Bi6A","section_NYF8dB","section_jRWEj7","section_e8htxn","section_eUDXmV","section_hJtGkk","section_gQM7DJ","section_gQqdr9","section_KWNT9f"]}
+{
+  "sections": {
+    "section": {
+      "type": "main-blog-post",
+      "blocks": {
+        "blog-post-title": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ article.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "blog-post-details": {
+          "type": "_blog-post-info-text",
+          "name": "Blog post details",
+          "disabled": true,
+          "settings": {
+            "show_date": true,
+            "show_author": false,
+            "type_preset": "",
+            "alignment": "center",
+            "show_alignment": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        },
+        "blog-post-image": {
+          "type": "_blog-post-featured-image",
+          "disabled": true,
+          "settings": {
+            "image_ratio": "adapt",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "blog-post-content": {
+          "type": "_blog-post-content",
+          "disabled": true,
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "blog-post-title",
+        "blog-post-details",
+        "blog-post-image",
+        "blog-post-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 20
+      }
+    },
+    "hero_V8Bi6A": {
+      "type": "hero",
+      "blocks": {
+        "text_Dc3qqA": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>The Wardrobe Dispatch: What Women Should Buy (and Wear) in 2026</h2>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_hUgLhf": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 32,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_Dc3qqA",
+        "text_hUgLhf"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "{{ article.image }}",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": true,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/Mobile_post_banner_What_Women_Should_Wear_in_2026.webp",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "background_color": "{{ settings.color_palette.color1 }}",
+        "toggle_overlay": true,
+        "overlay_color": "#afa26a7d",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_NYF8dB": {
+      "type": "section",
+      "blocks": {
+        "text_nkMLhX": {
+          "type": "text",
+          "settings": {
+            "text": "<p>January always asks a question of taste: what do you keep, what do you let go of, and what will actually earn its place in the seasons ahead? This is not a shopping list but a point of view, a rigorous short-list for the woman who wants currency, not clutter. The SS26 runways arrived with a mixture of bravado and restraint: an insistence on color (the shock-of-blue moments reported widely), an affection for technique (leather and technical fabrics that behave like second skins), and a polish that acknowledges real life, tailoring with pockets, draped shapes that forgive half a life, and denim that prefers room to cling. Here you will find six trends culled from the editors’ reports, runway imagery and cultural momentum, each rigorously matched to pieces we can sell now. Expect writing that presumes style literacy: shorthand references to Yves Klein blue or the band jacket are used sparingly and with purpose. Expect also an edit that is commercial by design. Every trend that follows has been verified against the shop: the point of this dossier is not speculation but activation. Consider this your seasonal briefing: a refined set of directives, grounded in runway thesis and translated into wearable realities, with two exact product picks beneath each trend so that pages turn into outfits. Read, decide, and then wear something that looks like it means something.</p>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "center",
+            "type_preset": "h5",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_nkMLhX"
+      ],
+      "name": "t:names.pull_quote",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 20,
+        "padding-block-end": 20
+      }
+    },
+    "section_jRWEj7": {
+      "type": "section",
+      "blocks": {
+        "image_PqwtNA": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/20956929_51047170_1000.webp",
+            "link": "shopify://products/black-leather-skirt-fendi-women",
+            "image_ratio": "square",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_Ppxth3": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_KQyVEx": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3><strong>Leather Finishes</strong></h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_WJQBMX": {
+              "type": "text",
+              "settings": {
+                "text": "<p>1. The Runway Thesis. Leather returned to SS26 as texture and tone rather than mere rebellion. From buttery nappa skirts to lacquered jackets and aprons that flirt with costume, designers treated leather as a language, one that could be playful, architectural or quietly luxe. As Who What Wear noted in its spring preview, leather finishes will carry across seasons because they address both warmth and structure: they read modern, hold shape and serve as a counterpoint to flowing silhouettes. The runway argument for leather in 2026 is pragmatic theatre: it is glamorous without ostentation, and tactile in a way that photographs rarely capture but everyone feels. For women who want to make a considered purchase that will outlive a single season, the material logic is persuasive: leather transcends trend cycles when cut and color are chosen with restraint. Read the trend on Who What Wear: <a href=\"https://www.whowhatwear.com/fashion/trends/winter-spring-transitional-trends-2026\" target=\"_blank\">Who What Wear — Winter-to-Spring 2026 Trends</a>.<br/>2. The Styling Masterclass. Treat leather as punctuation, not proclamation. Pair a smooth leather jacket over a draped dress for friction; let a heavy bordeaux jacket temper a satin slip, or allow a cream blouson to act as the neat architectural note against slouchy denim. For office-to-evening logic, leather accessories: belts, small sacs, anchor otherwise dematerialized looks. Texture is everything: a soft nappa will read modern and grown-up, while glossy finishes are for nights that ask for a little performance. Aim for balance: when leather is the center of gravity, keep jewelry minimal and shoes refined. The modern equilibirum is always between the tactile and the tailored.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_jxDaMR": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/31813025_61447424_2048.webp",
+                "link": "shopify://products/bordeaux-leather-jacket-iro-women-15641552978300",
+                "image_ratio": "square",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_MViWMT": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>3. The Curated Choice. Two sellable, runway-aligned pieces from the shop that embody this idea: <a href=\"https://we-in-style.com/products/bordeaux-leather-jacket-iro-women-15641552978300\" target=\"_blank\">Bordeaux Leather Jacket</a> and <a href=\"https://we-in-style.com/products/cream-leather-blouson-jacket-women-white\" target=\"_blank\">Cream Leather Blouson Jacket</a>. The first anchors the color-forward leather moment, a deep, wearable burgundy that nods to 2026's richer palettes, while the second proves leather's softer, more democratic side in cream. Both pieces map directly back to the runway thesis: structure, tactility and season-spanning utility.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_KQyVEx",
+            "text_WJQBMX",
+            "image_jxDaMR",
+            "text_MViWMT"
+          ]
+        }
+      },
+      "block_order": [
+        "image_PqwtNA",
+        "group_Ppxth3"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_e8htxn": {
+      "type": "section",
+      "blocks": {
+        "image_GwfPyW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/31310063_61179892_1000.webp",
+            "link": "shopify://products/asymmetrical-draped-dress-christopher-esber-women-15495056916860",
+            "image_ratio": "square",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_HhXriF": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_hVz9f3": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3><strong>Draped Shapes</strong></h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_Ui97jP": {
+              "type": "text",
+              "settings": {
+                "text": "<p>1. The Runway Thesis. Draping is not a flirtation this season; it is an argument about movement and architecture. SS26 showcased cowl necks, asymmetric hems and fluid jersey manipulated into exacting shapes, designers used gravity as a collaborator. The draped silhouette reads simultaneously sensual and authoritative: it softens tailoring and gives form to the otherwise demure. Draping in 2026 is less about excess and more about deliberate folds: a single cowl or an engineered asymmetric gather becomes an architectural signature. Publications and runways alike signaled a return to these calculated curves as the antidote to hard minimalism, the fabric does the talking. See the runway examples collated in Who What Wear’s trend notes on draped shapes: <a href=\"https://www.whowhatwear.com/fashion/trends/winter-spring-transitional-trends-2026\" target=\"_blank\">Who What Wear — Draped Shapes</a></p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_bptjHj": {
+              "type": "text",
+              "settings": {
+                "text": "<p>2. The Styling Masterclass. The drape deserves quiet company: layer a sharply cut blazer over a cowl dress for a metropolitan shorthand, or pair fluid asymmetric hems with a low, structured boot for tension. When a garment drapes, accessories should be architectural, an angular bag or a compact pump will counterbalance the fluidity. For casual translation, a draped top with tailored trousers keeps the silhouette readable: the key is proportion. Never fight the fabric; instead, let the fold define where the eye rests. Use draped dresses under coats with deliberate slits to reveal movement when you walk: that is the modern feminine reveal.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_ymmcgd": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/24465891_54623025_1000.webp",
+                "link": "shopify://products/draped-viscose-dress-rabanne-women-15576653955452",
+                "image_ratio": "square",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_LAAWmX": {
+              "type": "text",
+              "settings": {
+                "text": "<p>3. The Curated Choice. Two shop-ready options that embody the draped thesis: <a href=\"https://we-in-style.com/products/asymmetrical-draped-dress-christopher-esber-women-15495056916860\" target=\"_blank\">Asymmetrical Draped Dress</a> and <a href=\"/products/draped-viscose-dress-rabanne-women-15576653955452\" target=\"_blank\" title=\"Draped Viscose Dress\">Draped Viscose Dress</a>. The Christopher Esber piece gives the architectural asymmetry editors love, while the Rabanne long drape proves the versatility of the silhouette, both slip easily into evening or a punctuated daytime uniform.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_hVz9f3",
+            "text_Ui97jP",
+            "text_bptjHj",
+            "image_ymmcgd",
+            "text_LAAWmX"
+          ]
+        }
+      },
+      "block_order": [
+        "image_GwfPyW",
+        "group_HhXriF"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_eUDXmV": {
+      "type": "section",
+      "blocks": {
+        "image_KeKdXJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/28069413_57812541_1000.webp",
+            "link": "shopify://products/reversible-blue-flip-bag-rabanne-women-bleu",
+            "image_ratio": "square",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_p73qCx": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_87i4Nm": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3><strong>Blue: Navy to Electric</strong></h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_J8wC6Y": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>1. The Runway Thesis. The color story for 2026 is less about returning to beige than about recommitting to color as conviction. The most electric moments this season were blue: not timid sky notes but saturated, often saturated-to-the-point-of-theatrical Yves Klein-influenced chromas and, conversely, deep navy that reads as serious, almost formal. Cosmopolitan’s early brief for 2026 highlighted these shock-of-blue moments that dominated runways; designers used blue to assert presence without the transparency of red. The broad spectrum, from kinetic cobalt to contemplative navy, creates a useful duality: some blues shout, others stand quietly expensive. Reference: the Cosmopolitan runway summary on Electric Blues and SS26 color direction: <a href=\"https://www.cosmopolitan.com/style-beauty/fashion/a69800583/fashion-trends-2026/\" target=\"_blank\">Cosmopolitan — Fashion Trends 2026</a>.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_6imbC9": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>2. The Styling Masterclass. Choose your blue by intent. For a moment that reads contemporary and decisive, wear saturated blue head-to-toe and let texture differentiate (for example, a satin dress with matte boots). If your aim is nuance, navy is your neutral: match it with chocolate-brown boots or a camel coat for grown-up contrast. Blue also excels in volume: an oversized coat or a sculptural dress in navy reads modern rather than moody when punctuated with metallic hardware or a crisp white accessory. The trick is to commit to one blue family per outfit and use accessories to signal the mood — bright for youthful drama, navy for considered refinement. Call out the navy tones with tonal shoes and an understated bag.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_UJXydr": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/25724452_56781346_1000.webp",
+                "link": "shopify://products/satin-long-dress-rabanne-women-blue",
+                "image_ratio": "square",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_NtHerG": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>3. The Curated Choice. Two precise shop translations: <a href=\"https://we-in-style.com/products/yael-dress-khaite-women-bleu-fonce\" target=\"_blank\">Yael Dress</a> (Khaite, a deep, authoritative blue) and <a href=\"https://we-in-style.com/products/satin-long-dress-rabanne-women-blue\" target=\"_blank\">Satin Long Dress</a> (Rabanne, a saturated, evening-ready blue). Each piece answers the runway call: one for austere elegance, the other for liquid, photographic color that reads as modern glamour.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_87i4Nm",
+            "text_J8wC6Y",
+            "text_6imbC9",
+            "image_UJXydr",
+            "text_NtHerG"
+          ]
+        }
+      },
+      "block_order": [
+        "image_KeKdXJ",
+        "group_p73qCx"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_hJtGkk": {
+      "type": "section",
+      "blocks": {
+        "image_MEhPmV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/29861159_59008385_1000.webp",
+            "link": "shopify://products/gray-wool-blazer-saint-laurent-women-15218001150332",
+            "image_ratio": "square",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_waYYfm": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_kqbWnm": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3><strong>Grey Tailoring</strong></h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_HPGpFU": {
+              "type": "text",
+              "settings": {
+                "text": "<p>1. The Runway Thesis. Tailoring in 2026 returned to the language of nostalgia but made it softer. Grey tailoring was everywhere, an ’80s echo softened into slouch and slouch refined into easy luxury. Who What Wear and multiple runway roundups noted the revival of grey suiting in slouchy cuts and relaxed proportions: the jacket is no longer purely armor; it is the container for layered expression. Designers are pairing grey with sheer fabrics, color pops or draping, it is a middle ground between power dressing and the new relaxed codes of everyday luxury. Grey reads expensive because it is quietly decisive and infinitely versatile.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_NM49n6": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/30213817_59334250_1000.webp",
+                "link": "shopify://products/gray-wool-blazer-mm6-women-15468783534460",
+                "image_ratio": "square",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_mWjjTE": {
+              "type": "text",
+              "settings": {
+                "text": "<p>2. The Styling Masterclass. Invest in fit, not flash. A softly structured grey blazer worn over a silk camisole and wide-leg trouser signals intelligence; pair a double-breasted grey piece with a leather belt for waist definition. For a modern spin, choose sleeveless or asymmetrical tailoring to keep proportions interesting. The rule of thumb: when you wear grey tailoring, treat the suit as the canvas and introduce one strong textural element: a knit scarf, a leather boot, or a sequinned bag to complete the composition without defeating the restraint. Embrace oversized blazers but mind shoulder balance and sleeve length.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_xkhWnH": {
+              "type": "text",
+              "settings": {
+                "text": "<p>3. The Curated Choice. Two shop selections that echo the runway: <a href=\"https://we-in-style.com/products/gray-wool-blazer-saint-laurent-women-15218001150332\" target=\"_blank\">Gray Wool Blazer</a> (Saint Laurent) and <a href=\"https://we-in-style.com/products/gray-wool-blazer-mm6-women-15468783534460\" target=\"_blank\">Gray Wool Blazer</a> (MM6). Both articulate the season’s grey tailoring story, classic foundations that accommodate modern styling and layered dressing.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_kqbWnm",
+            "text_HPGpFU",
+            "image_NM49n6",
+            "text_mWjjTE",
+            "text_xkhWnH"
+          ]
+        }
+      },
+      "block_order": [
+        "image_MEhPmV",
+        "group_waYYfm"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_gQM7DJ": {
+      "type": "section",
+      "blocks": {
+        "image_6ahrA3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/A03624_09L21_01_C.jpg",
+            "link": "shopify://products/large-dakemi-jeans-diesel-women-blue",
+            "image_ratio": "square",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_AmUEpG": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_8BjLt3": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3><strong>Baggy Denim & Low-Rise Proportions</strong></h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_CfFRjH": {
+              "type": "text",
+              "settings": {
+                "text": "<p>1. The Runway Thesis. Denim’s 2026 grammar is roomy: baggy silhouettes and a low-slung waist reinterpreted, refined, and often rendered in luxe washes or surprising finishes. Street vantage and runway align: baggy jeans are not youth-exclusive but rather an everywoman aesthetic when cut well. Teen Vogue and InStyle have both chronicled the denim pivot the baggy, the low-rise and the wide-leg, as durable cultural idioms that allow for individual voice. On the runway, denim paired with structured tops or long coats created an attractive tension between relaxed bottoms and tailored tops.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_PCptg4": {
+              "type": "text",
+              "settings": {
+                "text": "<p>2. The Styling Masterclass. Baggy denim is always about proportion. When the jeans are generous, tighten the upper silhouette or tuck in a smart fitted top to define the waist, or purposefully play with volume head to toe for modern maximalist charm. A low-rise baggy should be worn with confidence: a cropped blazer or a tucked silk blouse will create a deliberate line. For shoes, choose architecture, a clean square-toe boot or a polished loafer makes the look feel curated rather than careless. Think of baggy denim as the wardrobe’s exhale; style it with purposeful companion pieces to keep it editorial and wearable.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_MRftyn": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/857c13c8-aa7c-4202-8716-e4f28808bfc320231018110052.jpg",
+                "link": "shopify://products/v-waist-long-baggy-denim-jeans-saint-laurent-women-15518605115772",
+                "image_ratio": "square",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_MckW9r": {
+              "type": "text",
+              "settings": {
+                "text": "<p>3. The Curated Choice. Two pieces from the edit that prove the category and translate the runway: <a href=\"https://we-in-style.com/products/v-waist-long-baggy-denim-jeans-saint-laurent-women-15518605115772\" target=\"_blank\">V-Waist Long Baggy Denim Jeans</a> and <a href=\"https://we-in-style.com/products/large-dakemi-jeans-diesel-women-blue\" target=\"_blank\">Large D-Akemi Jeans</a>. One is couture-leaning, the other approachable, both adhere to the baggy, low-slung logic that will dominate street and runway in 2026.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_8BjLt3",
+            "text_CfFRjH",
+            "text_PCptg4",
+            "image_MRftyn",
+            "text_MckW9r"
+          ]
+        }
+      },
+      "block_order": [
+        "image_6ahrA3",
+        "group_AmUEpG"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_gQqdr9": {
+      "type": "section",
+      "blocks": {
+        "image_xGR73H": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/31146660_60727200_1000.webp",
+            "link": "shopify://products/floral-lace-short-dress-rabanne-women-15546867941756",
+            "image_ratio": "square",
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_9N4nEe": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_3dE7Bq": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3>Vintage Florals Reworked</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_neyLTW": {
+              "type": "text",
+              "settings": {
+                "text": "<p>1. The Runway Thesis. Florals keep returning but 2026's version leans toward the antique: vintage-inspired prints that read more curated than cottagecore, often in darker palettes or rendered on unexpected textiles. Who What Wear and runway coverage highlighted this turn toward brash, vintage-referenced florals, the prints are familiar but amplified by scale, placement and texture. The result is a floral that wears like a statement, not a costume: it is slightly nostalgic and entirely contemporary because designers are pairing blooms with tailoring, leather, and unexpected layering.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_B6bhmD": {
+              "type": "text",
+              "settings": {
+                "text": "<p>2. The Styling Masterclass. Treat vintage florals like a focal print and ground them immediately. Layer a floral dress under a structured coat or pair a floral skirt with a chunky knit and ankle boots. For day, add a heavy shoe to anchor the delicacy; for evening, choose tonal accessories to let the print sing. A small florals-on-black piece reads moody and modern; a larger bloom in saturated tones reads theatrical and confident. In 2026, florals are not timid: they are carefully edited statements that require restrained supporting elements. Use vintage floral pieces with modern hardware and architectural shoes for that curatorial tension.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_3HnjxR": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/TAJA-DRESS_BLACK-MULTI_55953372-283_D_jpg.webp",
+                "link": "shopify://products/taja-long-dress-khaite-women-15778084258172",
+                "image_ratio": "square",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fill",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_6p6fWV": {
+              "type": "text",
+              "settings": {
+                "text": "<p>3. The Curated Choice. Two curated, shop-available pieces that epitomize the trend: <a href=\"https://we-in-style.com/products/taja-long-dress-khaite-women-15778084258172\" target=\"_blank\">Taja Long Dress</a> (Khaite, a refined floral silk) and <a href=\"https://we-in-style.com/products/floral-lace-short-dress-rabanne-women-15546867941756\" target=\"_blank\">Floral Lace Short Dress</a> (Rabanne, floral lace with a modern cut). Both map back to the runway thesis: floral as considered, feminine armor.</p>",
+                "width": "fit-content",
+                "max_width": "none",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_3dE7Bq",
+            "text_neyLTW",
+            "text_B6bhmD",
+            "image_3HnjxR",
+            "text_6p6fWV"
+          ]
+        }
+      },
+      "block_order": [
+        "image_xGR73H",
+        "group_9N4nEe"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_KWNT9f": {
+      "type": "section",
+      "blocks": {
+        "text_QAJV3L": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h3>Frequently asked questions</h3>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_pN8P8b": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "enable_faq_schema": true
+          },
+          "blocks": {
+            "accordion_row_8WP7ah": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How should leather be sized for longevity?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_CXWMgi": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Choose leather that accommodates a light layer underneath: leather will not only sit on your body but also crease and soften over time. If you prefer the jacket to layer over sweaters, size up. For a sleek, long-lived silhouette, buy to fit a blazer or thin knit — that choice preserves tailoring and prevents over-stressing seams while ensuring the piece will settle into a flattering shape over seasons.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_CXWMgi"
+              ]
+            },
+            "accordion_row_gcxmnq": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How do I make a draped dress wearable in daytime?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_fqTaEX": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Balance fluidity with structure: pair a draped dress with a cropped blazer or a short leather jacket to ground the silhouette and give it daytime credibility. Choose knit or leather boots and a compact bag to keep proportions modern. The key is thoughtful counterpoint: the drape provides movement while the structured piece retains city logic and practicality.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_fqTaEX"
+              ]
+            },
+            "accordion_row_tPBLBi": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Which blue should I choose for my skin tone?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_jHJzxH": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Deep navy is universally flattering and reads as a neutral for most complexions, while electric or cobalt blues flatter cooler undertones and create striking contrast on warmer complexions. If you are unsure, test a saturated blue near your face in natural light; if it brightens your complexion, it is a confident choice. A navy base is always a dependable starting point.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_jHJzxH"
+              ]
+            },
+            "accordion_row_AfjmbX": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How do I style baggy jeans without looking sloppy?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_p6CBTf": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Focus on proportion. Pair baggy denim with a fitted top, a cropped blazer, or a tucked shirt to define the waistline. For polished balance, add an elevated shoe — a loafer or block-heeled boot — and minimal, architectural accessories. The point is intentionality: every voluminous item should be balanced with a considered, often slimmer, counterpiece.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_p6CBTf"
+              ]
+            },
+            "accordion_row_JVf4nH": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How do I care for leather items from the shop?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_kmXTRL": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Treat leather as you would a fine shoe: keep it away from direct heat and sunlight, store it on a shaped hanger to maintain its form, and clean spills promptly with a soft cloth. Condition occasionally using a product suited to the specific leather type — always test first on an inconspicuous area. For serious stains or structural damage, consult a professional leather cleaner to preserve the material’s finish and shape.<br/><strong>Please refer to the washing and care instructions available on each product page or contact us if needed. </strong></p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_kmXTRL"
+              ]
+            },
+            "accordion_row_KDWwTH": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Are vintage florals appropriate for professional settings?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_tzDEdF": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Yes — when scaled and styled with restraint. Choose a floral rendered on darker grounds or a refined silk piece, and anchor it with tailored outerwear or a neutral blazer. Limit bold accessories and let the floral be the statement; in this configuration, the print reads deliberate and polished rather than casual or costume-like.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_tzDEdF"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_8WP7ah",
+            "accordion_row_gcxmnq",
+            "accordion_row_tPBLBi",
+            "accordion_row_AfjmbX",
+            "accordion_row_JVf4nH",
+            "accordion_row_KDWwTH"
+          ]
+        }
+      },
+      "block_order": [
+        "text_QAJV3L",
+        "accordion_pN8P8b"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "section",
+    "hero_V8Bi6A",
+    "section_NYF8dB",
+    "section_jRWEj7",
+    "section_e8htxn",
+    "section_eUDXmV",
+    "section_hJtGkk",
+    "section_gQM7DJ",
+    "section_gQqdr9",
+    "section_KWNT9f"
+  ]
+}

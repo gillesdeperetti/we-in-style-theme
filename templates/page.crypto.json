@@ -1,1 +1,1456 @@
-{"sections":{"main":{"type":"main-page","blocks":{"heading":{"type":"text","name":"Title","settings":{"text":"<h1>{{ closest.page.title }}<\/h1>","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-primary--family)","font_size":"","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["heading"],"disabled":true,"settings":{"content_direction":"column","gap":32,"color_scheme":"","padding-block-start":40,"padding-block-end":0}},"section_3aPmF7":{"type":"section","blocks":{"text_mgqghC":{"type":"text","name":"t:names.heading","settings":{"text":"<h1>{{ closest.page.title }}<\/h1>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-heading--family)","font_size":"2.5rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_h4kQaj":{"type":"text","name":"t:names.heading","settings":{"text":"<p>Innovation at the service of your shopping<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-accent--family)","font_size":"1.5rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_iVMygH":{"type":"text","name":"t:names.text","settings":{"text":"<p>We’ve partnered with Triple-A to offer cryptocurrency payments, a secure and regulated payment solution, for a seamless checkout experience.<\/p>","width":"fit-content","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_mgqghC","text_h4kQaj","text_iVMygH"],"name":"t:names.rich_text_section","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":10,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40}},"marquee_f6xRUy":{"type":"marquee","blocks":{"text_fqi8b7":{"type":"text","settings":{"text":"<p>Now you can pay in<\/p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"custom","font":"var(--font-subheading--family)","font_size":"1.125rem","line_height":"tight","letter_spacing":"tight","case":"uppercase","wrap":"nowrap","color":"var(--color-primary)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"icon_PyXgfp":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Bitcoin_svg.webp","width":24,"link":"","open_in_new_tab":false},"blocks":{}},"icon_7jkBtq":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Ethereum_Logo.webp","width":24,"link":"","open_in_new_tab":false},"blocks":{}},"icon_3C4Lip":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/pyusd.webp","width":26,"link":"","open_in_new_tab":false},"blocks":{}},"icon_mHC9x6":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/Tether_USDT.webp","width":24,"link":"","open_in_new_tab":false},"blocks":{}},"icon_c9LrbA":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/binance.webp","width":26,"link":"","open_in_new_tab":false},"blocks":{}},"icon_abyNAV":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/usdc.webp","width":26,"link":"","open_in_new_tab":false},"blocks":{}},"icon_xxiWBD":{"type":"icon","name":"t:names.icon","settings":{"icon":"price_tag","image_upload":"shopify:\/\/shop_images\/eurc.webp","width":26,"link":"","open_in_new_tab":false},"blocks":{}}},"block_order":["text_fqi8b7","icon_PyXgfp","icon_7jkBtq","icon_3C4Lip","icon_mHC9x6","icon_c9LrbA","icon_abyNAV","icon_xxiWBD"],"name":"t:names.marquee_section","settings":{"movement_direction":"normal","color_scheme":"","padding-block-start":24,"padding-block-end":24,"gap_between_elements":24}},"section_JkPfVV":{"type":"section","blocks":{"group_N8XQ7U":{"type":"group","name":"Column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"flex-start","gap":8,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":10,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_PgJE9U":{"type":"icon","name":"t:names.icon","settings":{"icon":"check_box","image_upload":"shopify:\/\/shop_images\/1m5vq91ifawmiq2bo0v.svg","width":30,"link":"","open_in_new_tab":false},"blocks":{}},"text_tWnBbz":{"type":"text","name":"Heading","settings":{"text":"<h2>Select<\/h2>","width":"100%","max_width":"normal","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_KgybGy":{"type":"text","name":"Description","settings":{"text":"<p>After adding your items to the cart, proceed to checkout and select <strong>“Triple-A - Crypto Payments”<\/strong>. You will be redirected to our partner’s secure payment interface.<\/p>","width":"100%","max_width":"normal","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_PgJE9U","text_tWnBbz","text_KgybGy"]},"group_HDHMfW":{"type":"group","name":"Column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"flex-start","gap":8,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":10,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_pXkKGy":{"type":"icon","name":"t:names.icon","settings":{"icon":"check_box","image_upload":"shopify:\/\/shop_images\/icon-qrcode.png","width":24,"link":"","open_in_new_tab":false},"blocks":{}},"text_MkhFU7":{"type":"text","name":"Heading","settings":{"text":"<h2>Scan<\/h2>","width":"100%","max_width":"normal","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_MMJR4d":{"type":"text","name":"Description","settings":{"text":"<p>Choose your preferred cryptocurrency and scan the <strong>generated QR code<\/strong> using your wallet.<br\/>The QR code is <strong>valid for 25 minutes<\/strong>, with a guaranteed exchange rate.<\/p>","width":"100%","max_width":"normal","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_pXkKGy","text_MkhFU7","text_MMJR4d"]},"group_tFhenj":{"type":"group","name":"Column","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"flex-start","gap":8,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":10,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"icon_KLCDx8":{"type":"icon","name":"t:names.icon","settings":{"icon":"lock","image_upload":"shopify:\/\/shop_images\/1m5vq91ifawmiq2bo0v_2.svg","width":30,"link":"","open_in_new_tab":false},"blocks":{}},"text_B6ECAT":{"type":"text","name":"Heading","settings":{"text":"<h2>Pay<\/h2>","width":"100%","max_width":"normal","alignment":"center","type_preset":"h4","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"text_kMRQWC":{"type":"text","name":"Description","settings":{"text":"<p>Confirm the transaction directly from your cryptocurrency wallet.<br\/>Your order is completed once the transaction is validated on the blockchain.<\/p>","width":"100%","max_width":"normal","alignment":"center","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["icon_KLCDx8","text_B6ECAT","text_kMRQWC"]}},"block_order":["group_N8XQ7U","group_HDHMfW","group_tFhenj"],"name":"t:names.multicolumn","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"flex-start","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":16,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"scheme-1","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":48,"padding-block-end":48}},"section_h8GKRm":{"type":"section","blocks":{"text_zYh7E7":{"type":"text","name":"t:names.heading","settings":{"text":"<h2>Currencies and security<\/h2>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":40,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_iw8VaK":{"type":"group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"space-between","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":100,"width":"fit-content","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":15,"padding-block-end":15,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"group_HLpkpR":{"type":"group","name":"t:names.group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"group_mcLQQh":{"type":"group","name":"t:names.group","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_LtDYY8":{"type":"text","name":"t:names.text","settings":{"text":"<p>To ensure full price stability during your purchase, the exchange rate is <strong>locked and guaranteed for 25 minutes<\/strong> by our partner <strong>Triple-A<\/strong>, eliminating any risk of volatility while you complete your order.<\/p><p>We currently accept the following leading cryptocurrencies and crypto payment solutions:<br\/><br\/><strong>Bitcoin (BTC)<\/strong>, <strong>Ethereum (ETH)<\/strong>, <strong>Tether (USDT)<\/strong>, <strong>USD Coin (USDC)<\/strong>, <strong>PayPal USD (PYUSD)<\/strong>, <strong>EURC<\/strong>, as well as payments via <strong>Binance Pay<\/strong>.<\/p><p>The conversion rate is calculated based on the <strong>total amount of your cart in euros<\/strong>. If your cart is displayed in another currency, an automatic conversion will be applied and the <strong>final payable amount will be clearly displayed<\/strong> on our partner’s payment page.<\/p>","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"group_ziXP6N":{"type":"group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":false,"horizontal_alignment":"center","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"custom","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"image_r3XjJG":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/triple-a-crypto-payment-option.webp","link":"","image_ratio":"adapt","width":"custom","custom_width":35,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["image_r3XjJG"]}},"block_order":["text_LtDYY8","group_ziXP6N"]}},"block_order":["group_mcLQQh"]},"group_jxizjP":{"type":"group","name":"t:names.group","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"center","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":83,"width":"fit-content","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","link":"","open_in_new_tab":false,"placeholder":"","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"image_VkwddH":{"type":"image","name":"t:names.image","settings":{"image":"shopify:\/\/shop_images\/Screenshot_2025-12-26_at_10.03.57_AM.png","link":"","image_ratio":"adapt","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":100,"height":"fit","border":"none","border_width":1,"border_opacity":100,"border_radius":5,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["image_VkwddH"]}},"block_order":["group_HLpkpR","group_jxizjP"]}},"block_order":["text_zYh7E7","group_iw8VaK"],"name":"t:names.custom_section","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"center","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":12,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}},"section_tmFV6U":{"type":"section","blocks":{"text_D6m8BY":{"type":"text","name":"t:names.heading","settings":{"text":"<h3>Frequently asked questions<\/h3>","width":"fit-content","max_width":"narrow","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"accordion_EmLFpP":{"type":"accordion","name":"t:names.accordion","settings":{"enable_faq_schema":true,"icon":"caret","dividers":true,"type_preset":"h5","inherit_color_scheme":true,"color_scheme":"","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"accordion_row_LmKpaU":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"{{ metaobjects.faq_item[\"is-cryptocurrency-payment-secure-and-regulated\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_LCrHPa":{"type":"text","settings":{"text":"{{ metaobjects.faq_item[\"is-cryptocurrency-payment-secure-and-regulated\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_LCrHPa"]},"accordion_row_TwjjJc":{"type":"_accordion-row","settings":{"heading":"{{ metaobjects.faq_item[\"how-to-pay-with-cryptocurrency\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_eTrqfg":{"type":"text","settings":{"text":"{{ metaobjects.faq_item[\"how-to-pay-with-cryptocurrency\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_eTrqfg"]},"accordion_row_rm6mG8":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"{{ metaobjects.faq_item[\"accepted-cryptocurrency\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_yEfAAd":{"type":"text","name":"t:names.text","settings":{"text":"{{ metaobjects.faq_item[\"accepted-cryptocurrency\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_yEfAAd"]},"accordion_row_FcF9fc":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"{{ metaobjects.faq_item[\"which-countries-support-crypto-payments\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_etRxWg":{"type":"text","name":"t:names.text","settings":{"text":"{{ metaobjects.faq_item[\"which-countries-support-crypto-payments\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_etRxWg"]},"accordion_row_bb8Wnd":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"{{ metaobjects.faq_item[\"what-happens-if-i-send-cryptocurrency-to-the-wrong-address-or-network\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_KTUBiG":{"type":"text","name":"t:names.text","settings":{"text":"{{ metaobjects.faq_item[\"what-happens-if-i-send-cryptocurrency-to-the-wrong-address-or-network\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_KTUBiG"]},"accordion_row_PWRryL":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"{{ metaobjects.faq_item[\"what-happens-if-i-dont-send-the-exact-amount\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_pzRPe6":{"type":"text","name":"t:names.text","settings":{"text":"{{ metaobjects.faq_item[\"what-happens-if-i-dont-send-the-exact-amount\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_pzRPe6"]},"accordion_row_qPhTEc":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"{{ metaobjects.faq_item[\"what-if-i-pay-after-my-order-has-been-canceled\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_6LHxYd":{"type":"text","name":"t:names.text","settings":{"text":"{{ metaobjects.faq_item[\"what-if-i-pay-after-my-order-has-been-canceled\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_6LHxYd"]},"accordion_row_hfrkEG":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"{{ metaobjects.faq_item[\"refunds-in-cryptocurrency\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_EkL7fF":{"type":"text","name":"t:names.text","settings":{"text":"{{ metaobjects.faq_item[\"refunds-in-cryptocurrency\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_EkL7fF"]},"accordion_row_rTYhLt":{"type":"_accordion-row","name":"t:names.accordion_row","settings":{"heading":"{{ metaobjects.faq_item[\"why-might-i-be-asked-to-provide-an-identity-document-kyc\"].question.value }}","open_by_default":false,"icon":"none","width":20},"blocks":{"text_Jy4JbL":{"type":"text","name":"t:names.text","settings":{"text":"{{ metaobjects.faq_item[\"why-might-i-be-asked-to-provide-an-identity-document-kyc\"].answer | metafield_tag }}","width":"100%","max_width":"none","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","color":"var(--color-foreground)","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_Jy4JbL"]}},"block_order":["accordion_row_LmKpaU","accordion_row_TwjjJc","accordion_row_rm6mG8","accordion_row_FcF9fc","accordion_row_bb8Wnd","accordion_row_PWRryL","accordion_row_qPhTEc","accordion_row_hfrkEG","accordion_row_rTYhLt"]}},"block_order":["text_D6m8BY","accordion_EmLFpP"],"name":"t:names.faq_section","settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":32,"section_width":"page-width","section_height":"","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":48,"padding-block-end":48}}},"order":["main","section_3aPmF7","marquee_f6xRUy","section_JkPfVV","section_h8GKRm","section_tmFV6U"]}
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 0
+      }
+    },
+    "section_3aPmF7": {
+      "type": "section",
+      "blocks": {
+        "text_mgqghC": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2.5rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_h4kQaj": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Innovation at the service of your shopping</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "1.5rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_iVMygH": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>We’ve partnered with Triple-A to offer cryptocurrency payments, a secure and regulated payment solution, for a seamless checkout experience.</p>",
+            "width": "fit-content",
+            "max_width": "none",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_mgqghC",
+        "text_h4kQaj",
+        "text_iVMygH"
+      ],
+      "name": "t:names.rich_text_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 10,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color5 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "marquee_f6xRUy": {
+      "type": "marquee",
+      "blocks": {
+        "text_fqi8b7": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Now you can pay in</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "1.125rem",
+            "line_height": "tight",
+            "letter_spacing": "tight",
+            "case": "uppercase",
+            "wrap": "nowrap",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "icon_PyXgfp": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/Bitcoin_svg.webp",
+            "width": 24,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_7jkBtq": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/Ethereum_Logo.webp",
+            "width": 24,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_3C4Lip": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/pyusd.webp",
+            "width": 26,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_mHC9x6": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/Tether_USDT.webp",
+            "width": 24,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_c9LrbA": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/binance.webp",
+            "width": 26,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_abyNAV": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/usdc.webp",
+            "width": 26,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        },
+        "icon_xxiWBD": {
+          "type": "icon",
+          "name": "t:names.icon",
+          "settings": {
+            "icon": "price_tag",
+            "image_upload": "shopify://shop_images/eurc.webp",
+            "width": 26,
+            "link": "",
+            "open_in_new_tab": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_fqi8b7",
+        "icon_PyXgfp",
+        "icon_7jkBtq",
+        "icon_3C4Lip",
+        "icon_mHC9x6",
+        "icon_c9LrbA",
+        "icon_abyNAV",
+        "icon_xxiWBD"
+      ],
+      "name": "t:names.marquee_section",
+      "settings": {
+        "movement_direction": "normal",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 24,
+        "padding-block-end": 24,
+        "gap_between_elements": 24
+      }
+    },
+    "section_JkPfVV": {
+      "type": "section",
+      "blocks": {
+        "group_N8XQ7U": {
+          "type": "group",
+          "name": "Column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 10,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_PgJE9U": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "check_box",
+                "image_upload": "shopify://shop_images/1m5vq91ifawmiq2bo0v.svg",
+                "width": 30,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
+            "text_tWnBbz": {
+              "type": "text",
+              "name": "Heading",
+              "settings": {
+                "text": "<h2>Select</h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_KgybGy": {
+              "type": "text",
+              "name": "Description",
+              "settings": {
+                "text": "<p>After adding your items to the cart, proceed to checkout and select <strong>“Triple-A - Crypto Payments”</strong>. You will be redirected to our partner’s secure payment interface.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_PgJE9U",
+            "text_tWnBbz",
+            "text_KgybGy"
+          ]
+        },
+        "group_HDHMfW": {
+          "type": "group",
+          "name": "Column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 10,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_pXkKGy": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "check_box",
+                "image_upload": "shopify://shop_images/icon-qrcode.png",
+                "width": 24,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
+            "text_MkhFU7": {
+              "type": "text",
+              "name": "Heading",
+              "settings": {
+                "text": "<h2>Scan</h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_MMJR4d": {
+              "type": "text",
+              "name": "Description",
+              "settings": {
+                "text": "<p>Choose your preferred cryptocurrency and scan the <strong>generated QR code</strong> using your wallet.<br/>The QR code is <strong>valid for 25 minutes</strong>, with a guaranteed exchange rate.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_pXkKGy",
+            "text_MkhFU7",
+            "text_MMJR4d"
+          ]
+        },
+        "group_tFhenj": {
+          "type": "group",
+          "name": "Column",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 8,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 10,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "icon_KLCDx8": {
+              "type": "icon",
+              "name": "t:names.icon",
+              "settings": {
+                "icon": "lock",
+                "image_upload": "shopify://shop_images/1m5vq91ifawmiq2bo0v_2.svg",
+                "width": 30,
+                "link": "",
+                "open_in_new_tab": false
+              },
+              "blocks": {}
+            },
+            "text_B6ECAT": {
+              "type": "text",
+              "name": "Heading",
+              "settings": {
+                "text": "<h2>Pay</h2>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_kMRQWC": {
+              "type": "text",
+              "name": "Description",
+              "settings": {
+                "text": "<p>Confirm the transaction directly from your cryptocurrency wallet.<br/>Your order is completed once the transaction is validated on the blockchain.</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "icon_KLCDx8",
+            "text_B6ECAT",
+            "text_kMRQWC"
+          ]
+        }
+      },
+      "block_order": [
+        "group_N8XQ7U",
+        "group_HDHMfW",
+        "group_tFhenj"
+      ],
+      "name": "t:names.multicolumn",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "section_h8GKRm": {
+      "type": "section",
+      "blocks": {
+        "text_zYh7E7": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h2>Currencies and security</h2>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 40,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_iw8VaK": {
+          "type": "group",
+          "name": "t:names.group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 100,
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 15,
+            "padding-block-end": 15,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_HLpkpR": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "group_mcLQQh": {
+                  "type": "group",
+                  "name": "t:names.group",
+                  "settings": {
+                    "content_direction": "column",
+                    "vertical_on_mobile": true,
+                    "horizontal_alignment": "flex-start",
+                    "vertical_alignment": "center",
+                    "align_baseline": false,
+                    "horizontal_alignment_flex_direction_column": "flex-start",
+                    "vertical_alignment_flex_direction_column": "center",
+                    "gap": 12,
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "custom_height": 100,
+                    "background_media": "none",
+                    "video_position": "cover",
+                    "background_image_position": "cover",
+                    "toggle_overlay": false,
+                    "overlay_color": "#00000026",
+                    "overlay_style": "solid",
+                    "gradient_direction": "to top",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 0,
+                    "link": "",
+                    "open_in_new_tab": false,
+                    "placeholder": "",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {
+                    "text_LtDYY8": {
+                      "type": "text",
+                      "name": "t:names.text",
+                      "settings": {
+                        "text": "<p>To ensure full price stability during your purchase, the exchange rate is <strong>locked and guaranteed for 25 minutes</strong> by our partner <strong>Triple-A</strong>, eliminating any risk of volatility while you complete your order.</p><p>We currently accept the following leading cryptocurrencies and crypto payment solutions:<br/><br/><strong>Bitcoin (BTC)</strong>, <strong>Ethereum (ETH)</strong>, <strong>Tether (USDT)</strong>, <strong>USD Coin (USDC)</strong>, <strong>PayPal USD (PYUSD)</strong>, <strong>EURC</strong>, as well as payments via <strong>Binance Pay</strong>.</p><p>The conversion rate is calculated based on the <strong>total amount of your cart in euros</strong>. If your cart is displayed in another currency, an automatic conversion will be applied and the <strong>final payable amount will be clearly displayed</strong> on our partner’s payment page.</p>",
+                        "width": "100%",
+                        "max_width": "none",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "1rem",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {}
+                    },
+                    "group_ziXP6N": {
+                      "type": "group",
+                      "name": "t:names.group",
+                      "settings": {
+                        "content_direction": "row",
+                        "vertical_on_mobile": false,
+                        "horizontal_alignment": "center",
+                        "vertical_alignment": "center",
+                        "align_baseline": false,
+                        "horizontal_alignment_flex_direction_column": "flex-start",
+                        "vertical_alignment_flex_direction_column": "center",
+                        "gap": 12,
+                        "width": "fill",
+                        "custom_width": 100,
+                        "width_mobile": "fill",
+                        "custom_width_mobile": 100,
+                        "height": "custom",
+                        "custom_height": 100,
+                        "background_media": "none",
+                        "video_position": "cover",
+                        "background_image_position": "cover",
+                        "toggle_overlay": false,
+                        "overlay_color": "#00000026",
+                        "overlay_style": "solid",
+                        "gradient_direction": "to top",
+                        "border": "none",
+                        "border_width": 1,
+                        "border_opacity": 100,
+                        "border_radius": 0,
+                        "link": "",
+                        "open_in_new_tab": false,
+                        "placeholder": "",
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0
+                      },
+                      "blocks": {
+                        "image_r3XjJG": {
+                          "type": "image",
+                          "name": "t:names.image",
+                          "settings": {
+                            "image": "shopify://shop_images/triple-a-crypto-payment-option.webp",
+                            "link": "",
+                            "image_ratio": "adapt",
+                            "width": "custom",
+                            "custom_width": 35,
+                            "width_mobile": "fill",
+                            "custom_width_mobile": 100,
+                            "height": "fit",
+                            "border": "none",
+                            "border_width": 1,
+                            "border_opacity": 100,
+                            "border_radius": 0,
+                            "padding-block-start": 0,
+                            "padding-block-end": 0,
+                            "padding-inline-start": 0,
+                            "padding-inline-end": 0
+                          },
+                          "blocks": {}
+                        }
+                      },
+                      "block_order": [
+                        "image_r3XjJG"
+                      ]
+                    }
+                  },
+                  "block_order": [
+                    "text_LtDYY8",
+                    "group_ziXP6N"
+                  ]
+                }
+              },
+              "block_order": [
+                "group_mcLQQh"
+              ]
+            },
+            "group_jxizjP": {
+              "type": "group",
+              "name": "t:names.group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "center",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 83,
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_VkwddH": {
+                  "type": "image",
+                  "name": "t:names.image",
+                  "settings": {
+                    "image": "shopify://shop_images/Screenshot_2025-12-26_at_10.03.57_AM.png",
+                    "link": "",
+                    "image_ratio": "adapt",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_radius": 5,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_VkwddH"
+              ]
+            }
+          },
+          "block_order": [
+            "group_HLpkpR",
+            "group_jxizjP"
+          ]
+        }
+      },
+      "block_order": [
+        "text_zYh7E7",
+        "group_iw8VaK"
+      ],
+      "name": "t:names.custom_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.color5 }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "section_tmFV6U": {
+      "type": "section",
+      "blocks": {
+        "text_D6m8BY": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<h3>Frequently asked questions</h3>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_EmLFpP": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "enable_faq_schema": true
+          },
+          "blocks": {
+            "accordion_row_LmKpaU": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"is-cryptocurrency-payment-secure-and-regulated\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_LCrHPa": {
+                  "type": "text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"is-cryptocurrency-payment-secure-and-regulated\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_LCrHPa"
+              ]
+            },
+            "accordion_row_TwjjJc": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"how-to-pay-with-cryptocurrency\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_eTrqfg": {
+                  "type": "text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"how-to-pay-with-cryptocurrency\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_eTrqfg"
+              ]
+            },
+            "accordion_row_rm6mG8": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"accepted-cryptocurrency\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_yEfAAd": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"accepted-cryptocurrency\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_yEfAAd"
+              ]
+            },
+            "accordion_row_FcF9fc": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"which-countries-support-crypto-payments\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_etRxWg": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"which-countries-support-crypto-payments\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_etRxWg"
+              ]
+            },
+            "accordion_row_bb8Wnd": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"what-happens-if-i-send-cryptocurrency-to-the-wrong-address-or-network\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_KTUBiG": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"what-happens-if-i-send-cryptocurrency-to-the-wrong-address-or-network\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_KTUBiG"
+              ]
+            },
+            "accordion_row_PWRryL": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"what-happens-if-i-dont-send-the-exact-amount\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_pzRPe6": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"what-happens-if-i-dont-send-the-exact-amount\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_pzRPe6"
+              ]
+            },
+            "accordion_row_qPhTEc": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"what-if-i-pay-after-my-order-has-been-canceled\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_6LHxYd": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"what-if-i-pay-after-my-order-has-been-canceled\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_6LHxYd"
+              ]
+            },
+            "accordion_row_hfrkEG": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"refunds-in-cryptocurrency\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_EkL7fF": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"refunds-in-cryptocurrency\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_EkL7fF"
+              ]
+            },
+            "accordion_row_rTYhLt": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "{{ metaobjects.faq_item[\"why-might-i-be-asked-to-provide-an-identity-document-kyc\"].question.value }}",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_Jy4JbL": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "{{ metaobjects.faq_item[\"why-might-i-be-asked-to-provide-an-identity-document-kyc\"].answer | metafield_tag }}",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_Jy4JbL"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_LmKpaU",
+            "accordion_row_TwjjJc",
+            "accordion_row_rm6mG8",
+            "accordion_row_FcF9fc",
+            "accordion_row_bb8Wnd",
+            "accordion_row_PWRryL",
+            "accordion_row_qPhTEc",
+            "accordion_row_hfrkEG",
+            "accordion_row_rTYhLt"
+          ]
+        }
+      },
+      "block_order": [
+        "text_D6m8BY",
+        "accordion_EmLFpP"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "section_3aPmF7",
+    "marquee_f6xRUy",
+    "section_JkPfVV",
+    "section_h8GKRm",
+    "section_tmFV6U"
+  ]
+}
