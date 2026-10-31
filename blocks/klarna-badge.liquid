@@ -1,0 +1,243 @@
+{%- comment -%}
+  Bloc Klarna Badge pour les pages produits
+  - Calcul automatique: prix / 3 arrondi à 2 décimales
+  - Affichage uniquement si prix entre 35€ et 3000€
+  - Affichage uniquement pour les pays éligibles Klarna
+{%- endcomment -%}
+
+{%- liquid
+  # Liste des pays éligibles Klarna
+  assign klarna_countries = 'ES,NL,PT,NO,FR,DE,IT,IE,FI,DK,BE,AT,SE,GB,CH,PL,CZ,SK,GR' | split: ','
+  
+  # Récupérer le code pays actuel
+  assign current_country = localization.country.iso_code
+  
+  # Vérifier si le pays est éligible
+  assign country_eligible = false
+  for country in klarna_countries
+    if current_country == country
+      assign country_eligible = true
+      break
+    endif
+  endfor
+  
+  # Récupérer le prix du produit (en centimes)
+  assign product_price = closest.product.selected_or_first_available_variant.price
+  
+  # Vérifier si le prix est dans la fourchette (35€ - 3000€ = 3500 - 300000 centimes)
+  assign min_price = 3500
+  assign max_price = 300000
+  assign price_eligible = false
+  
+  if product_price >= min_price and product_price <= max_price
+    assign price_eligible = true
+  endif
+  
+  # Afficher seulement si pays ET prix sont éligibles
+  assign show_klarna = false
+  if country_eligible and price_eligible
+    assign show_klarna = true
+  endif
+  
+  # Calculer le montant par mensualité (prix / 3, arrondi à 2 décimales)
+  if show_klarna
+    assign installment_value = product_price | divided_by: 3.0 | divided_by: 100.0 | round: 2
+    assign installment_price = installment_value | replace: '.', ',' | append: ' €'
+  endif
+-%}
+
+{%- if show_klarna -%}
+  <div 
+    class="klarna-badge-block" 
+    style="
+      --klarna-badge-bg: {{ block.settings.badge_bg_color }};
+      --klarna-text-color: {{ block.settings.text_color }};
+      padding-top: {{ block.settings.padding_top }}px;
+      padding-bottom: {{ block.settings.padding_bottom }}px;
+    "
+    {{ block.shopify_attributes }}
+  >
+    <div class="klarna-badge-block__wrapper">
+      <div class="klarna-badge-block__icon">
+        <svg role="img" xmlns="http://www.w3.org/2000/svg" width="71.25" height="30" viewBox="0 0 71.25 30" aria-label="Klarna">
+          <title>Klarna</title>
+          <g clip-path="url(#klarna-block-clip-{{ block.id }})">
+            <path fill="{{ block.settings.badge_bg_color }}" d="M62.7688 0H8.48123C3.79718 0 0 3.79718 0 8.48123V21.5188C0 26.2028 3.79718 30 8.48123 30H62.7688c4.684 0 8.4812-3.7972 8.4812-8.4812V8.48123C71.25 3.79718 67.4528 0 62.7688 0Z"></path>
+            <path fill="#0B051D" d="M57.412 19.1418c-1.2436 0-2.2134-1.0286-2.2134-2.2776 0-1.2491.9698-2.2776 2.2134-2.2776 1.2441 0 2.2135 1.0285 2.2135 2.2776 0 1.249-.9694 2.2776-2.2135 2.2776Zm-.6215 2.4062c1.0608 0 2.4145-.4041 3.1645-1.9837l.0731.0367c-.329.8633-.329 1.3776-.329 1.5062v.202h2.6704v-8.8901h-2.6704v.2021c0 .1286 0 .6428.329 1.5061l-.0731.0368c-.75-1.5797-2.1037-1.9838-3.1645-1.9838-2.543 0-4.3355 2.0205-4.3355 4.6839 0 2.6633 1.7925 4.6838 4.3355 4.6838Zm-8.9822-9.3677c-1.2073 0-2.1586.4225-2.9268 1.9838l-.0732-.0368c.3292-.8633.3292-1.3775.3292-1.5061v-.2021h-2.6708v8.8901h2.744v-4.6838c0-1.2307.7134-2.0021 1.8659-2.0021 1.1526 0 1.7193.6612 1.7193 1.9837v4.7022H51.54v-5.6573c0-2.0205-1.5731-3.4716-3.7317-3.4716Zm-9.3112 1.9838-.0731-.0368c.3293-.8633.3293-1.3775.3293-1.5061v-.2021h-2.6708v8.8901h2.7439l.0183-4.2797c0-1.249.6586-2.0021 1.7379-2.0021.2926 0 .5305.0367.8048.1102v-2.7185c-1.2073-.2571-2.2866.2021-2.8903 1.745Zm-8.7257 4.9777c-1.244 0-2.2135-1.0286-2.2135-2.2776 0-1.2491.9695-2.2776 2.2135-2.2776 1.2439 0 2.2134 1.0285 2.2134 2.2776 0 1.249-.9695 2.2776-2.2134 2.2776Zm-.622 2.4062c1.061 0 2.4147-.4041 3.1647-1.9837l.0732.0367c-.3293.8633-.3293 1.3776-.3293 1.5062v.202h2.6708v-8.8901H32.058v.2021c0 .1286 0 .6428.3293 1.5061l-.0732.0368c-.75-1.5797-2.1037-1.9838-3.1647-1.9838-2.5428 0-4.3355 2.0205-4.3355 4.6839 0 2.6633 1.7927 4.6838 4.3355 4.6838Zm-8.1588-.2388h2.744V8.45166h-2.744V21.3092ZM18.9784 8.45166h-2.7988c0 2.29594-1.4086 4.35314-3.5489 5.82264l-.8415.5878V8.45166H8.88062V21.3092h2.90858v-6.3736l4.8111 6.3736h3.5489L15.521 15.211c2.1037-1.5245 3.4757-3.894 3.4574-6.75934Z"></path>
+          </g>
+          <defs>
+            <clipPath id="klarna-block-clip-{{ block.id }}">
+              <path fill="#fff" d="M0 0h71.25v30H0z"></path>
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <div class="klarna-badge-block__text">
+        <p>
+          {{ 'blocks.klarna.installments_before' | t }} <strong>{{ installment_price }}</strong> {{ 'blocks.klarna.installments_after' | t }}
+          {%- if block.settings.show_link -%}
+            {%- if block.settings.link_url != blank -%}
+              <a href="{{ block.settings.link_url }}" class="klarna-badge-block__link" {% if block.settings.link_new_tab %}target="_blank" rel="noopener"{% endif %}>
+                {{ 'blocks.klarna.learn_more' | t }}
+              </a>
+            {%- else -%}
+              <span class="klarna-badge-block__link klarna-badge-block__link--static">
+                {{ 'blocks.klarna.learn_more' | t }}
+              </span>
+            {%- endif -%}
+          {%- endif -%}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .klarna-badge-block {
+      width: 100%;
+    }
+
+    .klarna-badge-block__wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+
+    .klarna-badge-block__icon {
+      flex-shrink: 0;
+    }
+
+    .klarna-badge-block__icon svg {
+      display: block;
+      width: 71.25px;
+      height: 30px;
+    }
+
+    .klarna-badge-block__text {
+      flex: 1;
+      font-size: 14px;
+      line-height: 1.4;
+      color: var(--klarna-text-color, currentColor);
+    }
+
+    .klarna-badge-block__text p {
+      margin: 0;
+      display: inline;
+    }
+
+    .klarna-badge-block__text strong {
+      font-weight: 600;
+    }
+
+    .klarna-badge-block__link {
+      display: inline;
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      margin-left: 4px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font: inherit;
+      padding: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .klarna-badge-block__link:hover {
+      opacity: 0.7;
+    }
+
+    .klarna-badge-block__link--static {
+      cursor: default;
+      text-decoration: none;
+    }
+
+    @media screen and (max-width: 400px) {
+      .klarna-badge-block__text {
+        font-size: 12px;
+      }
+      
+      .klarna-badge-block__icon svg {
+        width: 60px;
+        height: 25px;
+      }
+    }
+  </style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Badge Klarna",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Lien (optionnel)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_link",
+      "label": "Afficher le lien",
+      "default": true
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "URL du lien",
+      "info": "Laissez vide pour afficher le texte sans lien"
+    },
+    {
+      "type": "checkbox",
+      "id": "link_new_tab",
+      "label": "Ouvrir dans un nouvel onglet",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Couleur du texte",
+      "default": "#0B051D"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg_color",
+      "label": "Couleur du badge Klarna",
+      "default": "#FFA8CD"
+    },
+    {
+      "type": "header",
+      "content": "Espacement"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Marge haute",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Marge basse",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Badge Klarna",
+      "category": "Paiement"
+    }
+  ]
+}
+{% endschema %}

@@ -1,3 +1,6 @@
+{% comment %} [CUSTOM-GILLES] Ajout du contrôle d'accès marque {% endcomment %}
+{% render 'brand-access-control' %}
+
 {%- if predictive_search.performed or search.performed -%}
   <div
     id="predictive-search-results"
@@ -38,54 +41,130 @@
       {% if predictive_search.performed %}
         {%- if search_results_count > 0 -%}
           {% assign shared_results_index = 0 %}
+          {% assign total_displayed_results = 0 %}
+
+          {% comment %} [CUSTOM-GILLES] Début : Section QUERIES avec filtrage {% endcomment %}
+          {% assign displayed_queries = 0 %}
           {% if predictive_search.resources.queries.size > 0 %}
             {% assign shared_results_index = shared_results_index
               | plus: predictive_search.resources.collections.size
             %}
-            <ul
-              class="predictive-search-results__list predictive-search-results__wrapper predictive-search-results__wrapper-queries list-unstyled"
-              role="listbox"
-              aria-labelledby="predictive-search-queries"
-            >
-              {%- for resource in predictive_search.resources.queries -%}
-                <li
-                  class="predictive-search-results__card--query"
-                  ref="resultsItems[]"
-                  data-search-result-index="search-results-{{ shared_results_index | plus: forloop.index }}"
-                  on:keydown="/onSearchKeyDown"
-                >
-                  <a
-                    class="pills__pill predictive-search-results__pill"
-                    href="{{ resource.url }}"
-                  >
-                    <span
-                      aria-label="{{ resource.text }}"
-                    >
-                      {{ resource.styled_text }}
-                    </span>
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-          {% if predictive_search.resources.products.size > 0 %}
-            {%- liquid
-              assign title = 'content.search_results_resource_products' | t
-              assign products = predictive_search.resources.products
-              render 'predictive-search-products-list', title: title, products: products
-            -%}
-          {% endif %}
+            
+            {% comment %} Calculer combien de queries sont valides avant d'ouvrir la liste {% endcomment %}
+            {% for resource in predictive_search.resources.queries %}
+              {% assign query_text = resource.text | downcase %}
+              {% assign show_item = true %}
+              
+              {% if query_text contains 'dior' %}
+                {% if customer == blank and localization.country.iso_code == 'FR' %}
+                  {% assign show_item = false %}
+                {% endif %}
+              {% endif %}
+              
+              {% if show_item %}
+                {% assign displayed_queries = displayed_queries | plus: 1 %}
+              {% endif %}
+            {% endfor %}
 
+            {% if displayed_queries > 0 %}
+              <ul
+                class="predictive-search-results__list predictive-search-results__wrapper predictive-search-results__wrapper-queries list-unstyled"
+                role="listbox"
+                aria-labelledby="predictive-search-queries"
+              >
+                {%- for resource in predictive_search.resources.queries -%}
+                  {% comment %} Ré-application du filtre dans la boucle d'affichage {% endcomment %}
+                  {% assign query_text = resource.text | downcase %}
+                  {% assign show_item = true %}
+                  {% if query_text contains 'dior' %}
+                    {% if customer == blank and localization.country.iso_code == 'FR' %}
+                      {% assign show_item = false %}
+                    {% endif %}
+                  {% endif %}
+
+                  {% if show_item %}
+                    <li
+                      class="predictive-search-results__card--query"
+                      ref="resultsItems[]"
+                      data-search-result-index="search-results-{{ shared_results_index | plus: forloop.index }}"
+                      on:keydown="/onSearchKeyDown"
+                    >
+                      <a
+                        class="pills__pill predictive-search-results__pill"
+                        href="{{ resource.url }}"
+                      >
+                        <span
+                          aria-label="{{ resource.text }}"
+                        >
+                          {{ resource.styled_text }}
+                        </span>
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% assign total_displayed_results = total_displayed_results | plus: displayed_queries %}
+          {% endif %}
+          {% comment %} [CUSTOM-GILLES] Fin Section QUERIES {% endcomment %}
+
+          {% comment %} [CUSTOM-GILLES] Début : Section PRODUITS avec filtrage et construction tableau {% endcomment %}
+          {% if predictive_search.resources.products.size > 0 %}
+            {% assign filtered_products = "" | split: "" %}
+            {% for product in predictive_search.resources.products %}
+              {% assign product_vendor = product.vendor | downcase %}
+              {% assign show_item = true %}
+              {% if product_vendor contains 'dior' %}
+                {% if customer == blank and localization.country.iso_code == 'FR' %}
+                  {% assign show_item = false %}
+                {% endif %}
+              {% endif %}
+              {% if show_item %}
+                {% assign item_to_add = predictive_search.resources.products | where: "id", product.id %}
+                {% assign filtered_products = filtered_products | concat: item_to_add %}
+              {% endif %}
+            {% endfor %}
+
+            {% if filtered_products.size > 0 %}
+              {%- liquid
+                assign title = 'content.search_results_resource_products' | t
+                render 'predictive-search-products-list', title: title, products: filtered_products
+              -%}
+            {% endif %}
+            {% assign total_displayed_results = total_displayed_results | plus: filtered_products.size %}
+          {% endif %}
+          {% comment %} [CUSTOM-GILLES] Fin Section PRODUITS {% endcomment %}
+
+          {% comment %} [CUSTOM-GILLES] Début : Section COLLECTIONS avec filtrage {% endcomment %}
           {% if predictive_search.resources.collections.size > 0 %}
             {% assign shared_results_index = shared_results_index | plus: predictive_search.resources.articles.size %}
             {% assign resource_title = 'content.search_results_resource_collections' | t %}
+            
+            {% assign filtered_collections = "" | split: "" %}
+            {% for collection in predictive_search.resources.collections %}
+              {% assign collection_title = collection.title | downcase %}
+              {% assign show_item = true %}
+              {% if collection_title contains 'dior' %}
+                {% if customer == blank and localization.country.iso_code == 'FR' %}
+                  {% assign show_item = false %}
+                {% endif %}
+              {% endif %}
+              {% if show_item %}
+                {% assign item_to_add = predictive_search.resources.collections | where: "id", collection.id %}
+                {% assign filtered_collections = filtered_collections | concat: item_to_add %}
+              {% endif %}
+            {% endfor %}
 
-            {% render 'predictive-search-resource-carousel',
-              title: resource_title,
-              resource_type: 'collection',
-              resources: predictive_search.resources.collections
-            %}
+            {% if filtered_collections.size > 0 %}
+              {% render 'predictive-search-resource-carousel',
+                title: resource_title,
+                resource_type: 'collection',
+                resources: filtered_collections
+              %}
+            {% endif %}
+            {% assign total_displayed_results = total_displayed_results | plus: filtered_collections.size %}
           {% endif %}
+          {% comment %} [CUSTOM-GILLES] Fin Section COLLECTIONS {% endcomment %}
 
           {% if predictive_search.resources.pages.size > 0 %}
             {% assign shared_results_index = shared_results_index | plus: predictive_search.resources.products.size %}
@@ -96,6 +175,7 @@
               resource_type: 'page',
               resources: predictive_search.resources.pages
             %}
+            {% assign total_displayed_results = total_displayed_results | plus: predictive_search.resources.pages.size %}
           {% endif %}
 
           {% if predictive_search.resources.articles.size > 0 %}
@@ -107,7 +187,16 @@
               resource_type: 'article',
               resources: predictive_search.resources.articles
             %}
+            {% assign total_displayed_results = total_displayed_results | plus: predictive_search.resources.articles.size %}
           {% endif %}
+
+          {% comment %} [CUSTOM-GILLES] Gestion du cas "Aucun résultat" après filtrage {% endcomment %}
+          {% if total_displayed_results == 0 %}
+             <p class="predictive-search-results__no-results">
+              {{ 'content.search_results_no_results' | t: terms: predictive_search.terms }}
+            </p>
+          {% endif %}
+
         {% else %}
           <p class="predictive-search-results__no-results">
             {{ 'content.search_results_no_results' | t: terms: predictive_search.terms }}
@@ -115,34 +204,61 @@
         {% endif %}
       {% else %}
         {% assign shared_results_index = 0 %}
-        {%- liquid
-          assign title = 'content.recently_viewed_products' | t
-          assign products = search.results
+        
+        {% comment %} [CUSTOM-GILLES] Début : Filtrage des produits vus récemment {% endcomment %}
+        {% assign filtered_search_results = "" | split: "" %}
+        {% for product in search.results %}
+          {% assign product_vendor = product.vendor | downcase %}
+          {% assign show_item = true %}
+          {% if product_vendor contains 'dior' %}
+            {% if customer == blank and localization.country.iso_code == 'FR' %}
+              {% assign show_item = false %}
+            {% endif %}
+          {% endif %}
+          {% if show_item %}
+            {% assign item_to_add = search.results | where: "id", product.id %}
+            {% assign filtered_search_results = filtered_search_results | concat: item_to_add %}
+          {% endif %}
+        {% endfor %}
 
-          comment
-            Searching for recently viewed products by id doesn't preserve the order of the products.
-            To work around this, we get the product ids into an array then use that to reorder them.
-          endcomment
-          if search.terms contains 'id:'
-            assign new_products_ids = search.terms | replace: 'id:', '' | split: ' OR '
-          endif
-          render 'predictive-search-products-list', title: title, products: products, order_ids: new_products_ids, limit: 4
-        -%}
+        {% if filtered_search_results.size > 0 %}
+          {%- liquid
+            assign title = 'content.recently_viewed_products' | t
+            assign products = filtered_search_results
+
+            comment
+              Searching for recently viewed products by id doesn't preserve the order of the products.
+              To work around this, we get the product ids into an array then use that to reorder them.
+            endcomment
+            if search.terms contains 'id:'
+              assign new_products_ids = search.terms | replace: 'id:', '' | split: ' OR '
+            endif
+            render 'predictive-search-products-list', title: title, products: products, order_ids: new_products_ids, limit: 4
+          -%}
+        {% else %}
+          {% if search.results_count > 0 %}
+            <p class="predictive-search-results__no-results">{{ 'content.search_results_no_results' | t: terms: predictive_search.terms }}</p>
+          {% endif %}
+        {% endif %}
+        {% comment %} [CUSTOM-GILLES] Fin Filtrage {% endcomment %}
+
       {% endif %}
 
       {% if predictive_search.performed %}
-        {%- if search_results_count > 0 -%}
-          {% assign total_results = predictive_search.resources.products.size
-            | plus: predictive_search.resources.collections.size
-            | plus: predictive_search.resources.pages.size
-            | plus: predictive_search.resources.articles.size
-          %}
+        {% comment %} [CUSTOM-GILLES] Utilisation de total_displayed_results pour la logique de redirection {% endcomment %}
+        {%- if search_results_count > 0 and total_displayed_results > 0 -%}
           {% assign single_result_url = null %}
-          {% if total_results == 1 %}
-            {% if predictive_search.resources.products.size == 1 %}
-              {% assign single_result_url = predictive_search.resources.products.first.url %}
-            {% elsif predictive_search.resources.collections.size == 1 %}
-              {% assign single_result_url = predictive_search.resources.collections.first.url %}
+          
+          {% comment %}
+             Nous devons vérifier si, après filtrage, il ne reste qu'un seul résultat unique toutes catégories confondues.
+             On utilise ici les tableaux filtrés (filtered_products, filtered_collections) créés plus haut.
+          {% endcomment %}
+
+          {% if total_displayed_results == 1 %}
+            {% if filtered_products.size == 1 %}
+              {% assign single_result_url = filtered_products.first.url %}
+            {% elsif filtered_collections.size == 1 %}
+              {% assign single_result_url = filtered_collections.first.url %}
             {% elsif predictive_search.resources.pages.size == 1 %}
               {% assign single_result_url = predictive_search.resources.pages.first.url %}
             {% elsif predictive_search.resources.articles.size == 1 %}

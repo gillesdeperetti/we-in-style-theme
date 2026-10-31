@@ -26,17 +26,35 @@
     {% if section.settings.collection != blank and shop.products_count != 0 %}
       {% paginate section.settings.collection.products by max_items %}
         {% for product in section.settings.collection.products limit: max_items %}
-          <div
-            class="resource-list__item"
-          >
-            {% # theme-check-disable UniqueStaticBlockId %}
-              {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
-            {% # theme-check-enable UniqueStaticBlockId %}
-          </div>
+          
+          {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
+          {% assign show_item = true %}
+          {% assign product_vendor = product.vendor | downcase %}
+          {% if product_vendor contains 'dior' %}
+            {% if customer == blank and localization.country.iso_code == 'FR' %}
+              {% assign show_item = false %}
+            {% endif %}
+          {% endif %}
+          
+          {% if show_item %}
+          {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
 
-          {% unless forloop.last %}
-            <!--@list/split-->
-          {% endunless %}
+            <div
+              class="resource-list__item"
+            >
+              {% # theme-check-disable UniqueStaticBlockId %}
+                {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
+              {% # theme-check-enable UniqueStaticBlockId %}
+            </div>
+
+            {% unless forloop.last %}
+              <!--@list/split-->
+            {% endunless %}
+
+          {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
+          {% endif %}
+          {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
         {% endfor %}
       {% endpaginate %}
     {% else %}

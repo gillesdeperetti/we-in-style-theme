@@ -174,7 +174,8 @@
     "blog_posts_editorial": "Articles de blog : éditorial",
     "excerpt": "Extrait",
     "footer_password": "Pied de page de la page avec mot de passe",
-    "policies_and_links": "Politiques et liens"
+    "policies_and_links": "Politiques et liens",
+    "column": "Column"
   },
   "settings": {
     "autoplay": "Jeu automatique",
@@ -541,7 +542,9 @@
     "custom_mobile_media": "Support multimédia mobile personnalisé",
     "stack_media_on_mobile": "Empiler les supports multimédias",
     "media_type_1": "Type de support multimédia",
-    "media_type_2": "Type de support multimédia 2"
+    "media_type_2": "Type de support multimédia 2",
+    "button_text_weight": "Épaisseur du texte",
+    "effects": "Effets"
   },
   "options": {
     "adapt_to_image": "Adapter à l’image",

@@ -1,0 +1,129 @@
+{%  assign faqTextColor = "#333333" %}
+{%  assign faqBackgroundColor = "#ffffff" %}
+{%  assign faqLabelBackgroundColor = "#f8f9fa" %}
+{%  assign faqLabelSelectedBackgroundColor = "#e9ecef" %}
+{%  assign faqLabelTextColor = "#333333" %}
+{%  assign faqBorderColor = "#dee2e6" %}
+
+h2 {
+  text-transform: none;
+  font-weight: 600;
+  color: {{faqTextColor}};
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.faqbody {
+    color: {{faqTextColor}};
+    background: {{faqBackgroundColor}};
+    padding: 2rem;
+    font-family: {{ settings.regular__font.family }};
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+/* Hiding the checkboxes */
+input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* Accordion styles */
+.faq {
+    color: {{faqTextColor}};
+    margin-bottom: 1rem;
+    border: 1px solid {{faqBorderColor}};
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.faq:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.faq-label {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    background: {{faqLabelBackgroundColor}};
+    color: {{faqLabelTextColor}};
+    font-weight: 500;
+    cursor: pointer;    
+    user-select: none;
+    text-transform: none;
+    transition: all 0.3s ease;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
+.faq-label:hover {
+    background: {{faqLabelSelectedBackgroundColor}};
+}
+
+.faq-label::after {
+    content: '+';
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.25rem;
+    transform: scale(1.2);   
+    text-align: center;
+    transition: all 0.3s ease;
+    color: #666;
+    min-width: 20px;
+}
+
+.faq-content {
+    max-height: 0;
+    padding: 0 1.5rem;
+    color: {{faqTextColor}};
+    background: {{faqBackgroundColor}};
+    transition: all 0.3s ease;    
+    overflow: hidden;
+    line-height: 1.6;
+}
+
+input:checked + .faq-label {
+    background: {{faqLabelSelectedBackgroundColor}};        
+    border-bottom: 1px solid {{faqBorderColor}};
+}
+        
+input:checked + .faq-label::after {
+    content: '−';
+    transform: scale(1.2);
+    color: #333;
+}
+        
+input:checked ~ .faq-content {
+    max-height: none;
+    padding: 1.5rem;    
+    transition: all 0.3s ease;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    .faqbody {
+        padding: 1rem;
+    }
+    
+    .faq-label {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+    
+    .faq-content {
+        padding: 0 1rem;
+    }
+    
+    input:checked ~ .faq-content {
+        padding: 1rem;
+    }
+}
+        

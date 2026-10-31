@@ -43,12 +43,32 @@
 
   {% capture list_items %}
     {% for collection in section_collections limit: max_items %}
-      <div class="resource-list__item">
-        {% content_for 'block', type: '_collection-card', id: 'static-collection-card', closest.collection: collection %}
-      </div>
-      {% unless forloop.last %}
-        <!--@list/split-->
-      {% endunless %}
+      
+      {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
+      {% assign show_collection = true %}
+      {% if collection and collection.title %}
+        {% assign collection_title = collection.title | downcase %}
+        {% if collection_title contains 'dior' %}
+          {% if customer == blank and localization.country.iso_code == 'FR' %}
+            {% assign show_collection = false %}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+
+      {% if show_collection %}
+      {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
+
+        <div class="resource-list__item">
+          {% content_for 'block', type: '_collection-card', id: 'static-collection-card', closest.collection: collection %}
+        </div>
+        {% unless forloop.last %}
+          <!--@list/split-->
+        {% endunless %}
+
+      {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
+      {% endif %}
+      {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
     {% endfor %}
   {% endcapture %}
 

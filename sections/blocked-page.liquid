@@ -1,0 +1,136 @@
+{% comment %}
+  [CUSTOM-GILLES] Page de blocage pour les visiteurs suspects
+  Design simplifié qui s'adapte à la DA du thème
+{% endcomment %}
+
+{{ 'base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .blocked-page {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .blocked-container {
+    max-width: 480px;
+    text-align: center;
+  }
+
+  .blocked-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-foreground, #1a1a1a);
+  }
+
+  .blocked-message {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-foreground-secondary, #666);
+    margin-bottom: 2rem;
+  }
+
+  .blocked-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .blocked-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: opacity 0.2s ease;
+  }
+
+  .blocked-btn:hover {
+    opacity: 0.85;
+  }
+
+  .blocked-btn-primary {
+    background: var(--color-button, #1a1a1a);
+    color: var(--color-button-text, #fff);
+    border: none;
+  }
+
+  .blocked-btn-secondary {
+    background: transparent;
+    color: var(--color-foreground, #1a1a1a);
+    border: 1px solid var(--color-border, #ddd);
+  }
+
+  @media (max-width: 600px) {
+    .blocked-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+
+<div class="blocked-page color-{{ section.settings.color_scheme }}">
+  <div class="blocked-container">
+    <h1 class="blocked-title">{{ section.settings.title | default: 'Access Restricted' }}</h1>
+    
+    <p class="blocked-message">
+      {{ section.settings.message | default: "Unusual activity detected. Please sign in to continue." }}
+    </p>
+
+    <div class="blocked-actions">
+      {% if customer %}
+        <a href="{{ routes.root_url }}" class="blocked-btn blocked-btn-primary">
+          Back to home
+        </a>
+      {% else %}
+        <a href="{{ routes.account_login_url }}" class="blocked-btn blocked-btn-primary">
+          Sign in
+        </a>
+        <a href="{{ routes.account_register_url }}" class="blocked-btn blocked-btn-secondary">
+          Create an account
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    try {
+      localStorage.removeItem('gbp_blocked');
+      localStorage.removeItem('gbp_traffic_data');
+    } catch (e) {}
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Blocked Page",
+  "tag": "section",
+  "class": "section-blocked",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Access Restricted"
+    },
+    {
+      "type": "textarea",
+      "id": "message",
+      "label": "Message",
+      "default": "Unusual activity detected. Please sign in to continue."
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    }
+  ]
+}
+{% endschema %}

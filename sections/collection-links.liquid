@@ -45,13 +45,33 @@
             assign current = true
           endif
         %}
-        {% content_for 'block',
-          type: '_collection-link',
-          id: 'link',
-          closest.collection: collection,
-          index: forloop.index0,
-          current: current
-        %}
+
+        {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
+        {% assign show_collection = true %}
+        {% if collection and collection.title %}
+          {% assign collection_title = collection.title | downcase %}
+          {% if collection_title contains 'dior' %}
+            {% if customer == blank and localization.country.iso_code == 'FR' %}
+              {% assign show_collection = false %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+        
+        {% if show_collection %}
+        {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
+
+          {% content_for 'block',
+            type: '_collection-link',
+            id: 'link',
+            closest.collection: collection,
+            index: forloop.index0,
+            current: current
+          %}
+
+        {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
+        {% endif %}
+        {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
       {% endfor %}
     </div>
 
@@ -67,20 +87,39 @@
             endif
           %}
 
-          {% capture slide %}
-            {% # theme-check-disable UniqueStaticBlockId %}
-            {% content_for 'block',
-              type: '_collection-link',
-              id: 'link',
-              closest.collection: collection,
-              index: forloop.index0,
-              current: current,
-              image_only: true
-            %}
-            {% # theme-check-enable UniqueStaticBlockId %}
-          {% endcapture %}
+          {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR (Slideshow) {% endcomment %}
+          {% assign show_collection = true %}
+          {% if collection and collection.title %}
+            {% assign collection_title = collection.title | downcase %}
+            {% if collection_title contains 'dior' %}
+              {% if customer == blank and localization.country.iso_code == 'FR' %}
+                {% assign show_collection = false %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
 
-          {% render 'slideshow-slide', children: slide, index: forloop.index0 %}
+          {% if show_collection %}
+          {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
+
+            {% capture slide %}
+              {% # theme-check-disable UniqueStaticBlockId %}
+              {% content_for 'block',
+                type: '_collection-link',
+                id: 'link',
+                closest.collection: collection,
+                index: forloop.index0,
+                current: current,
+                image_only: true
+              %}
+              {% # theme-check-enable UniqueStaticBlockId %}
+            {% endcapture %}
+
+            {% render 'slideshow-slide', children: slide, index: forloop.index0 %}
+
+          {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
+          {% endif %}
+          {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
         {% endfor %}
       {% endcapture %}
 

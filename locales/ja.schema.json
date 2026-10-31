@@ -174,7 +174,8 @@
     "blog_posts_editorial": "ブログ記事：編集",
     "excerpt": "抜粋",
     "footer_password": "パスワードページのフッター",
-    "policies_and_links": "ポリシーとリンク"
+    "policies_and_links": "ポリシーとリンク",
+    "column": "Column"
   },
   "settings": {
     "alignment": "配置",
@@ -541,7 +542,9 @@
     "custom_mobile_media": "カスタムモバイルメディア",
     "stack_media_on_mobile": "メディアを積み重ねる",
     "media_type_1": "メディアの種類",
-    "media_type_2": "メディア2の種類"
+    "media_type_2": "メディア2の種類",
+    "button_text_weight": "テキストの太さ",
+    "effects": "効果"
   },
   "options": {
     "adapt_to_image": "画像に合わせる",

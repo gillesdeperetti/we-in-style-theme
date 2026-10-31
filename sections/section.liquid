@@ -2,7 +2,24 @@
   {% content_for 'blocks' %}
 {% endcapture %}
 
-{% render 'section', section: section, children: children %}
+{% assign has_visible_content = true %}
+{% assign children_content = children | strip_html | strip %}
+
+{% if children_content == '' %}
+  {% assign has_visible_content = false %}
+{% else %}
+  {%- comment -%} Preserve legacy filters to avoid thin/placeholder content {%- endcomment -%}
+  {% assign legacy_pattern_1 = 'tall, with a bust of , hips measuring , a waist of , and is wearing a size .' %}
+  {% if children_content contains legacy_pattern_1 %}
+    {% assign has_visible_content = false %}
+  {% elsif children_content contains 'About the brand' and children_content.size < 50 %}
+    {% assign has_visible_content = false %}
+  {% endif %}
+{% endif %}
+
+{% if has_visible_content %}
+  {% render 'section', section: section, children: children %}
+{% endif %}
 
 {% schema %}
 {

@@ -747,7 +747,13 @@ export class Slideshow extends Component {
 
     if (!(slideshowControls instanceof HTMLElement)) return;
 
-    slideshowControls.hidden = scroller.scrollWidth <= scroller.offsetWidth;
+    // [CUSTOM-GILLES] Optimisation Layout Thrashing : Lecture async
+    requestAnimationFrame(() => {
+      const shouldHide = scroller.scrollWidth <= scroller.offsetWidth;
+      if (slideshowControls.hidden !== shouldHide) {
+        slideshowControls.hidden = shouldHide;
+      }
+    });
   }
 
   /**

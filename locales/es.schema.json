@@ -174,7 +174,8 @@
     "blog_posts_editorial": "Artículos del blog: editorial",
     "excerpt": "Extracto",
     "footer_password": "Pie de página de contraseña",
-    "policies_and_links": "Políticas y enlaces"
+    "policies_and_links": "Políticas y enlaces",
+    "column": "Column"
   },
   "settings": {
     "alignment": "Alineación",
@@ -541,7 +542,9 @@
     "custom_mobile_media": "Multimedia personalizada para móvil",
     "stack_media_on_mobile": "Apilar multimedia",
     "media_type_1": "Tipo de multimedia",
-    "media_type_2": "Tipo de multimedia 2"
+    "media_type_2": "Tipo de multimedia 2",
+    "button_text_weight": "Grosor del texto",
+    "effects": "Efectos"
   },
   "options": {
     "adapt_to_image": "Adaptar a la imagen",

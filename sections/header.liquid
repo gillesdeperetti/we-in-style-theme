@@ -170,18 +170,133 @@
     assign class = class | append: ' ' | append: collapse_header_paddings_class
   endif
 %}
-
+{% comment %} [CUSTOM-GILLES]  Schema JSON LD - Online Store {% endcomment %}
 <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "OnlineStore",
+  "name": {{ shop.name | json }},
+  {% if settings.logo %}
+    "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
+  {% endif %}
+  "sameAs": [
+    {{ settings.social_twitter_link | json }},
+    {{ settings.social_facebook_link | json }},
+    {{ settings.social_pinterest_link | json }},
+    {{ settings.social_instagram_link | json }},
+    {{ settings.social_tiktok_link | json }},
+    {{ settings.social_tumblr_link | json }},
+    {{ settings.social_snapchat_link | json }},
+    {{ settings.social_youtube_link | json }},
+    {{ settings.social_vimeo_link | json }}
+  ],
+  "url": {{ request.origin | append: page.url | json }},
+  {% if shop.metafields.judgeme.all_reviews_rating and shop.metafields.judgeme.all_reviews_count %}
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ shop.metafields.judgeme.all_reviews_rating | round: 1 }},
+    "reviewCount": {{ shop.metafields.judgeme.all_reviews_count }},
+    "bestRating": 5,
+    "worstRating": 1
+  },
+  {% endif %}
+  "hasMerchantReturnPolicy": {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": [
+      "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK",
+      "US", "CA", "KR", "JP", "CN", "IN", "AU", "NZ", "BR", "MX", "RU", "AR", "ZA", "SA", "TR", "TH", "SG", "MY", "VN", "ID", "AE"
+    ],
+    "url": "{{ shop.url }}{% unless request.locale.iso_code == 'en' %}/{{ request.locale.iso_code }}{% endunless %}/policies/refund-policy",
+    "merchantReturnDays": 30,
+    "returnFees": "http://schema.org/ReturnFeesCustomerResponsibility",
+    "returnMethod": "http://schema.org/ReturnByMail",
+    "restockingFee": "http://schema.org/NoRestockingFee",
+    "returnPolicyCategory": "http://schema.org/MerchantReturnFiniteReturnWindow"
+  },
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "contactType": "Customer Care Email",
+      "email": "customercare@we-in-style.com",
+      "availableLanguage": ["English", "French", "Spanish", "Japanese", "Korean"],
+      "areaServed": [
+        "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK",
+        "US", "CA", "KR", "JP", "CN", "IN", "AU", "NZ", "BR", "MX", "RU", "AR", "ZA", "SA", "TR", "TH", "SG", "MY", "VN", "ID", "AE"
+      ]
+    },
+    {
+      "@type": "ContactPoint",
+      "contactType": "Customer Care WhatsApp",
+      "telephone": "+33764403243",
+      "url": "https://wa.me/33764403243",
+      "availableLanguage": ["English","French","Spanish","Japanese","Korean"],
+      "areaServed": [
+        "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK",
+        "US", "CA", "KR", "JP", "CN", "IN", "AU", "NZ", "BR", "MX", "RU", "AR", "ZA", "SA", "TR", "TH", "SG", "MY", "VN", "ID", "AE"
+      ]
+    }
+  ],
+  "acceptedPaymentMethod": [
   {
-    "@context": "http://schema.org",
-    "@type": "Organization",
-    "name": {{ shop.name | json }},
-    {% if settings.logo %}
-      "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
-    {% endif %}
-    "url": {{ request.origin | append: page.url | json }}
-  }
+    "@type": "CreditCard",
+    "name": "Visa",
+    "additionalType": "http://purl.org/goodrelations/v1#VISA",
+    "description": "Carte de crédit Visa"
+  },
+  {
+    "@type": "CreditCard",
+    "name": "Mastercard",
+    "additionalType": "http://purl.org/goodrelations/v1#MasterCard",
+    "description": "Carte de crédit Mastercard"
+  },
+  {
+    "@type": "CreditCard",
+    "name": "American Express",
+    "additionalType": "http://purl.org/goodrelations/v1#AmericanExpress",
+    "description": "Carte de crédit American Express"
+  },
+
+  "Carte Bancaire (CB)",
+  "Apple Pay",
+  "Shop Pay",
+  "PayPal",
+
+  {
+    "@type": "PaymentMethod",
+    "name": "Virement bancaire instantané",
+    "paymentMethodType": "https://schema.org/ByBankTransferInAdvance",
+    "description": "Virement bancaire instantané en euros"
+  },
+  {
+    "@type": "PaymentMethod",
+    "name": "Virement SEPA",
+    "paymentMethodType": "https://schema.org/ByBankTransferInAdvance",
+    "description": "Virement bancaire SEPA (Single Euro Payments Area)"
+  },
+
+  "Klarna",
+  "Bancontact",
+  "iDEAL",
+  "iDEAL in3",
+  "MB WAY",
+  "Multibanco",
+  "TWINT",
+  "Blik",
+  "BANCOMAT Pay",
+  "Satispay",
+  "Swish",
+  "Trustly",
+  "Pay by Bank",
+  "Bitcoin (BTC)",
+  "Bitcoin Lightning Network",
+  "Ethereum (ETH)",
+  "Tether (USDT)",
+  "USD Coin (USDC)",
+  "BinancePay"
+]
+}
 </script>
+{% comment %} [CUSTOM-GILLES] FIN Schema JSON LD - Online Store {% endcomment %}
 
 <header-component
   id="header-component"

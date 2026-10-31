@@ -14,11 +14,7 @@
   assign block_settings = block.settings
   assign image_sizes = '(min-width: 750px) 50vw, 100vw'
 
-  # if the card-gallery has a section.settings.product_card_size:
-  # assume grid-template autofill(card-size, 1fr) and calculate the sizes attribute based on the minimum card size
-  #
-  # if section has section.settings.columns:
-  # assume grid-template repeat(column-count, 1fr) and calculate the sizes attribute based on the number of columns
+  # [CUSTOM-GILLES] Optimisation des tailles d'images pour éviter le chargement d'images trop grandes
   if section.settings.product_card_size
     capture card_size
       render 'util-product-grid-card-size', section: section
@@ -142,6 +138,7 @@
         for media in media_list_to_show
           assign loading = 'lazy'
           assign sizes = 'auto, ' | append: image_sizes
+          assign fetch_priority = 'auto'
 
           assign hidden = false
           assign attributes = ''
@@ -175,9 +172,12 @@
             continue
           endif
 
-          if forloop.first and section.index == null or section.index < 5
+          # [CUSTOM-GILLES] Optimisation : Eager load uniquement sur la page produit (image principale)
+          # Pour les collections, on laisse en lazy pour éviter de charger 50 images en priorité haute
+          if forloop.first and template == 'product' and section.location == 'template'
             assign loading = 'eager'
             assign sizes = image_sizes
+            assign fetch_priority = 'high'
           endif
 
           assign class = 'product-media-container media-fit product-media-container--[media_type]' | replace: '[media_type]', media.media_type
@@ -186,7 +186,8 @@
           endif
 
           capture slideshow_children
-            render 'product-media', media: media, sizes: sizes, loading: loading, preview_image_only: true
+            # [CUSTOM-GILLES] Passage de fetchpriority
+            render 'product-media', media: media, sizes: sizes, loading: loading, fetchpriority: fetch_priority, preview_image_only: true
           endcapture
 
           render 'slideshow-slide', slide_id: media.id, index: forloop.index, hidden: hidden, class: class, attributes: attributes, children: slideshow_children, media_fit: media_fit

@@ -15,7 +15,11 @@
     --badge-font-family: var(--font-{{ settings.badge_font_family }}--family); --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight); --badge-text-transform: {{ settings.badge_text_transform }};
   "
 >
-  {%- if product.available == false or product.compare_at_price > product.price and product.available -%}
+  {%- if product.tags contains 'reward-ready' -%}
+    <div class="product-badges__badge product-badges__badge--reward color-{{ settings.badge_sale_color_scheme }}">
+      <span class="product-badges__badge-text">CLUB REWARDS</span>
+    </div>
+  {%- elsif product.available == false or product.compare_at_price > product.price and product.available -%}
     <div
       class="
         product-badges__badge product-badges__badge--rectangle
@@ -74,4 +78,20 @@
     padding-block: var(--badge-rectangle-padding-block);
     padding-inline: var(--badge-rectangle-padding-inline);
   }
+
+  .product-badges__badge--reward {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-foreground);
+    border-radius: var(--badge-border-radius);
+    padding: var(--padding-xs);
+    text-decoration: none;
+    gap: var(--padding-xs);
+  }
+
+  .product-badges__badge-text {
+    font-size: var(--font-size--xs);
+  }
 {% endstylesheet %}
+

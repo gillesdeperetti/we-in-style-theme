@@ -1,5 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
+    "delivery_estimate": {
+      "order_before": "Bestellen Sie bis",
+      "order_before_short": "Bis",
+      "receive_by": "erhalten Sie es ab dem",
+      "receive_by_short": "Lieferung",
+      "receive_by_today": "Lieferung heute",
+      "receive_by_tomorrow": "Lieferung morgen",
+      "home_delivery": "Lieferung nach Hause",
+      "relay_point": "Abholstation",
+      "express_eu": "Express EU",
+      "worldwide": "Weltweiter Versand",
+      "monday": "Montag",
+      "today": "heute",
+      "tomorrow": "morgen",
+      "delivery_info": "Geschätzte Lieferzeiten nach Versanddienstleister",
+      "fallback": "Versand innerhalb von 1 Werktag · Lieferung in {{ days }} Werktagen"
+    },
     "load_video": "Video laden: {{ description }}",
     "sold_out": "Ausverkauft",
     "email_signup": {
@@ -16,6 +42,11 @@
       "comment": "Kommentar",
       "post_success": "Danke, dass du uns kontaktiert hast. Wir werden uns so schnell wie möglich bei dir melden.",
       "error_heading": "Bitte passe Folgendes an:"
+    },
+    "klarna": {
+      "installments_before": "3 Zahlungen von",
+      "installments_after": "mit 0 % Zinsen bei Klarna",
+      "learn_more": "Mehr erfahren"
     }
   },
   "accessibility": {
@@ -60,7 +91,9 @@
     "increase_quantity": "Menge erhöhen",
     "quantity": "Anzahl",
     "rating": "Die Bewertung für dieses Produkts lautet {{ rating }} von 5 Sternen",
-    "nested_product": "{{ product_title }} für {{ parent_title }}"
+    "nested_product": "{{ product_title }} für {{ parent_title }}",
+    "open_cart_drawer": "Warenkorb öffnen",
+    "open_search_modal": "Suche öffnen"
   },
   "actions": {
     "add_to_cart": "In den Warenkorb legen",
@@ -233,7 +266,8 @@
       "previous": "Zurück",
       "next": "Weiter",
       "page": "Seite {{ page }}"
-    }
+    },
+    "taxes_duties_at_checkout": "Steuern und Einfuhrzölle nicht enthalten."
   },
   "gift_cards": {
     "issued": {
@@ -298,5 +332,64 @@
       "success_moderated": "Kommentar gepostet, Moderation ausstehend",
       "success": "Kommentar gepostet"
     }
-  }
+  },
+  "loyalty": {
+    "reward_ready": {
+      "description": "Dieser Artikel ist für die folgenden Vorteile berechtigt:",
+      "offer_1": "10 % Rabatt auf über {{ count }} normalerweise nicht reduzierte Produkte, wenn Sie sich für den Newsletter anmelden",
+      "offer_2": "Rabatte durch Treuepunkte-Tausch",
+      "offer_3": "Statusbasierte Rabatte: Silver-, Gold- oder Platinum-Mitglieder"
+    },
+    "cashback": {
+      "description": "Verdienen Sie Cashback beim Kauf dieses Artikels, vorausgesetzt die Programmbedingungen sind erfüllt (z.B. Silver/Gold/Platinum-Status, keine laufenden Rabatte)."
+    },
+    "conditions": {
+      "notice": "Siehe vollständige Bedingungen in unserem Treueprogramm oder FAQ.",
+      "link": "FAQ anzeigen"
+    },
+    "program": {
+      "cta": "Programm erkunden"
+    }
+  },
+  "countdown": {
+    "days": "TAGE",
+    "hours": "STUNDEN",
+    "minutes": "MINUTEN",
+    "seconds": "SEKUNDEN",
+    "ended": "Beendet!"
+  },
+  "bf": {
+    "last_hours_title": "Letzte Stunden zu diesem Preis",
+    "last_hours_subtitle": "Black Friday endet bald — letzte Chance, die besten Angebote zu ergattern.",
+    "extended_title": "Exklusive Auswahl — 10 % Rabatt",
+    "extended_subtitle": "Verwende den Code BFCM25 beim Checkout, bevor das Angebot endet."
+  },
+  "product": {
+    "dimensions": {
+      "height": "Höhe",
+      "width": "Breite",
+      "length": "Länge",
+      "depth": "Tiefe",
+      "strap_length": "Riemenlänge",
+      "handle_drop": "Griffhöhe",
+      "heel_height": "Absatzhöhe",
+      "sole_height": "Sohlenhöhe"
+    }
+  },
+  "size_guide": {
+  "title": "Größenguide",
+  "female": "Damen",
+  "male": "Herren",
+  "unisex": "Unisex",
+  "shoes": "Schuhe",
+  "ready_to_wear": "Ready-to-wear",
+  "jeans": "Jeans",
+  "shirts": "Hemden",
+  "numeric": "Numerische Größen",
+  "general": "Allgemein",
+  "foot_size": "Fußgröße"
+},
+"custom": {
+  "size_system_info": "Größe {{ size }} entspricht dem {{ system }}-System – Bitte beachten Sie den Größenguide für Umrechnungen."
+}
 }

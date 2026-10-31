@@ -1,6 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "names": {
     "404": "404",
+    "column": "Colonna",
     "borders": "Bordi",
     "collapsible_row": "Riga comprimibile",
     "colors": "Colori",
@@ -541,7 +551,9 @@
     "custom_mobile_media": "Contenuti multimediali personalizzati per mobile",
     "stack_media_on_mobile": "Impila contenuti multimediali",
     "media_type_1": "Tipo di contenuti multimediali",
-    "media_type_2": "Tipo di contenuti multimediali 2"
+    "media_type_2": "Tipo di contenuti multimediali 2",
+    "button_text_weight": "Spessore del testo",
+    "effects": "Effetti"
   },
   "options": {
     "adapt_to_image": "Adatta a immagine",

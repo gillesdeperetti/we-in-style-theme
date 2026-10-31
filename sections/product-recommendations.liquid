@@ -79,12 +79,32 @@
       %}
       {% capture list_items %}
         {% for product in products limit: section.settings.max_products %}
-          <div class="resource-list__item">
-            {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
-          </div>
-          {% unless forloop.last %}
-            <!--@list/split-->
-          {% endunless %}
+          
+          {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
+          {% assign show_item = true %}
+          {% if product and product.vendor %}
+            {% assign product_vendor = product.vendor | downcase %}
+            {% if product_vendor contains 'dior' %}
+              {% if customer == blank and localization.country.iso_code == 'FR' %}
+                {% assign show_item = false %}
+              {% endif %}
+            {% endif %}
+          {% endif %}
+          
+          {% if show_item %}
+          {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
+
+            <div class="resource-list__item">
+              {% content_for 'block', type: '_product-card', id: 'static-product-card', closest.product: product %}
+            </div>
+            {% unless forloop.last %}
+              <!--@list/split-->
+            {% endunless %}
+
+          {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
+          {% endif %}
+          {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
         {% endfor %}
       {% endcapture %}
 

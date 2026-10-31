@@ -1,0 +1,86 @@
+/* Klarna Badge Section Styles */
+
+.klarna-badge-section {
+  background-color: var(--klarna-bg);
+  color: var(--klarna-text);
+  padding-top: var(--klarna-padding-top);
+  padding-bottom: var(--klarna-padding-bottom);
+}
+
+.klarna-badge-container {
+  display: flex;
+  max-width: var(--page-width, 1200px);
+  margin: 0 auto;
+  padding: 0 var(--spacing-4, 16px);
+}
+
+.klarna-badge-container.full-width {
+  max-width: 100%;
+}
+
+.klarna-badge-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.klarna-badge-icon {
+  flex-shrink: 0;
+}
+
+.klarna-badge-icon svg {
+  display: block;
+  width: 71.25px;
+  height: 30px;
+}
+
+.klarna-badge-text {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.klarna-badge-text p {
+  margin: 0;
+  display: inline;
+}
+
+.klarna-badge-text strong {
+  font-weight: 600;
+}
+
+.klarna-badge-link {
+  display: inline;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-left: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font: inherit;
+  padding: 0;
+  transition: opacity 0.2s ease;
+}
+
+.klarna-badge-link:hover {
+  opacity: 0.7;
+}
+
+.klarna-badge-link--no-action {
+  cursor: default;
+  text-decoration: none;
+}
+
+/* Responsive - réduction taille sur très petits écrans */
+@media screen and (max-width: 400px) {
+  .klarna-badge-text {
+    font-size: 12px;
+  }
+  
+  .klarna-badge-icon svg {
+    width: 60px;
+    height: 25px;
+  }
+}

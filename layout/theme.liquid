@@ -4,6 +4,39 @@
   lang="{{ request.locale.iso_code }}"
 >
   <head>
+    {% comment %} [CUSTOM-GILLES] Preload Image LCP - Syntaxe Shopify recommandée (preload_tag) {% endcomment %}
+    {%- if template.name == 'product' and product.selected_or_first_available_variant.featured_media -%}
+      {{ product.selected_or_first_available_variant.featured_media | image_url: width: 1500 | preload_tag: as: 'image' }}
+    {%- elsif template.name == 'collection' and collection.image -%}
+      {{ collection.image | image_url: width: 1500 | preload_tag: as: 'image' }}
+    {%- elsif template.name == 'index' -%}
+      {%- comment -%} Homepage : Chercher l'image de la première section hero active {%- endcomment -%}
+      {%- for section in sections -%}
+        {%- if section.type == 'hero' and section.settings.image_1 != blank and section.disabled != true -%}
+          {{ section.settings.image_1 | image_url: width: 1500 | preload_tag: as: 'image' }}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    {% comment %} [CUSTOM-GILLES] Preconnect pour accélérer le CDN Shopify et Fonts {% endcomment %}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    <link rel="dns-prefetch" href="https://fonts.shopifycdn.com">
+
+    <style>
+      /* [CUSTOM-GILLES] Optimisation Rendu : Sauter le rendu des éléments hors écran */
+      .product-grid, .collection-list, .footer {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 1000px; /* Estimation de hauteur pour éviter le scroll jump */
+      }
+      /* [CUSTOM-GILLES] CLS : Fond gris léger pour les images en chargement */
+      .media--loading, .product-card__image-wrapper {
+        background-color: #f4f4f4;
+      }
+    </style>
+
     {%- if settings.favicon != blank -%}
       <link
         rel="icon"
@@ -12,11 +45,10 @@
       >
     {%- endif -%}
 
-    {% comment %} This a way to wait for main content to load when navigating to a new page so that the view transitions can work consistently {% endcomment %}
+    {% comment %} [CUSTOM-GILLES] Suppression de blocking="render" sur rel=expect pour LCP {% endcomment %}
     <link
       rel="expect"
       href="#MainContent"
-      blocking="render"
       id="view-transition-render-blocker"
     >
 
@@ -32,19 +64,290 @@
     {% endif %}
 
     {{ content_for_header }}
+
+    {% comment %} [CUSTOM-GILLES]  Schema JSON LD - Collection avec Brand / Organization via Brand Infos / Fil ariane global {% endcomment %}
+    {% if request.path contains 'collections' %}
+  
+    {% comment %} --- 1. SCHEMA EXISTANT : COLLECTION PAGE (Toujours affiché) --- {% endcomment %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": {{ collection.title | json }},
+      "url": "{{ shop.url }}{{ collection.url }}",
+      {% assign meta_description = collection.metafields.global.description_tag | default: collection.metafields.seo.description_tag %}
+      {% if collection.description != blank %}
+        "description": {{ collection.description | strip_html | truncatewords: 25 | json }},
+      {% elsif meta_description != blank %}
+        "description": {{ meta_description | strip_html | truncatewords: 25 | json }},
+      {% else %}
+        "description": {{ collection.title | append: " - myCompañero" | json }},
+      {% endif %}
+
+      {% if collection.image %}
+        "image": "{{ collection.image | image_url: width: 1200 | prepend: 'https:' }}",
+      {% else %}
+        {% assign product_images = '' %}
+        {% for product in collection.products limit: 5 %}
+          {% if product.featured_image %}
+            {% if product_images != '' %}{% assign product_images = product_images | append: ', ' %}{% endif %}
+            {% assign image_url = product.featured_image | image_url: width: 1200 | prepend: 'https:' %}
+            {% assign product_images = product_images | append: '"' | append: image_url | append: '"' %}
+          {% endif %}
+        {% endfor %}
+        {% if product_images != '' %}
+          "image": [ {{ product_images }} ],
+        {% endif %}
+      {% endif %}
+
+      "inLanguage": "{{ shop.locale }}",
+      "publisher": {
+        "@type": "OnlineStore",
+        "name": {{ shop.name | json }},
+        "url": "{{ shop.url }}"
+      },
+      "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            {% for product in collection.products limit: 10 %}
+            {
+              "@type": "ListItem",
+              "position": {{ forloop.index }},
+              "item": {
+                "@type": "Product",
+                "name": {{ product.title | json }},
+                "brand": {
+                  "@type": "Brand",
+                  "name": {{ product.vendor | json }}
+                },
+                "url": "{{ shop.url }}{{ product.url }}", 
+                "description": {{ product.description | strip_html | strip | truncatewords: 30 | json }},
+                {% if product.featured_image %}
+                  "image": "{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' }}",
+                {% endif %}
+                "offers": {
+                  "@type": "Offer",
+                  "price": "{{ product.price | divided_by: 100.00 }}",
+                  "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 | append: '-12-31' }}",
+                  "priceCurrency": "{{ shop.currency }}",
+                  "availability": "{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+                  {% assign eu_countries = "AT,BE,BG,CY,CZ,DE,DK,EE,ES,FI,FR,GR,HR,HU,IE,IT,LT,LU,LV,MT,NL,PL,PT,RO,SE,SI,SK" | split: "," %}
+                  {% assign other_countries = "US,CA,KR,JP,CN,IN,AU,NZ,BR,MX,RU,AR,ZA,SA,TR,TH,SG,MY,VN,ID,AE" | split: "," %}
+                  {% assign shipping_json = "" %}
+                  {% assign rate_eu = "9.90" %}
+                  {% if product.price > 30000 %}
+                    {% assign rate_eu = "0" %}
+                  {% endif %}
+                  {% for country in eu_countries %}
+                    {% if shipping_json != "" %}{% assign shipping_json = shipping_json | append: ", " %}{% endif %}
+                    {% assign shipping_json = shipping_json
+                      | append: '{ "@type": "OfferShippingDetails", "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "' 
+                      | append: country 
+                      | append: '" }, "shippingRate": { "@type": "MonetaryAmount", "value": "' 
+                      | append: rate_eu 
+                      | append: '", "currency": "' | append: shop.currency 
+                      | append: '" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "d" } } }' %}
+                  {% endfor %}
+                  {% assign rate_row = "19.90" %}
+                  {% if product.price > 50000 %}
+                    {% assign rate_row = "0" %}
+                  {% endif %}
+                  {% for country in other_countries %}
+                    {% if shipping_json != "" %}{% assign shipping_json = shipping_json | append: ", " %}{% endif %}
+                    {% assign shipping_json = shipping_json
+                      | append: '{ "@type": "OfferShippingDetails", "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "' 
+                      | append: country 
+                      | append: '" }, "shippingRate": { "@type": "MonetaryAmount", "value": "' 
+                      | append: rate_row 
+                      | append: '", "currency": "' | append: shop.currency 
+                      | append: '" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "d" } } }' %}
+                  {% endfor %}
+                "shippingDetails": [ {{ shipping_json }} ],
+                  "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "url": "{{ shop.url }}{% unless request.locale.iso_code == 'en' %}/{{ request.locale.iso_code }}{% endunless %}/policies/refund-policy",
+                    "merchantReturnDays": 30,
+                    "applicableCountry": [
+                      "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK",
+                      "US", "CA", "KR", "JP", "CN", "IN", "AU", "NZ", "BR", "MX", "RU", "AR", "ZA", "SA", "TR", "TH", "SG", "MY", "VN", "ID", "AE"
+                    ],
+                    "returnFees": "ReturnFeesCustomerResponsibility",
+                    "returnMethod": "ReturnByMail",
+                    "returnPolicyCategory": "MerchantReturnFiniteReturnWindow"
+                  }
+                }
+              }
+            }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          ]
+        }
+      }
+    </script>
+
+  
+    {% comment %} 
+  --- BLOC BRAND / ORGANIZATION ---
+  Condition : Vérifie le metafield de collection "custom.brand_infos" (Boolean)
+{% endcomment %}
+
+{% if collection.metafields.custom.brand_infos == true %}
+
+  {% assign product_sample = collection.products.first %}
+  
+  {% comment %} 
+    Note : Ici on utilise 'brands_infos' (avec un S) car c'est la clé du metafield 
+    sur le PRODUIT telle que décrite dans votre premier message.
+  {% endcomment %}
+  {% assign brand_metaobject = product_sample.metafields.custom.brands_infos.value %}
+
+  {% if brand_metaobject %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["Brand", "Organization"],
+      
+      {% comment %} Nom de la marque {% endcomment %}
+      {% if brand_metaobject.name.value %}
+        "name": {{ brand_metaobject.name.value.title | json }},
+        "url": "{{ shop.url }}{{ brand_metaobject.name.value.url }}",
+      {% else %}
+        "name": {{ collection.title | json }},
+        "url": "{{ shop.url }}{{ collection.url }}",
+      {% endif %}
+      
+      {% comment %} Logo {% endcomment %}
+      {% if brand_metaobject.logo %}
+        "logo": "{{ brand_metaobject.logo | image_url: width: 600 | prepend: 'https:' }}",
+      {% endif %}
+
+      {% comment %} Description Riche {% endcomment %}
+      {% capture full_description %}
+        {{ brand_metaobject.description }}
+        {% if brand_metaobject.success_stories.value != blank %}
+           Key milestones: {{ brand_metaobject.success_stories.value | join: '. ' }}.
+        {% endif %}
+        {% if brand_metaobject.collabs_list.value != blank %}
+           Collaborations: 
+           {% for collab in brand_metaobject.collabs_list.value %}
+             {{ collab.partner }} ({{ collab.about }}){% unless forloop.last %}, {% endunless %}
+           {% endfor %}
+        {% endif %}
+      {% endcapture %}
+      "description": {{ full_description | strip_html | strip_newlines | json }},
+
+      {% comment %} Année de fondation {% endcomment %}
+      {% if brand_metaobject.founded_year %}
+        "foundingDate": "{{ brand_metaobject.founded_year }}",
+      {% endif %}
+
+      {% comment %} Pays d'origine {% endcomment %}
+      {% if brand_metaobject.origin_country %}
+        "location": {
+          "@type": "Place",
+          "name": {{ brand_metaobject.origin_country | json }}
+        },
+      {% endif %}
+
+      {% comment %} Fondateurs {% endcomment %}
+      {% if brand_metaobject.founders.value != blank %}
+        "founders": [
+          {% for founder in brand_metaobject.founders.value %}
+          {
+            "@type": "Person",
+            "name": {{ founder | json }}
+          }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ],
+      {% endif %}
+
+      {% comment %} Directeurs {% endcomment %}
+      {% if brand_metaobject.directors.value != blank %}
+        "employees": [
+          {% for director in brand_metaobject.directors.value %}
+          {
+            "@type": "Person",
+            "name": {{ director | json }},
+            "jobTitle": "Director"
+          }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ],
+      {% endif %}
+
+      {% comment %} Prix et récompenses {% endcomment %}
+      {% if brand_metaobject.awards_list.value != blank %}
+        "awards": [
+          {% for award in brand_metaobject.awards_list.value %}
+            {{ award.name | append: " (" | append: award.year | append: ")" | json }}
+          {% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ],
+      {% endif %}
+
+      "mainEntityOfPage": {
+         "@type": "CollectionPage",
+         "@id": "{{ shop.url }}{{ collection.url }}"
+      }
+    }
+    </script>
+  {% endif %}
+  
+{% endif %}
+  {% endif %}
+
+  {% comment %} --- 3. BREADCRUMBS (GLOBAL) --- {% endcomment %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ shop.url }}"
+        }
+        {%- if template == 'collection' or template contains 'collection.' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": "{{ shop.url }}{{ collection.url }}"
+        }
+        {%- elsif template == 'product' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.title | json }},
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+        {%- else -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ page_title | json }},
+          "item": "{{ shop.url }}{{ request.path }}"
+        }
+        {%- endif -%}
+      ]
+    }
+  </script>
+  {% comment %} [CUSTOM-GILLES]  FIN : Schema JSON LD {% endcomment %}
   </head>
 
+  {% comment %} [CUSTOM-GILLES] Protection Anti-Bot et Filtrage Géographique {% endcomment %}
+  {% render 'geo-bot-protection' %}
+    
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
     <div id="header-group">
       {% sections 'header-group' %}
     </div>
 
+    {% comment %} [CUSTOM-GILLES] Suppression de blocking="render" pour le LCP {% endcomment %}
     <script
       src="{{ 'critical.js' | asset_url }}"
       type="module"
       async
-      blocking="render"
     ></script>
 
     <main
@@ -65,5 +368,46 @@
     {% if settings.quick_add or settings.mobile_quick_add %}
       {% render 'quick-add-modal' %}
     {% endif %}
+
+    {% comment %} [CUSTOM-GILLES] Interaction Loader pour Scripts Tiers (TBT Killer) {% endcomment %}
+    <script>
+      (function() {
+        let userInteracted = false;
+        
+        function loadLazyScripts() {
+          if (userInteracted) return;
+          userInteracted = true;
+          
+          console.log('[Performance] Chargement des scripts tiers...');
+          
+          // 1. Charger les scripts marqués avec type="text/lazy-load"
+          const lazyScripts = document.querySelectorAll('script[type="text/lazy-load"]');
+          lazyScripts.forEach(script => {
+            const newScript = document.createElement('script');
+            if (script.dataset.src) newScript.src = script.dataset.src;
+            if (script.innerHTML) newScript.innerHTML = script.innerHTML;
+            Array.from(script.attributes).forEach(attr => {
+              if (attr.name !== 'type' && attr.name !== 'data-src') {
+                newScript.setAttribute(attr.name, attr.value);
+              }
+            });
+            script.parentNode.replaceChild(newScript, script);
+          });
+
+          // 2. Exemple pour charger dynamiquement Facebook ou Toki s'ils ne sont pas dans le HTML
+          // if (!document.getElementById('facebook-jssdk')) {
+          //   const fjs = document.createElement('script'); 
+          //   fjs.src = "https://connect.facebook.net/en_US/fbevents.js";
+          //   document.body.appendChild(fjs);
+          // }
+        }
+
+        const events = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'];
+        events.forEach(event => window.addEventListener(event, loadLazyScripts, { once: true, passive: true }));
+        
+        // Fallback de sécurité : charger après 6 secondes quoi qu'il arrive
+        setTimeout(loadLazyScripts, 6000);
+      })();
+    </script>
   </body>
 </html>

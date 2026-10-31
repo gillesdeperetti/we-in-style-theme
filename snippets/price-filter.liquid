@@ -9,7 +9,7 @@
   @example
   {% render 'price-filter', filter: filter, filter_style: 'vertical' %}
 {%- enddoc -%}
-
+{% comment %} [CUSTOM-GILLES] suppression de l'ouverture auto {% endcomment %}
 <accordion-custom
   class="facets__item"
   {% if filter_style == 'horizontal' %}
@@ -17,12 +17,11 @@
     data-close-with-escape="true"
   {% endif %}
 
-  open-by-default-on-mobile
   {% if filter_style == 'vertical' %}
     open
-    open-by-default-on-desktop
   {% endif %}
 >
+{% comment %} [CUSTOM-GILLES] suppression de l'ouverture auto {% endcomment %}
   <details
     class="facets__panel"
     {% if filter_style == 'horizontal' %}

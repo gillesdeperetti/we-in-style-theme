@@ -1,0 +1,36 @@
+{% comment %}
+  Snippet de contrôle d'accès aux marques de luxe
+  Usage: {% render 'brand-access-control', product: product, collection: collection %}
+{% endcomment %}
+
+{% liquid
+  assign is_restricted_brand = false
+  
+  # Vérifier si c'est une marque restreinte
+  if product
+    assign product_vendor = product.vendor | downcase
+    if product_vendor contains 'dior'
+      assign is_restricted_brand = true
+    endif
+  endif
+  
+  if collection
+    assign collection_title = collection.title | downcase
+    if collection_title contains 'dior'
+      assign is_restricted_brand = true
+    endif
+  endif
+  
+  # Vérifier les conditions d'accès
+  if is_restricted_brand and customer == blank and localization.country.iso_code == 'FR'
+    assign redirect_to_login = true
+  endif
+-%}
+
+{% if redirect_to_login %}
+  {% comment %} Redirection immédiate sans affichage {% endcomment %}
+  <script>
+    window.location.replace('/account/login');
+  </script>
+  {% break %}
+{% endif %}

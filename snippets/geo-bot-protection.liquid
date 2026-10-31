@@ -1,0 +1,376 @@
+{% comment %}
+  [CUSTOM-GILLES] Protection Anti-Bot et Filtrage Géographique
+  
+  Ce snippet détecte :
+  - Les pays à risque (CN, SG, RU, VN, ID, UA, HK, TH)
+  - Les bots via navigator.webdriver, plugins, headless detection
+  - Les comportements anormaux de trafic
+  
+  Logique simplifiée :
+  - Score >= 7 → Redirection vers /blocked
+  - Score >= 4 → Redirection vers /account/login  
+  - Score < 4  → Rien (visiteur vérifié)
+  
+  Les clients connectés sont EXCLUS de toute vérification.
+{% endcomment %}
+
+{% comment %} Liste des pays à risque {% endcomment %}
+{% assign risky_countries = "CN,SG,RU,VN,ID,UA,HK,TH" | split: "," %}
+{% assign current_country = localization.country.iso_code %}
+{% assign is_risky_country = false %}
+
+{% for country in risky_countries %}
+  {% if current_country == country %}
+    {% assign is_risky_country = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Ne pas exécuter sur certaines pages pour éviter les boucles {% endcomment %}
+{% assign is_excluded_page = false %}
+{% if request.path contains '/blocked' or template.suffix == 'blocked' %}
+  {% assign is_excluded_page = true %}
+{% endif %}
+{% if request.path contains '/account' %}
+  {% assign is_excluded_page = true %}
+{% endif %}
+
+{% comment %} 
+  CLIENTS CONNECTÉS = EXCLUS TOTALEMENT
+  Ils ont prouvé leur légitimité en créant un compte
+{% endcomment %}
+{% if customer %}
+  {% comment %} Ne rien faire pour les clients connectés {% endcomment %}
+{% elsif is_risky_country and is_excluded_page == false %}
+  <script id="geo-bot-protection" data-country="{{ current_country }}">
+  (function() {
+    'use strict';
+    
+    const CONFIG = {
+      riskyCountry: '{{ current_country }}',
+      blockedPage: '/pages/blocked',
+      loginPage: '/account/login',
+      scoreForBlock: 7,      // Score pour blocage total
+      scoreForLogin: 4,      // Score pour redirection login
+      sessionKey: 'gbp_verified',
+      trafficKey: 'gbp_traffic_data'
+    };
+
+    // Ne pas exécuter si déjà vérifié dans cette session
+    if (sessionStorage.getItem(CONFIG.sessionKey) === 'true') {
+      return;
+    }
+
+    let suspiciousScore = 0;
+    const detectionResults = {};
+
+    // ========================================
+    // 1. DÉTECTION DE WEBDRIVER (Selenium, Puppeteer, etc.)
+    // ========================================
+    function detectWebdriver() {
+      const checks = [
+        () => navigator.webdriver === true,
+        () => window.navigator.webdriver === true,
+        () => document.documentElement.getAttribute('webdriver') !== null,
+        () => window.__nightmare !== undefined,
+        () => window._phantom !== undefined,
+        () => window.phantom !== undefined,
+        () => window.callPhantom !== undefined,
+        () => window.__selenium_evaluate !== undefined,
+        () => window.__webdriver_evaluate !== undefined,
+        () => window.__driver_evaluate !== undefined,
+        () => window.__webdriver_script_function !== undefined,
+        () => window.__webdriver_script_func !== undefined,
+        () => window.__webdriver_script_fn !== undefined,
+        () => window.__fxdriver_evaluate !== undefined,
+        () => window.__fxdriver_unwrapped !== undefined,
+        () => window.domAutomation !== undefined,
+        () => window.domAutomationController !== undefined,
+        () => document.$cdc_asdjflasutopfhvcZLmcfl_ !== undefined,
+        () => document.$wdc_ !== undefined,
+        () => window.chrome && window.chrome.runtime && window.chrome.runtime.id === undefined && navigator.webdriver
+      ];
+
+      for (let check of checks) {
+        try {
+          if (check()) {
+            return true;
+          }
+        } catch (e) {}
+      }
+      return false;
+    }
+
+    // ========================================
+    // 2. DÉTECTION DE NAVIGATEUR HEADLESS
+    // ========================================
+    function detectHeadless() {
+      const checks = [];
+
+      // Chrome headless spécifique
+      if (navigator.userAgent.includes('HeadlessChrome')) {
+        checks.push('headlessChrome');
+      }
+
+      // Pas de langues définies
+      if (!navigator.languages || navigator.languages.length === 0) {
+        checks.push('noLanguages');
+      }
+
+      // WebGL renderer suspect
+      try {
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (gl) {
+          const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+          if (debugInfo) {
+            const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL);
+            if (renderer.includes('SwiftShader') || renderer.includes('LLVMpipe') || renderer.includes('Mesa')) {
+              checks.push('suspiciousRenderer');
+            }
+          }
+        }
+      } catch (e) {}
+
+      // Taille d'écran suspecte (0x0)
+      if (window.outerWidth === 0 || window.outerHeight === 0) {
+        checks.push('zeroScreenSize');
+      }
+
+      // Chrome sans chrome.runtime (headless)
+      if (navigator.userAgent.includes('Chrome') && !window.chrome) {
+        checks.push('chromeWithoutRuntime');
+      }
+
+      // Test de l'User-Agent Brands (Chrome 90+)
+      if (navigator.userAgentData) {
+        const brands = navigator.userAgentData.brands || [];
+        const hasChromelike = brands.some(b => b.brand === 'Chromium' || b.brand === 'Google Chrome');
+        if (!hasChromelike && navigator.userAgent.includes('Chrome')) {
+          checks.push('brandMismatch');
+        }
+      }
+
+      return checks.length >= 2;
+    }
+
+    // ========================================
+    // 3. DÉTECTION D'ABSENCE DE PLUGINS
+    // ========================================
+    function detectNoPlugins() {
+      const plugins = navigator.plugins;
+      
+      if (!plugins || plugins.length === 0) {
+        // Suspect sur Chrome desktop sans plugins
+        if (navigator.userAgent.includes('Chrome') && !navigator.userAgent.includes('Mobile')) {
+          return true;
+        }
+        // Firefox peut légitimement ne pas avoir de plugins
+        if (navigator.userAgent.includes('Firefox')) {
+          return false;
+        }
+        return true;
+      }
+      
+      // Vérifier si les plugins sont faux
+      let realPlugins = 0;
+      for (let i = 0; i < plugins.length; i++) {
+        if (plugins[i].name && plugins[i].name.length > 0) {
+          realPlugins++;
+        }
+      }
+      
+      return realPlugins === 0;
+    }
+
+    // ========================================
+    // 4. DÉTECTION COMPORTEMENT SOURIS/TOUCH ANORMAL
+    // ========================================
+    function detectBehavior() {
+      return new Promise((resolve) => {
+        let hasMouseMove = false;
+        let hasClick = false;
+        let hasScroll = false;
+        
+        const timeout = setTimeout(() => {
+          cleanup();
+          const isBot = !hasMouseMove && !hasClick && !hasScroll;
+          resolve(isBot);
+        }, 3000);
+
+        function onMouseMove() { hasMouseMove = true; }
+        function onClick() { hasClick = true; }
+        function onScroll() { hasScroll = true; }
+
+        function cleanup() {
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('click', onClick);
+          document.removeEventListener('scroll', onScroll);
+          clearTimeout(timeout);
+        }
+
+        document.addEventListener('mousemove', onMouseMove, { passive: true });
+        document.addEventListener('click', onClick, { passive: true });
+        document.addEventListener('scroll', onScroll, { passive: true });
+
+        // Si interaction détectée rapidement, c'est un humain
+        setTimeout(() => {
+          if (hasMouseMove || hasClick || hasScroll) {
+            cleanup();
+            resolve(false);
+          }
+        }, 1500);
+      });
+    }
+
+    // ========================================
+    // 5. DÉTECTION DE TRAFIC ANORMAL
+    // ========================================
+    function detectAbnormalTraffic() {
+      const now = Date.now();
+      const windowMs = 60000; // 1 minute
+      const maxRequestsPerMinute = 40; // Plus tolérant
+      
+      let trafficData = [];
+      try {
+        const stored = localStorage.getItem(CONFIG.trafficKey);
+        if (stored) {
+          trafficData = JSON.parse(stored);
+        }
+      } catch (e) {}
+
+      trafficData = trafficData.filter(t => now - t < windowMs);
+      trafficData.push(now);
+      
+      try {
+        localStorage.setItem(CONFIG.trafficKey, JSON.stringify(trafficData));
+      } catch (e) {}
+
+      return trafficData.length > maxRequestsPerMinute;
+    }
+
+    // ========================================
+    // 6. DÉTECTION DE CANVAS FINGERPRINT BLOQUÉ
+    // ========================================
+    function detectCanvasBlocking() {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = 200;
+        canvas.height = 50;
+        const ctx = canvas.getContext('2d');
+        
+        ctx.textBaseline = 'top';
+        ctx.font = '14px Arial';
+        ctx.fillStyle = '#f60';
+        ctx.fillRect(0, 0, 200, 50);
+        ctx.fillStyle = '#069';
+        ctx.fillText('Bot Detection Test', 2, 15);
+        
+        const dataUrl = canvas.toDataURL();
+        
+        if (dataUrl === 'data:,' || dataUrl.length < 1000) {
+          return true;
+        }
+      } catch (e) {
+        return true;
+      }
+      return false;
+    }
+
+    // ========================================
+    // ANALYSE PRINCIPALE
+    // ========================================
+    async function runDetection() {
+      // Test 1: Webdriver (très suspect)
+      detectionResults.webdriver = detectWebdriver();
+      if (detectionResults.webdriver) {
+        suspiciousScore += 4;
+      }
+
+      // Test 2: Headless
+      detectionResults.headless = detectHeadless();
+      if (detectionResults.headless) {
+        suspiciousScore += 3;
+      }
+
+      // Test 3: Plugins
+      detectionResults.noPlugins = detectNoPlugins();
+      if (detectionResults.noPlugins) {
+        suspiciousScore += 1;
+      }
+
+      // Test 4: Canvas
+      detectionResults.canvasBlocked = detectCanvasBlocking();
+      if (detectionResults.canvasBlocked) {
+        suspiciousScore += 1;
+      }
+
+      // Test 5: Trafic anormal
+      detectionResults.abnormalTraffic = detectAbnormalTraffic();
+      if (detectionResults.abnormalTraffic) {
+        suspiciousScore += 2;
+      }
+
+      // Test 6: Comportement (async)
+      detectionResults.noBehavior = await detectBehavior();
+      if (detectionResults.noBehavior) {
+        suspiciousScore += 1;
+      }
+
+      // Debug (peut être retiré en production)
+      console.log('[GBP] Country:', CONFIG.riskyCountry);
+      console.log('[GBP] Detection results:', detectionResults);
+      console.log('[GBP] Score:', suspiciousScore);
+
+      // ========================================
+      // DÉCISION FINALE - LOGIQUE SIMPLIFIÉE
+      // ========================================
+      if (suspiciousScore >= CONFIG.scoreForBlock) {
+        // Bot confirmé → Blocage
+        handleBlock();
+      } else if (suspiciousScore >= CONFIG.scoreForLogin) {
+        // Suspect → Demander connexion
+        handleLoginRedirect();
+      } else {
+        // OK → Marquer comme vérifié
+        sessionStorage.setItem(CONFIG.sessionKey, 'true');
+      }
+    }
+
+    function handleBlock() {
+      console.log('[GBP] Bot detected! Blocking...');
+      
+      try {
+        localStorage.setItem('gbp_blocked', JSON.stringify({
+          timestamp: Date.now(),
+          country: CONFIG.riskyCountry,
+          detections: detectionResults,
+          score: suspiciousScore,
+          userAgent: navigator.userAgent
+        }));
+      } catch (e) {}
+
+      window.location.href = CONFIG.blockedPage;
+    }
+
+    function handleLoginRedirect() {
+      console.log('[GBP] Suspicious activity, redirecting to login...');
+      
+      // Stocker l'URL de retour pour après connexion
+      try {
+        sessionStorage.setItem('gbp_return_url', window.location.href);
+      } catch (e) {}
+
+      window.location.href = CONFIG.loginPage;
+    }
+
+    // Lancer la détection
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', runDetection);
+    } else {
+      setTimeout(runDetection, 500);
+    }
+
+  })();
+  </script>
+{% endif %}

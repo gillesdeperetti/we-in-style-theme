@@ -5,79 +5,127 @@
     has_discounts_enabled: {boolean} - whether discounts are enabled
 {%- endcomment -%}
 
+{%- comment -%} [CUSTOM-GILLES] Début : Détection directe du marché basée sur le pays {%- endcomment -%}
+{%- assign current_country = localization.country.iso_code | upcase -%}
+
+{%- comment -%} France = TTC {%- endcomment -%}
+{%- if current_country == 'FR' -%}
+  {%- assign is_ttc_market = true -%}
+  {%- assign is_international_market = false -%}
+
+{%- comment -%} Pays européens = TTC {%- endcomment -%}
+{%- elsif current_country == 'DE' or current_country == 'IT' or current_country == 'ES' or current_country == 'NL' or current_country == 'BE' or current_country == 'AT' or current_country == 'PT' or current_country == 'IE' or current_country == 'FI' or current_country == 'GR' or current_country == 'LU' or current_country == 'SI' or current_country == 'SK' or current_country == 'CY' or current_country == 'MT' or current_country == 'LV' or current_country == 'LT' or current_country == 'EE' or current_country == 'HR' or current_country == 'BG' or current_country == 'RO' or current_country == 'CZ' or current_country == 'HU' or current_country == 'PL' or current_country == 'SE' or current_country == 'DK' -%}
+  {%- assign is_ttc_market = true -%}
+  {%- assign is_international_market = false -%}
+
+{%- comment -%} TOUS LES AUTRES PAYS = International (Malaisie, Australie, etc.) {%- endcomment -%}
+{%- else -%}
+  {%- assign is_ttc_market = false -%}
+  {%- assign is_international_market = true -%}
+{%- endif -%}
+{%- comment -%} [CUSTOM-GILLES] Fin {%- endcomment -%}
+
 <small>
-  {%- if cart.duties_included and cart.taxes_included -%}
+  {%- comment -%} [CUSTOM-GILLES] Début : Logique d'affichage forcée {%- endcomment -%}
+  {%- if is_ttc_market -%}
+    {%- comment -%} Marchés France/Europe - Prix TTC {%- endcomment -%}
     {%- if shop.shipping_policy.body == blank -%}
       {%- if has_discounts_enabled -%}
-        {{ 'content.duties_and_taxes_included_shipping_at_checkout_without_policy_without_discounts' | t }}
-      {%- else -%}
-        {{ 'content.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
-      {%- endif -%}
-    {%- else -%}
-      {%- if has_discounts_enabled -%}
-        {{
-          'content.duties_and_taxes_included_shipping_at_checkout_with_policy_without_discounts_html'
-          | t: link: shop.shipping_policy.url
-        }}
-      {%- else -%}
-        {{
-          'content.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
-          | t: link: shop.shipping_policy.url
-        }}
-      {%- endif -%}
-    {%- endif -%}
-  {%- elsif cart.duties_included == false and cart.taxes_included -%}
-    {%- if shop.shipping_policy.body == blank -%}
-      {%- if has_discounts_enabled -%}
-        {{ 'content.duties_and_taxes_included_shipping_at_checkout_without_policy_without_discounts' | t }}
+        {{ 'content.taxes_included_shipping_at_checkout_without_policy_without_discounts' | t }}
       {%- else -%}
         {{ 'content.taxes_included_shipping_at_checkout_without_policy' | t }}
       {%- endif -%}
     {%- else -%}
       {%- if has_discounts_enabled -%}
-        {{
-          'content.duties_and_taxes_included_shipping_at_checkout_with_policy_without_discounts_html'
-          | t: link: shop.shipping_policy.url
-        }}
+        {{ 'content.taxes_included_shipping_at_checkout_with_policy_without_discounts_html' | t: link: shop.shipping_policy.url }}
       {%- else -%}
         {{ 'content.taxes_included_shipping_at_checkout_with_policy_html' | t: link: shop.shipping_policy.url }}
       {%- endif -%}
     {%- endif -%}
-  {%- elsif cart.duties_included and cart.taxes_included == false -%}
-    {%- if shop.shipping_policy.body == blank -%}
-      {%- if has_discounts_enabled -%}
-        {{ 'content.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy_without_discounts' | t }}
-      {%- else -%}
-        {{ 'content.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
-      {%- endif -%}
-    {%- else -%}
-      {%- if has_discounts_enabled -%}
-        {{
-          'content.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_without_discounts_html'
-          | t: link: shop.shipping_policy.url
-        }}
-      {%- else -%}
-        {{
-          'content.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
-          | t: link: shop.shipping_policy.url
-        }}
-      {%- endif -%}
+
+  {%- elsif is_international_market -%}
+    {%- comment -%} Marchés Internationaux - Hors taxes et frais d'import {%- endcomment -%}
+    {{ 'content.taxes_duties_at_checkout' | t }}
+    {%- if shop.shipping_policy.body != blank -%}
+      {{ 'content.shipping_policy' | t }}
     {%- endif -%}
-  {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
-    {%- if shop.shipping_policy.body == blank -%}
-      {%- if has_discounts_enabled -%}
-        {{ 'content.taxes_at_checkout_shipping_at_checkout_without_policy_without_discounts' | t }}
+
+  {%- else -%}
+    {%- comment -%} [CUSTOM-GILLES] Fin. Ci-dessous : Logique standard du nouveau thème (fallback) {%- endcomment -%}
+
+    {%- if cart.duties_included and cart.taxes_included -%}
+      {%- if shop.shipping_policy.body == blank -%}
+        {%- if has_discounts_enabled -%}
+          {{ 'content.duties_and_taxes_included_shipping_at_checkout_without_policy_without_discounts' | t }}
+        {%- else -%}
+          {{ 'content.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
+        {%- endif -%}
       {%- else -%}
-        {{ 'content.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+        {%- if has_discounts_enabled -%}
+          {{
+            'content.duties_and_taxes_included_shipping_at_checkout_with_policy_without_discounts_html'
+            | t: link: shop.shipping_policy.url
+          }}
+        {%- else -%}
+          {{
+            'content.duties_and_taxes_included_shipping_at_checkout_with_policy_html'
+            | t: link: shop.shipping_policy.url
+          }}
+        {%- endif -%}
       {%- endif -%}
-    {%- else -%}
-      {%- if has_discounts_enabled -%}
-        {{
-          'content.taxes_at_checkout_shipping_at_checkout_with_policy_without_discounts_html'
-          | t: link: shop.shipping_policy.url
-        }}
+    {%- elsif cart.duties_included == false and cart.taxes_included -%}
+      {%- if shop.shipping_policy.body == blank -%}
+        {%- if has_discounts_enabled -%}
+          {{ 'content.duties_and_taxes_included_shipping_at_checkout_without_policy_without_discounts' | t }}
+        {%- else -%}
+          {{ 'content.taxes_included_shipping_at_checkout_without_policy' | t }}
+        {%- endif -%}
       {%- else -%}
-        {{ 'content.taxes_at_checkout_shipping_at_checkout_with_policy_html' | t: link: shop.shipping_policy.url }}
+        {%- if has_discounts_enabled -%}
+          {{
+            'content.duties_and_taxes_included_shipping_at_checkout_with_policy_without_discounts_html'
+            | t: link: shop.shipping_policy.url
+          }}
+        {%- else -%}
+          {{ 'content.taxes_included_shipping_at_checkout_with_policy_html' | t: link: shop.shipping_policy.url }}
+        {%- endif -%}
+      {%- endif -%}
+    {%- elsif cart.duties_included and cart.taxes_included == false -%}
+      {%- if shop.shipping_policy.body == blank -%}
+        {%- if has_discounts_enabled -%}
+          {{ 'content.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy_without_discounts' | t }}
+        {%- else -%}
+          {{ 'content.duties_included_taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+        {%- endif -%}
+      {%- else -%}
+        {%- if has_discounts_enabled -%}
+          {{
+            'content.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_without_discounts_html'
+            | t: link: shop.shipping_policy.url
+          }}
+        {%- else -%}
+          {{
+            'content.duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html'
+            | t: link: shop.shipping_policy.url
+          }}
+        {%- endif -%}
+      {%- endif -%}
+    {%- elsif cart.duties_included == false and cart.taxes_included == false -%}
+      {%- if shop.shipping_policy.body == blank -%}
+        {%- if has_discounts_enabled -%}
+          {{ 'content.taxes_at_checkout_shipping_at_checkout_without_policy_without_discounts' | t }}
+        {%- else -%}
+          {{ 'content.taxes_at_checkout_shipping_at_checkout_without_policy' | t }}
+        {%- endif -%}
+      {%- else -%}
+        {%- if has_discounts_enabled -%}
+          {{
+            'content.taxes_at_checkout_shipping_at_checkout_with_policy_without_discounts_html'
+            | t: link: shop.shipping_policy.url
+          }}
+        {%- else -%}
+          {{ 'content.taxes_at_checkout_shipping_at_checkout_with_policy_html' | t: link: shop.shipping_policy.url }}
+        {%- endif -%}
       {%- endif -%}
     {%- endif -%}
   {%- endif -%}

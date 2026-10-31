@@ -1,0 +1,91 @@
+{% comment %} --- [CUSTOM-GILLES] LOGIQUE FEMME --- {% endcomment %}
+{% assign product_type = product.type | downcase %}
+
+{% comment %} Conversion robuste : Value -> JSON -> Downcase {% endcomment %}
+{% assign categories_str = product.metafields.custom.categories.value | json | downcase %}
+{% assign niveau_3_str = product.metafields.custom.niveau_3.value | json | downcase %}
+
+{% assign display_shoes = false %}
+{% assign display_pap = false %}
+{% assign display_jeans = false %}
+
+{% assign open_jeans = false %}
+{% assign open_pap = false %}
+{% assign open_shoes = false %}
+
+{% if categories_str contains 'jeans' or niveau_3_str contains 'jeans' %}
+  {% assign display_jeans = true %}
+  {% assign open_jeans = true %}
+
+{% else %}
+  
+  {% if product_type contains 'shoes' or product_type contains 'chaussures' %}
+    {% assign display_shoes = true %}
+    {% assign open_shoes = true %}
+  
+  {% elsif product_type contains 'clothing' or product_type contains 'vêtements' or product_type contains 'vetements' %}
+    {% assign display_pap = true %}
+    {% assign open_pap = true %}
+  
+  {% else %}
+    {% assign display_shoes = true %}
+    {% assign display_pap = true %}
+    {% assign display_jeans = true %}
+    {% assign open_shoes = true %}
+  {% endif %}
+  
+{% endif %}
+
+{% if display_shoes %}
+<accordion-custom {% if open_shoes %}open-by-default-on-desktop open-by-default-on-mobile{% endif %}>
+  <details class="details" id="size-guide__chaussures" {% if open_shoes %}open=""{% endif %}>
+    <summary class="details__header" role="button" aria-expanded="{% if open_shoes %}true{% else %}false{% endif %}" aria-controls="ProductAccordion-Femme-Chaussures">
+      <div class="summary__title">
+        <h2 class="h4 accordion__title">{{ 'size_guide.shoes' | t }}</h2>
+      </div>
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-content rte" id="ProductAccordion-Femme-Chaussures">
+      {% render 'size-guide-femme-chaussure' %}
+    </div>
+  </details>
+</accordion-custom>
+{% endif %}
+
+{% if display_pap %}
+<accordion-custom {% if open_pap %}open-by-default-on-desktop open-by-default-on-mobile{% endif %}>
+  <details class="details" id="size-guide__pap" {% if open_pap %}open=""{% endif %}>
+    <summary class="details__header" role="button" aria-expanded="{% if open_pap %}true{% else %}false{% endif %}" aria-controls="ProductAccordion-Femme-Pap">
+      <div class="summary__title">
+        <h2 class="h4 accordion__title">{{ 'size_guide.ready_to_wear' | t }}</h2>
+      </div>
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-content rte" id="ProductAccordion-Femme-Pap">
+      {% render 'size-guide-femme-pap' %}
+    </div>
+  </details>
+</accordion-custom>
+{% endif %}
+
+{% if display_jeans %}
+<accordion-custom {% if open_jeans %}open-by-default-on-desktop open-by-default-on-mobile{% endif %}>
+  <details class="details" id="size-guide__jeans" {% if open_jeans %}open=""{% endif %}>
+    <summary class="details__header" role="button" aria-expanded="{% if open_jeans %}true{% else %}false{% endif %}" aria-controls="ProductAccordion-Femme-Jeans">
+      <div class="summary__title">
+        <h2 class="h4 accordion__title">{{ 'size_guide.jeans' | t }}</h2>
+      </div>
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-content rte" id="ProductAccordion-Femme-Jeans">
+      {% render 'size-guide-femme-jeans' %}
+    </div>
+  </details>
+</accordion-custom>
+{% endif %}

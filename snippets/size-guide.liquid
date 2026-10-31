@@ -1,0 +1,151 @@
+{% comment %} --- [CUSTOM-GILLES] MAIN CONTAINER --- {% endcomment %}
+
+{% comment %} 
+  On utilise les IDs numériques uniques pour la comparaison.
+  Cela marche que le GID soit complet ou court.
+{% endcomment %}
+{% assign id_homme = "38487720093" %}
+{% assign id_femme = "38487752861" %}
+{% assign id_unisexe = "38487785629" %}
+
+{% comment %} --- CORRECTION ICI : gender au lieu de genre --- {% endcomment %}
+{% assign raw_gender = product.metafields.custom.gender.value %}
+{% assign current_gender_id = "" %}
+
+{% comment %} Extraction robuste de l'ID (Objet ou Liste) {% endcomment %}
+{% if raw_gender.system.id %}
+  {% assign current_gender_id = raw_gender.system.id | downcase %}
+{% elsif raw_gender.first.system.id %}
+  {% assign current_gender_id = raw_gender.first.system.id | downcase %}
+{% endif %}
+
+{% assign locale = request.locale.iso_code %}
+{% assign size_system = product.metafields.custom.size_system.value %}
+{% assign current_size = product.selected_or_first_available_variant.option1 %}
+
+<style>
+  .highlight-column {
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  .size-system-label {
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+</style>
+
+<h1 class="h2">
+  {{ 'size_guide.title' | t }}
+
+  {% if current_gender_id contains id_femme %}
+    {{ 'size_guide.female' | t }}
+  {% elsif current_gender_id contains id_unisexe %}
+    {{ 'size_guide.unisex' | t }}
+  {% elsif current_gender_id contains id_homme %}
+    {{ 'size_guide.male' | t }}
+  {% endif %}
+</h1>
+
+{% if size_system != blank and current_size != blank %}
+  <div class="size-system-label" data-size-system="{{ size_system }}" data-current-size="{{ current_size }}">
+    {{ 'custom.size_system_info' | t: size: current_size, system: size_system }}
+  </div>
+{% endif %}
+
+<div id="size-guide-container" data-size-system="{{ size_system }}" data-current-size="{{ current_size }}">
+  
+  {% comment %} --- LOGIQUE D'AFFICHAGE DU TABLEAU --- {% endcomment %}
+  
+  {% if current_gender_id contains id_femme %}
+    {% render 'size-guide-femme' %}
+  
+  {% elsif current_gender_id contains id_homme or current_gender_id contains id_unisexe %}
+    {% comment %} Homme ET Unisexe utilisent le tableau Homme {% endcomment %}
+    {% render 'size-guide-homme' %}
+    
+  {% endif %}
+  
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const container = document.getElementById('size-guide-container');
+    if (!container) return;
+
+    const sizeSystem = container.dataset.sizeSystem; 
+    const currentSize = container.dataset.currentSize; 
+
+    if (!sizeSystem || !currentSize) return;
+
+    const clean = (str) => str ? str.toString().trim().toLowerCase() : '';
+
+    const tables = container.querySelectorAll('table');
+
+    tables.forEach(table => {
+      const rows = table.querySelectorAll('tr');
+      let targetColumnIndex = -1;
+      let isFirstRowLonger = false; 
+
+      // Détection rowspan ligne 1
+      const firstRowFirstCell = rows[0].querySelector('td');
+      if (firstRowFirstCell && firstRowFirstCell.hasAttribute('rowspan')) {
+        isFirstRowLonger = true;
+      }
+
+      // 1. Recherche via Système de Taille (ex: US, EU)
+      rows.forEach((row, rowIndex) => {
+        const firstCell = row.querySelector('td, th');
+        if (!firstCell) return;
+        
+        const rowLabel = clean(firstCell.textContent);
+        
+        if (rowLabel.includes(clean(sizeSystem))) {
+            const cells = row.querySelectorAll('td');
+            cells.forEach((cell, index) => {
+                if (clean(cell.textContent) === clean(currentSize)) {
+                    if (rowIndex === 0 && isFirstRowLonger) {
+                       targetColumnIndex = index - 1;
+                    } else {
+                       targetColumnIndex = index;
+                    }
+                }
+            });
+        }
+      });
+
+      // 2. Fallback (Recherche directe de la valeur)
+      if (targetColumnIndex === -1) {
+          rows.forEach((row, rowIndex) => {
+             const cells = row.querySelectorAll('td');
+             cells.forEach((cell, index) => {
+                 if (clean(cell.textContent) === clean(currentSize)) {
+                     if (!cell.classList.contains('fixed_cell')) {
+                        if (rowIndex === 0 && isFirstRowLonger && index > 0) {
+                            targetColumnIndex = index - 1;
+                        } else if (index > 0) {
+                            targetColumnIndex = index;
+                        }
+                     }
+                 }
+             });
+          });
+      }
+
+      // 3. Application du style
+      if (targetColumnIndex > -1) {
+        rows.forEach((row, rowIndex) => {
+          const cells = row.querySelectorAll('td');
+          let indexToHighlight = targetColumnIndex;
+          
+          if (rowIndex === 0 && isFirstRowLonger) {
+             indexToHighlight = targetColumnIndex + 1;
+          }
+          
+          if (cells[indexToHighlight]) {
+             cells[indexToHighlight].classList.add('highlight-column');
+          }
+        });
+      }
+    });
+  });
+</script>

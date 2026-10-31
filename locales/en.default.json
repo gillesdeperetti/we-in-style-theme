@@ -50,53 +50,43 @@
     "slideshow_play": "Play slideshow",
     "slideshow_previous": "Previous slide",
     "unit_price": "Unit price",
-    "find_country": "Find country"
+    "find_country": "Find country",
+    "open_cart_drawer": "Open cart",
+    "open_search_modal": "Open search"
   },
   "actions": {
-    // Quick add button on product cards, shortened version of add to cart
     "add": "Add",
     "add_to_cart": "Add to cart",
-    // Success message shown after adding item to cart
     "added": "Added",
-    // Button to apply discount code to cart
     "apply": "Apply",
     "back": "Back",
     "choose": "Choose",
-    // Button to reset current selection or input
     "clear": "Clear",
-    // Button to remove all applied product filters
     "clear_all": "Clear all",
     "close": "Close",
     "open": "Open",
-    // Continue shopping link on the cart page which takes the user back to a collection page
     "continue_shopping": "Continue shopping",
     "enter_password": "Enter password",
     "log_in_html": "Have an account? <a href=\"{{ link }}\">Log in</a> to check out faster.",
     "log_in": "Sign in",
     "log_out": "Log out",
     "open_image_in_full_screen": "Open image in full screen",
-    // Button to remove applied filters from search/collection results
     "remove": "Remove",
     "remove_discount": "Remove discount {{ code }}",
-    // Button to expand hidden product variant options
     "show_all_options": "Show all options",
     "see_items": {
       "one": "See {{ count }} item",
-      // Button to view filtered product results and close filter dialog
       "other": "See {{ count }} items"
     },
     "show_filters": "Filter",
     "show_less": "Show less",
     "show_more": "Show more",
     "sign_in_options": "Other sign in options",
-    // AR button to view 3D product model in physical space
     "view_in_your_space": "View in your space",
-    // Button to view complete collection/product list
     "view_all": "View all",
     "more": "More",
     "zoom": "Zoom",
     "close_dialog": "Close dialog",
-    // Button to clear search filter and restore default view
     "reset": "Reset",
     "enter_using_password": "Enter using password",
     "sign_up": "Sign up",
@@ -105,6 +95,28 @@
     "sort": "Sort"
   },
   "blocks": {
+    "klarna": {
+      "installments_before": "3 payments of",
+      "installments_after": "at 0% interest with Klarna",
+      "learn_more": "Learn more"
+    },
+     "delivery_estimate": {
+        "order_before": "Order before",
+        "order_before_short": "Before",
+        "receive_by": "receive it as early as",
+        "receive_by_short": "Delivery",
+        "receive_by_today": "Delivery today",
+        "receive_by_tomorrow": "Delivery tomorrow",
+        "home_delivery": "Home delivery",
+        "relay_point": "Relay point",
+        "express_eu": "Express EU",
+        "worldwide": "Worldwide delivery",
+        "monday": "Monday",
+        "today": "today",
+        "tomorrow": "tomorrow",
+        "delivery_info": "Estimated delivery times by carrier",
+        "fallback": "Ships within 1 business day · Delivery in {{ days }} business days"
+      },
     "contact_form": {
       "name": "Name",
       "email": "Email",
@@ -233,7 +245,6 @@
     "search_results_no_results_check_spelling": "No results found for \"{{ terms }}\". Check the spelling or use a different word or phrase.",
     "search_results_resource_articles": "Blog posts",
     "search_results_resource_collections": "Collections",
-    // Section heading for Shopify store pages in search results
     "search_results_resource_pages": "Pages",
     "search_results_resource_products": "Products",
     "search_results_resource_products_count": {
@@ -241,10 +252,8 @@
       "other": "{{ count }} products"
     },
     "search_results_resource_queries": "Search suggestions",
-    // Button to go from search preview to full search results page
     "search_results_view_all": "View all",
     "search_results_view_all_button": "View all",
-    // Label for customer's note to seller during checkout
     "seller_note": "Special instructions",
     "shipping_policy": "Shipping calculated at checkout.",
     "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
@@ -260,13 +269,11 @@
     "taxes_included_shipping_at_checkout_without_policy_without_discounts": "Taxes included. Shipping is calculated at checkout.",
     "unavailable": "Unavailable",
     "use_fewer_filters_html": "Try using fewer filters, or <a class=\"{{ class }}\" href=\"{{ link }}\">clear all filters</a>.",
-    // Link or button to expand additional information
     "view_more_details": "View more details",
     "your_cart_is_empty": "Your cart is empty",
     "product_count": "Product count",
     "errors": "Errors",
     "wrong_password": "Wrong password",
-    // Legend text for gift card delivery options
     "recipient_form_send_to": "Send to",
     "recipient_form_email_label": "Recipient’s email",
     "recipient_form_email_label_my_email": "My email",
@@ -279,10 +286,10 @@
     "recipient_form_fields_visible": "Recipient form fields are now visible",
     "recipient_form_fields_hidden": "Recipient form fields are now hidden",
     "recipient_form_error": "There was an error with the form submission",
-    "product_custom_property_character_count": "{{ used_chars }}/{{ max_chars }} characters used"
+    "product_custom_property_character_count": "{{ used_chars }}/{{ max_chars }} characters used",
+    "taxes_duties_at_checkout": "Taxes and import duties not included."
   },
   "fields": {
-    // Separates min and max values in price range filter
     "separator": "to"
   },
   "gift_cards": {
@@ -325,5 +332,64 @@
       "quantity_maximum": "Maximum of {{ maximum }}",
       "in_cart": "in cart"
     }
+  },
+  "loyalty": {
+    "reward_ready": {
+      "description": "This item is eligible for the following benefits:",
+      "offer_1": "10% off on more than {{ count }} full-price products when you sign up for the newsletter",
+      "offer_2": "Discounts via loyalty points exchange",
+      "offer_3": "Status-based discounts: Silver, Gold, or Platinum members"
+    },
+    "cashback": {
+      "description": "Earn cashback when purchasing this item, provided the program's conditions are met (e.g. Silver/Gold/Platinum tier, no ongoing discounts)."
+    },
+    "conditions": {
+      "notice": "See full terms in our loyalty program or FAQ.",
+      "link": "View the FAQ"
+    },
+    "program": {
+      "cta": "Explore the Program"
+    }
+  },
+  "countdown": {
+    "days": "DAYS",
+    "hours": "HOURS",
+    "minutes": "MINUTES",
+    "seconds": "SECONDS",
+    "ended": "Ended!"
+  },
+  "bf": {
+    "last_hours_title": "Last Hours at this price",
+    "last_hours_subtitle": "Black Friday ends soon — final chance to shop the best deals.",
+    "extended_title": "Exclusive Edit — 10% Off",
+    "extended_subtitle": "Use code BFCM25 at checkout before the offer ends."
+  },
+  "product": {
+    "dimensions": {
+      "height": "Height",
+      "width": "Width",
+      "length": "Length",
+      "depth": "Depth",
+      "strap_length": "Strap length",
+      "handle_drop": "Handle drop",
+      "heel_height": "Heel height",
+      "sole_height": "Sole height"
+    }
+  },
+  "size_guide": {
+    "title": "Size Guide",
+    "female": "Women",
+    "male": "Men",
+    "unisex": "Unisex",
+    "shoes": "Shoes",
+    "ready_to_wear": "Ready-to-wear",
+    "jeans": "Jeans",
+    "shirts": "Shirts",
+    "numeric": "Numeric sizing",
+    "general": "General",
+    "foot_size": "Foot size"
+  },
+  "custom": {
+  "size_system_info": "Size {{ size }} corresponds to the {{ system }} system – Please refer to the size guide for conversions."
   }
 }

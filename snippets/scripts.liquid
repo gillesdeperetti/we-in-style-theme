@@ -28,19 +28,21 @@
 
 {% if settings.transition_to_main_product %}
   {% # theme-check-disable ParserBlockingScript %}
-  <script
-    src="{{ 'view-transitions.js' | asset_url }}"
-    async
-    blocking="render"
-  ></script>
+    {% comment %} [CUSTOM-GILLES] Suppression de blocking="render" {% endcomment %}
+    <script
+      src="{{ 'view-transitions.js' | asset_url }}"
+      async
+    ></script>
   {% # theme-check-enable %}
 {% endif %}
 
+{% comment %} [CUSTOM-GILLES] Suppression des modulepreload non-essentiels pour libérer la bande passante (LCP) {% endcomment %}
 <link
   rel="modulepreload"
   href="{{ 'critical.js' | asset_url }}"
 >
 
+{% comment %}
 <link
   rel="modulepreload"
   href="{{ 'utilities.js' | asset_url }}"
@@ -66,8 +68,10 @@
   href="{{ 'morph.js' | asset_url }}"
   fetchpriority="low"
 >
+{% endcomment %}
 
 {% if template.name == 'collection' or template.name == 'search' %}
+  {% comment %}
   <link
     rel="modulepreload"
     href="{{ 'paginated-list-aspect-ratio.js' | asset_url }}"
@@ -84,8 +88,10 @@
     href="{{ 'product-title-truncation.js' | asset_url }}"
     fetchpriority="low"
   >
+  {% endcomment %}
 {% endif %}
 
+{% comment %}
 <link
   rel="modulepreload"
   href="{{ 'focus.js' | asset_url }}"
@@ -106,11 +112,13 @@
   href="{{ 'events.js' | asset_url }}"
   fetchpriority="low"
 >
-<script
-  src="{{ 'popover-polyfill.js' | asset_url }}"
-  type="module"
-  fetchpriority="low"
-></script>
+{% endcomment %}
+{% comment %} [CUSTOM-GILLES] Chargement conditionnel du Polyfill Popover {% endcomment %}
+<script>
+  if (!('showPopover' in document.createElement('div'))) {
+    import("{{ 'popover-polyfill.js' | asset_url }}");
+  }
+</script>
 <script
   src="{{ 'quick-add.js' | asset_url }}"
   type="module"

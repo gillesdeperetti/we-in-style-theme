@@ -1,3 +1,6 @@
+{% comment %} [CUSTOM-GILLES] Ajout du contrôle d'accès marque {% endcomment %}
+{% render 'brand-access-control' %}
+
 <script
   src="{{ 'results-list.js' | asset_url }}"
   type="module"
@@ -36,15 +39,34 @@
 
       {% capture children %}
         {% for product in products %}
-          <li
-            id="{{ section.id }}-{{ product.id }}"
-            class="product-grid__item product-grid__item--{{ forloop.index0 }}"
-            data-page="{{ paginate.current_page }}"
-            data-product-id="{{ product.id }}"
-            ref="cards[]"
-          >
-            {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
-          </li>
+          
+          {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
+          {% assign product_vendor = product.vendor | downcase %}
+          {% assign show_product = true %}
+          
+          {% if product_vendor contains 'dior' %}
+            {% if customer == blank and localization.country.iso_code == 'FR' %}
+              {% assign show_product = false %}
+            {% endif %}
+          {% endif %}
+          
+          {% if show_product %}
+          {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
+
+            <li
+              id="{{ section.id }}-{{ product.id }}"
+              class="product-grid__item product-grid__item--{{ forloop.index0 }}"
+              data-page="{{ paginate.current_page }}"
+              data-product-id="{{ product.id }}"
+              ref="cards[]"
+            >
+              {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
+            </li>
+
+          {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
+          {% endif %}
+          {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
         {% endfor %}
       {% endcapture %}
 

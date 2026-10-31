@@ -1,0 +1,801 @@
+{%- comment -%}
+  Section Estimation de Livraison
+  - Calcul automatique de la date de livraison estimée
+  - Prend en compte les jours ouvrés (lundi-vendredi)
+  - Limite d'expédition : 10h pour envoi jour même, sinon lendemain
+  - Transporteurs : DHL (mondial, domicile) et Chronopost (France relais, UE express)
+  
+  Délais médians :
+  - DHL France : 48h | Europe : 42h | Hors UE : 87h
+  - Chronopost France (relais) : 48h | Europe : 48h
+{%- endcomment -%}
+
+{%- liquid
+  # Récupérer le code pays actuel
+  assign current_country = localization.country.iso_code
+  
+  # Définir les zones géographiques
+  assign eu_countries = 'AT,BE,BG,CY,CZ,DE,DK,EE,ES,FI,GR,HR,HU,IE,IT,LT,LU,LV,MT,NL,PL,PT,RO,SE,SI,SK' | split: ','
+  
+  # Déterminer la zone du client
+  assign zone = 'world'
+  assign is_france = false
+  assign is_eu = false
+  
+  if current_country == 'FR'
+    assign zone = 'france'
+    assign is_france = true
+  else
+    for country in eu_countries
+      if current_country == country
+        assign zone = 'europe'
+        assign is_eu = true
+        break
+      endif
+    endfor
+  endif
+  
+  # Définir les délais en heures par zone
+  # DHL
+  if zone == 'france'
+    assign dhl_delay_hours = 48
+  elsif zone == 'europe'
+    assign dhl_delay_hours = 42
+  else
+    assign dhl_delay_hours = 87
+  endif
+  
+  # Chronopost (disponible France et UE uniquement)
+  assign chronopost_available = false
+  if is_france or is_eu
+    assign chronopost_available = true
+    assign chronopost_delay_hours = 48
+  endif
+  
+  # Convertir les heures en jours ouvrés (approximation)
+  # On arrondit au jour supérieur pour être sûr
+  assign dhl_delay_days = dhl_delay_hours | divided_by: 24.0 | ceil
+  assign chronopost_delay_days = chronopost_delay_hours | divided_by: 24.0 | ceil | default: 0
+  
+  # Définir la max-width selon le setting
+  case section.settings.max_width
+    when 'narrow'
+      assign max_width_value = '400px'
+    when 'normal'
+      assign max_width_value = '600px'
+    when 'none'
+      assign max_width_value = 'none'
+  endcase
+-%}
+
+<delivery-estimate 
+  class="delivery-estimate-section section-{{ section.id }}"
+  style="
+    --delivery-bg-color: {{ section.settings.bg_color }};
+    --delivery-text-color: {{ section.settings.text_color }};
+    --delivery-accent-color: {{ section.settings.accent_color }};
+    --delivery-width: {{ section.settings.width }};
+    --delivery-max-width: {{ max_width_value }};
+    --delivery-font-family: {{ section.settings.font }};
+    --delivery-font-size: {{ section.settings.font_size | default: '0.875rem' }};
+    --delivery-font-weight: {{ section.settings.font_weight }};
+    --delivery-line-height: {{ section.settings.line_height }};
+    --delivery-letter-spacing: {{ section.settings.letter_spacing }};
+    --delivery-text-transform: {{ section.settings.text_transform }};
+    padding-block-start: {{ section.settings.padding-block-start }}px;
+    padding-block-end: {{ section.settings.padding-block-end }}px;
+    padding-inline-start: {{ section.settings.padding-inline-start }}px;
+    padding-inline-end: {{ section.settings.padding-inline-end }}px;
+  "
+  data-zone="{{ zone }}"
+  data-dhl-delay="{{ dhl_delay_days }}"
+  data-chronopost-delay="{{ chronopost_delay_days }}"
+  data-chronopost-available="{{ chronopost_available }}"
+  data-cutoff-hour="10"
+  data-locale="{{ request.locale.iso_code }}"
+  data-text-monday="{{ 'blocks.delivery_estimate.monday' | t }}"
+  data-text-today="{{ 'blocks.delivery_estimate.today' | t }}"
+  data-text-tomorrow="{{ 'blocks.delivery_estimate.tomorrow' | t }}"
+  data-text-receive-today="{{ 'blocks.delivery_estimate.receive_by_today' | t }}"
+  data-text-receive-tomorrow="{{ 'blocks.delivery_estimate.receive_by_tomorrow' | t }}"
+  data-text-receive-by="{{ 'blocks.delivery_estimate.receive_by' | t }}"
+  data-text-receive-by-prefix="{{ 'blocks.delivery_estimate.receive_by' | t }}"
+>
+  <div class="delivery-estimate-container {% if section.settings.full_width %}full-width{% endif %}" style="justify-content: {{ section.settings.alignment }};">
+    <div class="delivery-estimate-wrapper">
+      {%- if section.settings.show_icon -%}
+        <div class="delivery-estimate-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/>
+            <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/>
+            <circle cx="7" cy="18" r="2"/>
+            <circle cx="17" cy="18" r="2"/>
+          </svg>
+        </div>
+      {%- endif -%}
+      
+      <div class="delivery-estimate-content">
+        <div class="delivery-estimate-main">
+          <span class="delivery-estimate-label">{{ 'blocks.delivery_estimate.order_before' | t }}</span>
+          <span class="delivery-estimate-cutoff" data-cutoff></span><span class="delivery-estimate-separator">,</span>
+          <span class="delivery-estimate-date" data-delivery-date></span>
+        </div>
+        
+        {%- if section.settings.show_carriers -%}
+          <div class="delivery-estimate-carriers">
+            <div class="delivery-estimate-carrier delivery-estimate-carrier--dhl">
+              <span class="delivery-estimate-carrier-name">DHL Express</span>
+              <span class="delivery-estimate-carrier-type">
+                {%- if is_france -%}
+                  {{ 'blocks.delivery_estimate.home_delivery' | t }}
+                {%- elsif is_eu -%}
+                  {{ 'blocks.delivery_estimate.home_delivery' | t }}
+                {%- else -%}
+                  {{ 'blocks.delivery_estimate.worldwide' | t }}
+                {%- endif -%}
+              </span>
+              <span class="delivery-estimate-carrier-date" data-dhl-date></span>
+            </div>
+            
+            {%- if chronopost_available -%}
+              <div class="delivery-estimate-carrier delivery-estimate-carrier--chronopost">
+                <span class="delivery-estimate-carrier-name">Chronopost</span>
+                <span class="delivery-estimate-carrier-type">
+                  {%- if is_france -%}
+                    {{ 'blocks.delivery_estimate.relay_point' | t }}
+                  {%- else -%}
+                    {{ 'blocks.delivery_estimate.express_eu' | t }}
+                  {%- endif -%}
+                </span>
+                <span class="delivery-estimate-carrier-date" data-chronopost-date></span>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</delivery-estimate>
+
+<style>
+  .delivery-estimate-section {
+    background-color: var(--delivery-bg-color, transparent);
+    font-family: var(--delivery-font-family, inherit);
+    font-size: var(--delivery-font-size, 0.875rem);
+    font-weight: var(--delivery-font-weight, normal);
+    line-height: var(--delivery-line-height, 1.5);
+    letter-spacing: var(--delivery-letter-spacing, normal);
+    text-transform: var(--delivery-text-transform, none);
+    color: var(--delivery-text-color, currentColor);
+  }
+
+  .delivery-estimate-container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 var(--page-margin);
+    display: flex;
+  }
+
+  .delivery-estimate-container.full-width {
+    max-width: none;
+  }
+
+  .delivery-estimate-wrapper {
+    width: var(--delivery-width, 100%);
+    max-width: var(--delivery-max-width, none);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .delivery-estimate-icon {
+    flex-shrink: 0;
+    color: var(--delivery-accent-color, currentColor);
+  }
+
+  .delivery-estimate-icon svg {
+    display: block;
+    width: 30px;
+    height: 30px;
+  }
+
+  .delivery-estimate-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .delivery-estimate-main {
+    /* Hérite de .delivery-estimate-section */
+  }
+
+  .delivery-estimate-cutoff,
+  .delivery-estimate-date {
+    font-weight: 600;
+    color: var(--delivery-accent-color, currentColor);
+  }
+
+  .delivery-estimate-carriers {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 4px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .delivery-estimate-carrier {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.85;
+  }
+
+  .delivery-estimate-carrier-name {
+    font-weight: 500;
+    min-width: 100px;
+  }
+
+  .delivery-estimate-carrier-type {
+    font-size: 0.85em;
+    opacity: 0.7;
+    min-width: 80px;
+  }
+
+  .delivery-estimate-carrier-date {
+    margin-left: auto;
+    font-weight: 500;
+    color: var(--delivery-accent-color, currentColor);
+  }
+
+  @media screen and (max-width: 480px) {
+    .delivery-estimate-carrier {
+      flex-wrap: wrap;
+    }
+
+    .delivery-estimate-carrier-name {
+      min-width: auto;
+    }
+
+    .delivery-estimate-carrier-type {
+      min-width: auto;
+    }
+
+    .delivery-estimate-main {
+      font-size: 0.85em;
+    }
+
+    .delivery-estimate-carriers {
+      display: none;
+    }
+
+    .delivery-estimate-wrapper {
+      gap: 8px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    class DeliveryEstimate extends HTMLElement {
+      constructor() {
+        super();
+        this.zone = this.dataset.zone;
+        this.dhlDelay = parseInt(this.dataset.dhlDelay, 10);
+        this.chronopostDelay = parseInt(this.dataset.chronopostDelay, 10) || 0;
+        this.chronopostAvailable = this.dataset.chronopostAvailable === 'true';
+        this.cutoffHour = parseInt(this.dataset.cutoffHour, 10);
+        this.locale = this.dataset.locale || document.documentElement.lang || 'en-US';
+        this.textMonday = this.dataset.textMonday;
+        this.textToday = this.dataset.textToday;
+        this.textTomorrow = this.dataset.textTomorrow;
+        this.textReceiveToday = this.dataset.textReceiveToday || "Delivery today";
+        this.textReceiveTomorrow = this.dataset.textReceiveTomorrow || "Delivery tomorrow";
+        this.textReceiveBy = this.dataset.textReceiveBy || "Delivery {date}";
+        this.textReceiveByPrefix = this.dataset.textReceiveByPrefix || "receive it as early as";
+      }
+
+      connectedCallback() {
+        this.calculateDates();
+      }
+
+      /**
+       * Ajoute des jours ouvrés à une date (lundi-vendredi)
+       * @param {Date} startDate - Date de départ
+       * @param {number} businessDays - Nombre de jours ouvrés à ajouter
+       * @returns {Date} - Date résultante
+       */
+      addBusinessDays(startDate, businessDays) {
+        const result = new Date(startDate);
+        let daysAdded = 0;
+        
+        while (daysAdded < businessDays) {
+          result.setDate(result.getDate() + 1);
+          const dayOfWeek = result.getDay();
+          // 0 = dimanche, 6 = samedi
+          if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+            daysAdded++;
+          }
+        }
+        
+        return result;
+      }
+
+      /**
+       * Calcule la date d'expédition en fonction de l'heure actuelle
+       * @returns {Date} - Date d'expédition
+       */
+      getShippingDate() {
+        const now = new Date();
+        const parisTime = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Paris' }));
+        const currentHour = parisTime.getHours();
+        const dayOfWeek = parisTime.getDay();
+        
+        let shippingDate = new Date(parisTime);
+        
+        // Si c'est le weekend, on commence à compter à partir de lundi
+        if (dayOfWeek === 0) {
+          // Dimanche -> Lundi
+          shippingDate.setDate(shippingDate.getDate() + 1);
+        } else if (dayOfWeek === 6) {
+          // Samedi -> Lundi
+          shippingDate.setDate(shippingDate.getDate() + 2);
+        } else if (currentHour >= this.cutoffHour) {
+          // Après l'heure limite (10h), expédition le lendemain ouvré
+          shippingDate = this.addBusinessDays(parisTime, 1);
+        }
+        // Sinon, expédition aujourd'hui
+        
+        return shippingDate;
+      }
+
+      /**
+       * Formate l'heure selon la locale (automatique pour toutes les langues)
+       * @param {number} hour - Heure à formater (format 24h)
+       * @returns {string} - Heure formatée selon la locale
+       */
+      formatTime(hour) {
+        const date = new Date();
+        date.setHours(hour, 0, 0, 0);
+        // Utilise le format natif de la locale (10h, 10 AM, 10 Uhr, 午前10時, etc.)
+        return date.toLocaleTimeString(this.locale, { 
+          hour: 'numeric',
+          minute: undefined,
+          hour12: undefined // Laisse la locale décider (AM/PM ou 24h)
+        }).replace(':00', ''); // Enlève les minutes si présentes
+      }
+
+      /**
+       * Formate une date selon la locale
+       * @param {Date} date - Date à formater
+       * @returns {string} - Date formatée
+       */
+      formatDate(date) {
+        const options = {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long'
+        };
+        return date.toLocaleDateString(this.locale, options);
+      }
+
+      /**
+       * Formate une date courte selon la locale
+       * @param {Date} date - Date à formater
+       * @returns {string} - Date formatée
+       */
+      formatShortDate(date) {
+        const options = {
+          weekday: 'short',
+          day: 'numeric',
+          month: 'short'
+        };
+        return date.toLocaleDateString(this.locale, options);
+      }
+
+      /**
+       * Calcule et affiche les dates de livraison
+       */
+      calculateDates() {
+        const shippingDate = this.getShippingDate();
+        
+        // Date de livraison DHL
+        const dhlDeliveryDate = this.addBusinessDays(shippingDate, this.dhlDelay);
+        
+        // Date de livraison Chronopost
+        let chronopostDeliveryDate = null;
+        if (this.chronopostAvailable && this.chronopostDelay > 0) {
+          chronopostDeliveryDate = this.addBusinessDays(shippingDate, this.chronopostDelay);
+        }
+        
+        // Déterminer la date la plus rapide pour l'affichage principal
+        let fastestDate = dhlDeliveryDate;
+        if (chronopostDeliveryDate && chronopostDeliveryDate < dhlDeliveryDate) {
+          fastestDate = chronopostDeliveryDate;
+        }
+        
+        // Calculer l'heure limite d'affichage
+        const now = new Date();
+        const parisTime = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Paris' }));
+        const currentHour = parisTime.getHours();
+        const dayOfWeek = parisTime.getDay();
+        
+        let cutoffText = '';
+        
+        // Utiliser les traductions passées depuis Liquid
+        const textMonday = this.textMonday;
+        const textToday = this.textToday;
+        const textTomorrow = this.textTomorrow;
+        
+        const cutoffTimeFormatted = this.formatTime(this.cutoffHour);
+        
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+          // Weekend -> Lundi
+          cutoffText = `${textMonday} ${cutoffTimeFormatted}`;
+        } else if (currentHour < this.cutoffHour) {
+          // Avant cutoff -> Aujourd'hui
+          cutoffText = `${textToday} ${cutoffTimeFormatted}`;
+        } else {
+          // Après cutoff -> Demain (ou lundi si demain est weekend)
+          const nextBusinessDay = this.addBusinessDays(parisTime, 1);
+          const tomorrow = new Date(parisTime);
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          
+          // Vérifier si le prochain jour ouvré est bien demain
+          const isTomorrow = nextBusinessDay.getDate() === tomorrow.getDate() && 
+                             nextBusinessDay.getMonth() === tomorrow.getMonth();
+          
+          if (isTomorrow) {
+             cutoffText = `${textTomorrow} ${cutoffTimeFormatted}`;
+          } else {
+             const nextDayName = nextBusinessDay.toLocaleDateString(this.locale, { weekday: 'long' });
+             cutoffText = `${nextDayName} ${cutoffTimeFormatted}`;
+          }
+        }
+        
+        // Déterminer le texte de livraison adapté
+        let receiveText = '';
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        
+        if (fastestDate.toDateString() === today.toDateString()) {
+            receiveText = this.textReceiveToday;
+        } else if (fastestDate.toDateString() === tomorrow.toDateString()) {
+            receiveText = this.textReceiveTomorrow;
+        } else {
+            receiveText = this.textReceiveByPrefix + " " + this.formatShortDate(fastestDate);
+        }
+        
+        // Mettre à jour le DOM
+        const cutoffEl = this.querySelector('[data-cutoff]');
+        const deliveryDateEl = this.querySelector('[data-delivery-date]');
+        const dhlDateEl = this.querySelector('[data-dhl-date]');
+        const chronopostDateEl = this.querySelector('[data-chronopost-date]');
+        
+        if (cutoffEl) cutoffEl.textContent = cutoffText;
+        if (deliveryDateEl) deliveryDateEl.textContent = receiveText;
+        if (dhlDateEl) dhlDateEl.textContent = this.formatShortDate(dhlDeliveryDate);
+        if (chronopostDateEl && chronopostDeliveryDate) {
+          chronopostDateEl.textContent = this.formatShortDate(chronopostDeliveryDate);
+        }
+      }
+    }
+
+    if (!customElements.get('delivery-estimate')) {
+      customElements.define('delivery-estimate', DeliveryEstimate);
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Sec. Estimation Livraison",
+  "tag": "section",
+  "class": "delivery-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Estime la date de livraison selon le pays du visiteur, les jours ouvrés (lundi-vendredi) et les transporteurs disponibles (DHL et Chronopost)."
+    },
+    {
+      "type": "header",
+      "content": "Affichage"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_icon",
+      "label": "Afficher l'icône",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_carriers",
+      "label": "Afficher le détail des transporteurs",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:content.layout"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "fit-content",
+          "label": "t:options.fit"
+        },
+        {
+          "value": "100%",
+          "label": "t:options.fill"
+        }
+      ],
+      "default": "100%"
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "t:settings.max_width",
+      "options": [
+        {
+          "value": "narrow",
+          "label": "t:options.narrow"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "none",
+          "label": "t:options.none"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "t:settings.alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "t:options.left"
+        },
+        {
+          "value": "center",
+          "label": "t:options.center"
+        },
+        {
+          "value": "flex-end",
+          "label": "t:options.right"
+        }
+      ],
+      "default": "flex-start"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "t:settings.full_width",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:content.typography"
+    },
+    {
+      "type": "select",
+      "id": "font",
+      "label": "t:settings.font",
+      "options": [
+        {
+          "value": "var(--font-body--family)",
+          "label": "t:options.body"
+        },
+        {
+          "value": "var(--font-subheading--family)",
+          "label": "t:options.subheading"
+        },
+        {
+          "value": "var(--font-heading--family)",
+          "label": "t:options.heading"
+        },
+        {
+          "value": "var(--font-accent--family)",
+          "label": "t:options.accent"
+        }
+      ],
+      "default": "var(--font-body--family)"
+    },
+    {
+      "type": "select",
+      "id": "font_size",
+      "label": "t:settings.size",
+      "options": [
+        {
+          "value": "",
+          "label": "t:options.default"
+        },
+        {
+          "value": "0.75rem",
+          "label": "12px"
+        },
+        {
+          "value": "0.875rem",
+          "label": "14px"
+        },
+        {
+          "value": "1rem",
+          "label": "16px"
+        },
+        {
+          "value": "1.125rem",
+          "label": "18px"
+        },
+        {
+          "value": "1.25rem",
+          "label": "20px"
+        },
+        {
+          "value": "1.5rem",
+          "label": "24px"
+        }
+      ],
+      "default": "0.875rem"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "t:settings.weight",
+      "options": [
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "bold",
+          "label": "t:options.bold"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "line_height",
+      "label": "t:settings.line_height",
+      "options": [
+        {
+          "value": "1.2",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "1.5",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "1.8",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "1.5"
+    },
+    {
+      "type": "select",
+      "id": "letter_spacing",
+      "label": "t:settings.letter_spacing",
+      "options": [
+        {
+          "value": "-0.02em",
+          "label": "t:options.tight"
+        },
+        {
+          "value": "normal",
+          "label": "t:options.normal"
+        },
+        {
+          "value": "0.05em",
+          "label": "t:options.loose"
+        }
+      ],
+      "default": "normal"
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "t:settings.case",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.default"
+        },
+        {
+          "value": "uppercase",
+          "label": "t:options.uppercase"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Couleurs"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Couleur du texte",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Couleur d'accent (dates)",
+      "default": "#2E7D32"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Couleur de fond",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "t:settings.left",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "t:settings.right",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Estimation livraison"
+    }
+  ]
+}
+{% endschema %}

@@ -1,5 +1,36 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
+    "delivery_estimate": {
+      "order_before": "까지 주문하시면",
+      "order_before_short": "까지",
+      "receive_by": "가장 빠르면",
+      "receive_by_short": "배송",
+      "receive_by_today": "오늘 배송",
+      "receive_by_tomorrow": "내일 배송",
+      "home_delivery": "자택 배송",
+      "relay_point": "수령 지점",
+      "express_eu": "EU 익스프레스",
+      "worldwide": "전 세계 배송",
+      "monday": "월요일",
+      "today": "오늘",
+      "tomorrow": "내일",
+      "delivery_info": "배송업체별 예상 배송 기간",
+      "fallback": "영업일 기준 1일 이내 발송 · {{ days }}영업일 내 배송"
+    },
+    "klarna": {
+      "installments_before": "Klarna로",
+      "installments_after": "씩 3회 무이자 결제",
+      "learn_more": "자세히 알아보기"
+    },
     "load_video": "동영상 로드: {{ description }}",
     "sold_out": "품절",
     "email_signup": {
@@ -60,7 +91,9 @@
     "increase_quantity": "수량 증가",
     "quantity": "수량",
     "rating": "이 제품의 평점은 5점 만점에 {{ rating }}점입니다",
-    "nested_product": "{{ parent_title }}용 {{ product_title }}"
+    "nested_product": "{{ parent_title }}용 {{ product_title }}",
+    "open_cart_drawer": "카트 열기",
+    "open_search_modal": "검색 열기"
   },
   "actions": {
     "add_to_cart": "카트에 추가",
@@ -233,7 +266,8 @@
       "previous": "이전",
       "next": "다음",
       "page": "{{ page }}페이지"
-    }
+    },
+    "taxes_duties_at_checkout": "세금 및 수입 관세가 포함되지 않습니다."
   },
   "gift_cards": {
     "issued": {
@@ -298,5 +332,65 @@
       "success_moderated": "댓글이 게시되었습니다. 조정 대기 중입니다",
       "success": "댓글 게시됨"
     }
-  }
+  },
+  "loyalty": {
+    "reward_ready": {
+      "description": "이 상품은 다음 혜택 대상입니다:",
+      "offer_1": "뉴스레터를 구독하면 일반적으로 할인이 적용되지 않는 {{ count }}개 이상의 제품을 10% 할인받을 수 있습니다",
+      "offer_2": "적립된 포인트로 교환한 할인 혜택",
+      "offer_3": "멤버십 등급에 따른 할인: 실버, 골드, 플래티넘 회원"
+    },
+    "cashback": {
+      "description": "이 상품을 구매하면 캐시백이 적립됩니다. 단, 프로그램 조건을 충족해야 합니다 (예: 실버/골드/플래티넘 등급, 할인 미적용 등)."
+    },
+    "conditions": {
+      "notice": "멤버십 프로그램 또는 자주 묻는 질문(FAQ)에서 조건을 확인하세요.",
+      "link": "FAQ 보기"
+    },
+    "program": {
+      "cta": "프로그램 확인하기"
+    }
+  },
+  "countdown": {
+    "days": "일",
+    "hours": "시간",
+    "minutes": "분",
+    "seconds": "초",
+    "ended": "종료!"
+  },
+  "bf": {
+    "last_hours_title": "이 가격으로 구매할 수 있는 마지막 시간",
+    "last_hours_subtitle": "블랙 프라이데이가 곧 종료됩니다 — 최고의 딜을 만나볼 마지막 기회입니다.",
+    "extended_title": "익스클루시브 에디트 — 10% 할인",
+    "extended_subtitle": "결제 시 코드 BFCM25를 입력하고, 프로모션 종료 전에 이용하세요."
+  },
+  "product": {
+    "dimensions": {
+      "height": "높이",
+      "width": "너비",
+      "length": "길이",
+      "depth": "깊이",
+      "strap_length": "스트랩 길이",
+      "handle_drop": "핸들 높이",
+      "heel_height": "굽 높이",
+      "sole_height": "솔 높이"
+    }
+  },
+  "size_guide": {
+  "title": "사이즈 가이드",
+  "female": "여성",
+  "male": "남성",
+  "unisex": "유니섹스",
+  "shoes": "신발",
+  "ready_to_wear": "레디 투 웨어",
+  "jeans": "진",
+  "shirts": "셔츠",
+  "numeric": "숫자 표기 사이즈",
+  "general": "일반",
+  "foot_size": "발 크기"
+},
+"custom": {
+  "size_system_info": "{{ size }} 사이즈는 {{ system }} 시스템에 해당합니다 – 변환은 사이즈 가이드를 참고하세요."
+}
+
 }

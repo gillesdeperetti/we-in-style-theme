@@ -1,0 +1,129 @@
+{{ 'subscription-form.css' | asset_url | stylesheet_tag }}
+{{ 'section-email-signup-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="subscription-section">
+  <div class="subscription-container">
+    <!-- Left Column for Title and Description -->
+    <div class="subscription-text">
+      <h4 class="subscription-title">{{ section.settings.title }}</h4>
+      <p class="subscription-description">{{ section.settings.description }}</p>
+    </div>
+
+    <!-- Right Column for Form and Disclaimer -->
+    <div class="subscription-form-container">
+      {% form 'customer' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="subscription-form-container">
+          <div class="field">
+            <input
+              type="text"
+              placeholder="First name"
+              name="contact[first_name]"
+              id="first-name--{{ section.id }}"
+              class="field__input"
+              autocorrect="off"
+              autocapitalize="off"
+              value="{{ form.first_name }}"
+              required
+            >
+            <label class="field__label" for="first-name--{{ section.id }}"> {{ 'newsletter.name' | t }} </label>
+          </div>
+          <div class="field">
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="field__input"
+              value="{{ form.email }}"
+              aria-required="true"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="Newsletter-error--{{ section.id }}"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="Newsletter-success--{{ section.id }}"
+              {% endif %}
+              placeholder="{{ 'newsletter.label' | t }}"
+              required
+            >
+            <label class="field__label" for="NewsletterForm--{{ section.id }}">
+              {{ 'newsletter.label' | t }}
+            </label>
+          </div>
+          <!-- Submit Button -->
+          <div class="submit">
+            <input type="submit" value="{{ section.settings.button_text }}" class="submit-button">
+          </div>
+          {%- if form.errors -%}
+            <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+              {%- render 'icon-error' -%}
+              {{- form.errors.translated_fields.email | capitalize }}
+              {{ form.errors.messages.email -}}
+            </small>
+          {%- endif -%}
+        </div>
+        {%- if form.posted_successfully? -%}
+          <h3
+            class="newsletter-form__message newsletter-form__message--success form__message"
+            id="Newsletter-success--{{ section.id }}"
+            tabindex="-1"
+            autofocus
+          >
+            {% render 'icon-success' -%}
+            {{- 'newsletter.success' | t }}
+          </h3>
+        {%- endif -%}
+      {% endform %}
+      <p class="disclaimer-text">{{ section.settings.disclaimer }}</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+    "name": "Subscription Form",
+    "tag": "section",
+    "class": "section subscription-form",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Join our newsletter"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Submit Button Text",
+            "default": "Sign Up"
+        },
+        {
+            "type": "textarea",
+            "id": "description",
+            "label": "Description",
+            "default": "Sign up for promotions, new arrivals, stock updates and more – straight to your inbox."
+        },
+        {
+            "type": "textarea",
+            "id": "disclaimer",
+            "label": "Disclaimer",
+            "default": "By signing up, you consent to receiving marketing by email. Unsubscribe anytime at the bottom of our emails or in your customer account."
+        }
+    ],
+   "presets": [
+        {
+            "name": "Default Subscription Form",
+            "category": "Form",
+            "settings": {
+                "title": "Subscribe to Our Newsletter",
+                "button_text": "Sign up",
+                "description": "Be the first to hear about new products, exclusive offers, and the latest news.",
+                "disclaimer": "We respect your privacy. Unsubscribe at any time."
+            }
+        }
+    ]
+}
+{% endschema %}

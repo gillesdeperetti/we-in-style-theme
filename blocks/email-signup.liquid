@@ -10,54 +10,87 @@
     </div>
   {% endif %}
   {%- form 'customer', class: 'email-signup__form spacing-style' %}
+    
+    {% comment %} [CUSTOM-GILLES] Début : Ajout du tag hidden newsletter {% endcomment %}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
     <div
       class="email-signup__input-group {% if block_settings.inherit_color_scheme == false %}color-{{ block_settings.color_scheme }}{% endif %}"
       style="--border-width: {{ block_settings.border_width }}px; --border-radius: {{ block_settings.border_radius }}px;"
     >
-      <label
-        for="EmailInput-{{ block.id }}"
-        class="visually-hidden"
-      >
-        {{ 'blocks.email_signup.label' | t }}
-      </label>
-      <input
-        id="EmailInput-{{ block.id }}"
-        class="email-signup__input email-signup__input--{{ block_settings.border_style }} {{ block_settings.input_type_preset }} {{ block_settings.border_variation }}"
-        type="email"
-        name="contact[email]"
-        autocorrect="off"
-        autocapitalize="off"
-        autocomplete="email"
-        placeholder="{{ 'blocks.email_signup.placeholder' | t }}"
-        required
-        {% if form.errors %}
-          autofocus
-          aria-invalid="true"
-          aria-describedby="Email-signup__message-error-{{ block.id }}"
-        {% elsif form.posted_successfully? %}
-          aria-describedby="Email-signup__message-success-{{ block.id }}"
-        {% endif %}
-      >
-      <button
-        class="email-signup__button {% if block_settings.integrated_button or block_settings.border_style == 'underline' %}email-signup__button--integrated{% endif %} email-signup__button--{{ block_settings.display_type }} {{ block_settings.button_type_preset }} {{ block_settings.style_class }} {{ block_settings.style_class }}--{{ block.id }} {% if block_settings.inherit_color_scheme == false %}color-{{ block_settings.color_scheme }}{% endif %}"
-        {% if block_settings.display_type != 'text' %}
-          aria-label="{{ 'actions.sign_up' | t }}"
-        {% endif %}
-      >
-        {% if block_settings.display_type == 'text' %}
-          {{ block_settings.label }}
-        {% else %}
-          <svg
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-            focusable="false"
-            aria-hidden="true"
-            class="email-signup__button-icon"
+      
+      {% comment %} [CUSTOM-GILLES] Début : Ajout du champ Prénom {% endcomment %}
+      {% if block_settings.show_first_name %}
+        <label
+          for="FirstNameInput-{{ block.id }}"
+          class="visually-hidden"
+        >
+          {{ 'blocks.contact_form.name' | t }}
+        </label>
+        <input
+          id="FirstNameInput-{{ block.id }}"
+          class="email-signup__input email-signup__input--{{ block_settings.border_style }} {{ block_settings.input_type_preset }} {{ block_settings.border_variation }}"
+          type="text"
+          name="contact[first_name]"
+          autocorrect="off"
+          autocapitalize="off"
+          placeholder="{{ 'blocks.contact_form.name' | t | default: 'First Name' }}"
+          value="{{ form.first_name }}"
+          required
+        >
+      {% endif %}
+      {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
+      {% comment %} [CUSTOM-GILLES] FIX MOBILE : On enveloppe l'email et le bouton ensemble {% endcomment %}
+      <div class="email-signup__email-wrapper">
+          <label
+            for="EmailInput-{{ block.id }}"
+            class="visually-hidden"
           >
-            {% render 'icon', icon: 'arrow' %}
-          </svg>
-        {% endif %}
-      </button>
+            {{ 'blocks.email_signup.label' | t }}
+          </label>
+          <input
+            id="EmailInput-{{ block.id }}"
+            class="email-signup__input email-signup__input--{{ block_settings.border_style }} {{ block_settings.input_type_preset }} {{ block_settings.border_variation }}"
+            type="email"
+            name="contact[email]"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            placeholder="{{ 'blocks.email_signup.placeholder' | t }}"
+            required
+            {% if form.errors %}
+              autofocus
+              aria-invalid="true"
+              aria-describedby="Email-signup__message-error-{{ block.id }}"
+            {% elsif form.posted_successfully? %}
+              aria-describedby="Email-signup__message-success-{{ block.id }}"
+            {% endif %}
+          >
+          <button
+            class="email-signup__button {% if block_settings.integrated_button or block_settings.border_style == 'underline' %}email-signup__button--integrated{% endif %} email-signup__button--{{ block_settings.display_type }} {{ block_settings.button_type_preset }} {{ block_settings.style_class }} {{ block_settings.style_class }}--{{ block.id }} {% if block_settings.inherit_color_scheme == false %}color-{{ block_settings.color_scheme }}{% endif %}"
+            {% if block_settings.display_type != 'text' %}
+              aria-label="{{ 'actions.sign_up' | t }}"
+            {% endif %}
+          >
+            {% if block_settings.display_type == 'text' %}
+              {{ block_settings.label }}
+            {% else %}
+              <svg
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+                focusable="false"
+                aria-hidden="true"
+                class="email-signup__button-icon"
+              >
+                {% render 'icon', icon: 'arrow' %}
+              </svg>
+            {% endif %}
+          </button>
+      </div>
+      {% comment %} [CUSTOM-GILLES] Fin du wrapper {% endcomment %}
+
     </div>
 
     {%- if form.errors -%}
@@ -77,6 +110,14 @@
         </svg>
         {{- form.errors.translated_fields.email | capitalize }}
         {{ form.errors.messages.email -}}
+        
+        {% comment %} [CUSTOM-GILLES] Début : Gestion erreur Prénom {% endcomment %}
+        {% if block_settings.show_first_name %}
+          {{- form.errors.translated_fields.first_name | capitalize }}
+          {{ form.errors.messages.first_name -}}
+        {% endif %}
+        {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
       </div>
     {%- endif -%}
 
@@ -126,8 +167,24 @@
   .email-signup__input-group {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr auto;
+    
+    /* [CUSTOM-GILLES] Modification Layout : permet d'avoir 2 colonnes (prénom + email) ou plus */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+    /* Code Original du thème : grid-template-columns: 1fr auto; */
+    
     background-color: transparent;
+  }
+  /* [CUSTOM-GILLES] FIX MOBILE : Wrapper pour positionner le bouton relatif à l'email */
+  .email-signup__email-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex; /* Assure que le contenu prend la place */
+  }
+  /* [CUSTOM-GILLES] Fix layout mobile si prénom présent */
+  @media screen and (max-width: 749px) {
+    .email-signup__input-group:has(input[name="contact[first_name]"]) {
+      grid-template-columns: 1fr;
+    }
   }
 
   .email-signup__input-group:not(:has(.email-signup__button--integrated)) {
@@ -286,10 +343,12 @@
   .email-signup__button:not(.button-unstyled) {
     background-color: var(--button-background-color);
     color: var(--button-color);
+    font-weight: var(--button-font-weight-primary);
     text-transform: var(--button-text-case-primary);
   }
 
   .email-signup__button.button-secondary {
+    font-weight: var(--button-font-weight-secondary);
     text-transform: var(--button-text-case-secondary);
   }
 
@@ -322,6 +381,12 @@
     {
       "type": "paragraph",
       "content": "t:content.email_signups_create_customer_profiles"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_first_name",
+      "label": "Afficher le champ prénom",
+      "default": true
     },
     {
       "type": "select",

@@ -1,16 +1,15 @@
 {% assign block_settings = block.settings %}
 
 {%- assign block_settings = block.settings -%}
-
 <div
   class="
     payment-icons
     spacing-style
   "
   style="
-    {% render 'spacing-padding', settings: block_settings %}
-    --icon-gap: {{ block_settings.gap }}px;
-    --alignment: {{ block_settings.horizontal_alignment }};
+    {% render 'spacing-padding', settings: block.settings %}
+    --icon-gap: {{ block.settings.gap }}px;
+    --alignment: {{ block.settings.horizontal_alignment }};
   "
   {{ block.shopify_attributes }}
 >
@@ -19,11 +18,78 @@
     class="payment-icons__list"
     role="list"
   >
+    {%- comment -%} Afficher les méthodes Shopify Payments {%- endcomment -%}
     {%- for type in shop.enabled_payment_types -%}
       <li class="payment-icons__item">
         {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
       </li>
     {%- endfor -%}
+    
+    {%- comment -%} Méthodes personnalisées avec icônes uploadées {%- endcomment -%}
+    {%- if block.settings.show_paypal and block.settings.paypal_icon -%}
+      <li class="payment-icons__item">
+        <img 
+          src="{{ block.settings.paypal_icon | image_url: width: 40, height: 24 }}" 
+          alt="PayPal"
+          class="icon icon--full-color payment-icon-custom"
+          width="40"
+          height="24"
+          loading="lazy"
+        />
+      </li>
+    {%- endif -%}
+    
+    {%- if block.settings.show_klarna and block.settings.klarna_icon -%}
+      <li class="payment-icons__item">
+        <img 
+          src="{{ block.settings.klarna_icon | image_url: width: 40, height: 24 }}" 
+          alt="Klarna"
+          class="icon icon--full-color payment-icon-custom"
+          width="40"
+          height="24"
+          loading="lazy"
+        />
+      </li>
+    {%- endif -%}
+    
+    {%- if block.settings.show_ideal and block.settings.ideal_icon -%}
+      <li class="payment-icons__item">
+        <img 
+          src="{{ block.settings.ideal_icon | image_url: width: 40, height: 24 }}" 
+          alt="iDEAL"
+          class="icon icon--full-color payment-icon-custom"
+          width="40"
+          height="24"
+          loading="lazy"
+        />
+      </li>
+    {%- endif -%}
+    
+    {%- if block.settings.show_bancontact and block.settings.bancontact_icon -%}
+      <li class="payment-icons__item">
+        <img 
+          src="{{ block.settings.bancontact_icon | image_url: width: 40, height: 24 }}" 
+          alt="Bancontact"
+          class="icon icon--full-color payment-icon-custom"
+          width="40"
+          height="24"
+          loading="lazy"
+        />
+      </li>
+    {%- endif -%}
+    
+    {%- if block.settings.show_sofort and block.settings.sofort_icon -%}
+      <li class="payment-icons__item">
+        <img 
+          src="{{ block.settings.sofort_icon | image_url: width: 40, height: 24 }}" 
+          alt="Sofort"
+          class="icon icon--full-color payment-icon-custom"
+          width="40"
+          height="24"
+          loading="lazy"
+        />
+      </li>
+    {%- endif -%}
   </ul>
 </div>
 
@@ -31,7 +97,6 @@
   .payment-icons {
     width: 100%;
   }
-
   .payment-icons__list {
     display: flex;
     align-items: center;
@@ -41,10 +106,15 @@
     margin: 0;
     padding: 0;
   }
-
   .payment-icons__item {
     display: flex;
     align-items: center;
+  }
+  .payment-icon-custom {
+    max-width: 40px;
+    max-height: 24px;
+    width: auto;
+    height: auto;
   }
 {% endstylesheet %}
 
@@ -86,6 +156,65 @@
       "step": 1,
       "unit": "px",
       "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Méthodes de paiement additionnelles"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_paypal",
+      "label": "Afficher PayPal",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "paypal_icon",
+      "label": "Icône PayPal"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_klarna",
+      "label": "Afficher Klarna",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "klarna_icon",
+      "label": "Icône Klarna"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_ideal",
+      "label": "Afficher iDEAL",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "ideal_icon",
+      "label": "Icône iDEAL"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bancontact",
+      "label": "Afficher Bancontact",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "bancontact_icon",
+      "label": "Icône Bancontact"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sofort",
+      "label": "Afficher Sofort",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "sofort_icon",
+      "label": "Icône Sofort"
     },
     {
       "type": "header",

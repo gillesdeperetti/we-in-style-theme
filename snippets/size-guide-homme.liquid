@@ -1,0 +1,119 @@
+{% comment %} --- [CUSTOM-GILLES] LOGIQUE HOMME --- {% endcomment %}
+{% assign product_type = product.type | downcase %}
+
+{% comment %} Conversion robuste : Value -> JSON -> Downcase {% endcomment %}
+{% assign categories_str = product.metafields.custom.categories.value | json | downcase %}
+{% assign niveau_3_str = product.metafields.custom.niveau_3.value | json | downcase %}
+
+{% assign display_shoes = false %}
+{% assign display_pap = false %}
+{% assign display_shirts = false %}
+{% assign display_jeans = false %}
+
+{% assign open_jeans = false %}
+{% assign open_shirts = false %}
+{% assign open_pap = false %}
+{% assign open_shoes = false %}
+
+{% comment %} 1. Logique Jeans {% endcomment %}
+{% if categories_str contains 'jeans' or niveau_3_str contains 'jeans' %}
+  {% assign display_jeans = true %}
+  {% assign open_jeans = true %}
+
+{% comment %} 2. Logique Chemises {% endcomment %}
+{% elsif categories_str contains 'chemises' or niveau_3_str contains 'chemises' or categories_str contains 'shirts' or niveau_3_str contains 'shirts' %}
+  {% assign display_shirts = true %}
+  {% assign open_shirts = true %}
+
+{% else %}
+  {% comment %} 3. Logique par type {% endcomment %}
+  
+  {% if product_type contains 'chaussures' or product_type contains 'shoes' %}
+    {% assign display_shoes = true %}
+    {% assign open_shoes = true %}
+  
+  {% elsif product_type contains 'vêtements' or product_type contains 'vetements' or product_type contains 'clothing' %}
+    {% assign display_pap = true %}
+    {% assign open_pap = true %} 
+  
+  {% else %}
+    {% assign display_shoes = true %}
+    {% assign display_pap = true %}
+    {% assign display_shirts = true %}
+    {% assign display_jeans = true %}
+    {% assign open_shoes = true %}
+  {% endif %}
+  
+{% endif %}
+
+{% if display_shoes %}
+<accordion-custom {% if open_shoes %}open-by-default-on-desktop open-by-default-on-mobile{% endif %}>
+  <details class="details" id="size-guide__chaussures-homme" {% if open_shoes %}open=""{% endif %}>
+    <summary class="details__header" role="button" aria-expanded="{% if open_shoes %}true{% else %}false{% endif %}" aria-controls="ProductAccordion-Homme-Chaussures">
+      <div class="summary__title">
+        <h2 class="h4 accordion__title">{{ 'size_guide.shoes' | t }}</h2>
+      </div>
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-content rte" id="ProductAccordion-Homme-Chaussures">
+      {% render 'size-guide-homme-chaussure' %}
+    </div>
+  </details>
+</accordion-custom>
+{% endif %}
+
+{% if display_pap %}
+<accordion-custom {% if open_pap %}open-by-default-on-desktop open-by-default-on-mobile{% endif %}>
+  <details class="details" id="size-guide__pap-homme" {% if open_pap %}open=""{% endif %}>
+    <summary class="details__header" role="button" aria-expanded="{% if open_pap %}true{% else %}false{% endif %}" aria-controls="ProductAccordion-Homme-Pap">
+      <div class="summary__title">
+        <h2 class="h4 accordion__title">{{ 'size_guide.ready_to_wear' | t }}</h2>
+      </div>
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-content rte" id="ProductAccordion-Homme-Pap">
+      {% render 'size-guide-homme-pap' %}
+    </div>
+  </details>
+</accordion-custom>
+{% endif %}
+
+{% if display_shirts %}
+<accordion-custom {% if open_shirts %}open-by-default-on-desktop open-by-default-on-mobile{% endif %}>
+  <details class="details" id="size-guide__chemises-homme" {% if open_shirts %}open=""{% endif %}>
+    <summary class="details__header" role="button" aria-expanded="{% if open_shirts %}true{% else %}false{% endif %}" aria-controls="ProductAccordion-Homme-Chemises">
+      <div class="summary__title">
+        <h2 class="h4 accordion__title">{{ 'size_guide.shirts' | t }}</h2>
+      </div>
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-content rte" id="ProductAccordion-Homme-Chemises">
+      {% render 'size-guide-homme-chemises' %}
+    </div>
+  </details>
+</accordion-custom>
+{% endif %}
+
+{% if display_jeans %}
+<accordion-custom {% if open_jeans %}open-by-default-on-desktop open-by-default-on-mobile{% endif %}>
+  <details class="details" id="size-guide__jeans-homme" {% if open_jeans %}open=""{% endif %}>
+    <summary class="details__header" role="button" aria-expanded="{% if open_jeans %}true{% else %}false{% endif %}" aria-controls="ProductAccordion-Homme-Jeans">
+      <div class="summary__title">
+        <h2 class="h4 accordion__title">{{ 'size_guide.jeans' | t }} </h2>
+      </div>
+      <span class="svg-wrapper icon-caret icon-animated">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </summary>
+    <div class="details-content rte" id="ProductAccordion-Homme-Jeans">
+      {% render 'size-guide-homme-jeans' %}
+    </div>
+  </details>
+</accordion-custom>
+{% endif %}

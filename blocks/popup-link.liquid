@@ -30,9 +30,14 @@
     >
       {{ block_settings.heading }}
     </h2>
-    <div class="popup-link__inner">
+    
+    {% comment %} 
+      Ajout de la classe size-guide-expanded pour récupérer vos styles 
+    {% endcomment %}
+    <div class="popup-link__inner size-guide-expanded">
       {% content_for 'blocks' %}
     </div>
+
     <button
       ref="closeButton"
       on:click="/closeDialog"
@@ -51,19 +56,108 @@
     top: var(--margin-2xs);
   }
 
+  /* --- STYLES FUSIONNÉS (Basés sur votre code "Avant") --- */
+
   .popup-link__content {
     box-shadow: var(--shadow-popover);
     border: var(--style-border-popover);
     border-radius: var(--style-border-radius-popover);
     background-color: var(--color-background);
-    padding: var(--padding-4xl) var(--padding-xl) var(--padding-xl);
-    max-width: var(--normal-content-width);
-    max-height: var(--modal-max-height);
+    
+    /* On met le padding à 0 sur le conteneur principal pour gérer le scroll interne */
+    padding: 0; 
+    
+    /* Dimensions du popup */
+    max-width: 90vw;
+    width: auto;
+    max-height: 85vh;
+    overflow: hidden; /* Important pour que le inner scroll */
+  }
 
-    @media screen and (min-width: 750px) {
+  .popup-link__inner.size-guide-expanded {
+    padding: var(--padding-xl);
+    box-sizing: border-box;
+    height: 100%;
+    overflow-y: auto; /* Le scroll se fait ici */
+    border-radius: var(--style-border-radius-popover);
+  }
+
+  @media screen and (min-width: 750px) {
+    .popup-link__inner.size-guide-expanded {
       padding: var(--padding-5xl);
     }
   }
+
+  /* --- STYLES SPÉCIFIQUES GUIDE DES TAILLES (Tableaux & Accordéons) --- */
+
+  .size-guide-expanded table {
+    min-width: 600px;
+    width: max-content;
+    display: table;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+  }
+  
+  /* Style basique pour les cellules du tableau */
+  .size-guide-expanded td, 
+  .size-guide-expanded th {
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .size-guide-expanded .accordion {
+    margin-top: 1rem;
+  }
+
+  .size-guide-expanded details {
+    border-bottom: 1px solid rgb(from var(--color-foreground) r g b / 10%);
+    padding: 0.75rem 0;
+  }
+
+  .size-guide-expanded details:last-of-type {
+    border-bottom: none;
+  }
+
+  .size-guide-expanded summary.details__header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    list-style: none;
+  }
+
+  .size-guide-expanded summary.details__header::-webkit-details-marker {
+    display: none;
+  }
+
+  .size-guide-expanded summary.details__header .svg-wrapper.icon-caret {
+    transition: transform 0.2s ease-in-out;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+  
+  .size-guide-expanded details[open] summary.details__header .icon-caret {
+    transform: rotate(180deg);
+  }
+
+  .size-guide-expanded summary.details__header h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .size-guide-expanded .details-content.rte {
+    margin-top: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    display: block;
+  }
+
+  /* --- ANIMATIONS & DRAWER --- */
 
   .popup-link__content[open] {
     animation: modalSlideInTop var(--animation-speed) var(--animation-easing) forwards;
@@ -75,23 +169,68 @@
 
   .popup-link__content--drawer {
     position: fixed;
-    border-radius: 0;
+    border-radius: var(--style-border-radius-popover); /* Remis comme avant */
     width: var(--sidebar-width);
     max-width: 95vw;
     height: 100%;
     margin: 0 0 0 auto;
+    overflow: hidden;
   }
 
-  /* Needed to ensure the drawer is full height */
   .popup-link__content--drawer:modal {
     max-height: 100dvh;
   }
+  
+  .popup-link__content--drawer .popup-link__inner.size-guide-expanded {
+    height: 100%;
+    overflow-y: auto;
+    border-radius: var(--style-border-radius-popover);
+  }
+
+  /* --- BOUTON FERMER (Style rond "Avant") --- */
 
   .popup-link__close {
-    top: var(--margin-2xs);
-    right: var(--margin-2xs);
+    position: absolute;
+    top: var(--padding-sm);
+    right: var(--padding-sm);
+    width: var(--minimum-touch-target);
+    height: var(--minimum-touch-target);
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
     opacity: 0.8;
+    z-index: 10;
+    border-radius: 50%; /* Bouton rond */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     animation: none;
+  }
+
+  .popup-link__close svg {
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+  }
+
+  /* --- MOBILE --- */
+
+  @media screen and (max-width: 749px) {
+    .popup-link__content,
+    .popup-link__content--drawer {
+      border-radius: 15px !important;
+      max-height: 80vh; /* Ajusté pour éviter d'être trop petit */
+    }
+    .popup-link__inner.size-guide-expanded,
+    .popup-link__content--drawer .popup-link__inner.size-guide-expanded {
+      border-radius: 15px !important;
+    }
+    
+    /* Ajustement close button mobile */
+    .popup-link__close {
+        top: 10px;
+        right: 10px;
+    }
   }
 {% endstylesheet %}
 

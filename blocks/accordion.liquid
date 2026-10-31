@@ -15,6 +15,84 @@
 >
   {% content_for 'blocks' %}
 </div>
+{% comment %} [CUSTOM-GILLES] ajout du schema JSON LD - FAQs {% endcomment %}
+{% if block.settings.enable_faq_schema %}
+  <div class="faq-schema-enabled" data-accordion-id="{{ block.id }}" style="display: none;"></div>
+  <script>
+  window.faqAccordions = window.faqAccordions || [];
+  window.faqAccordions.push('{{ block.id }}');
+  if (!window.faqSchemaInitialized) {
+    window.faqSchemaInitialized = true;
+    function initGlobalFAQSchema() {
+      if (document.querySelector('script[type="application/ld+json"][data-faq-schema]')) {
+        return;
+      }
+      const allQuestions = [];
+      window.faqAccordions.forEach(function(accordionId) {
+        const accordion = document.querySelector('.accordion--' + accordionId);
+        if (accordion) {
+          const rows = accordion.querySelectorAll('accordion-custom');
+          rows.forEach(function(row) {
+            const questionEl = row.querySelector('.details__header');
+            const answerEl = row.querySelector('.details-content');
+            if (questionEl && answerEl) {
+              let questionText = '';
+              for (let node of questionEl.childNodes) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                  questionText += node.textContent.trim();
+                }
+              }
+              let answerText = answerEl.innerText.trim();
+              if (!answerText) {
+                answerText = answerEl.textContent.trim();
+              }
+              if (!answerText) {
+                const rteElement = answerEl.querySelector('rte-formatter');
+                if (rteElement) {
+                  answerText = rteElement.innerText.trim() || rteElement.textContent.trim();
+                }
+              }
+              if (!answerText) {
+                const paragraphs = answerEl.querySelectorAll('p');
+                answerText = Array.from(paragraphs).map(p => p.textContent.trim()).join(' ').trim();
+              }
+              if (questionText && answerText) {
+                allQuestions.push({
+                  "@type": "Question",
+                  "name": questionText,
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": answerText
+                  }
+                });
+              }
+            }
+          });
+        }
+      });
+      if (allQuestions.length > 0) {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.setAttribute('data-faq-schema', 'true');
+        script.textContent = JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": allQuestions
+        });
+        document.head.appendChild(script);
+      }
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(initGlobalFAQSchema, 200);
+      });
+    } else {
+      setTimeout(initGlobalFAQSchema, 200);
+    }
+  }
+  </script>
+{% endif %}
+{% comment %} [CUSTOM-GILLES] ajout du schema JSON LD - FAQs {% endcomment %}
 
 {% stylesheet %}
   .accordion {
@@ -77,6 +155,12 @@
     }
   ],
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_faq_schema",
+      "label": "Enable FAQ schema",
+      "default": false
+    },
     {
       "type": "select",
       "id": "icon",

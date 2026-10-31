@@ -21,6 +21,11 @@
 {% endjavascript %}
 
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
+
+{% comment %} [CUSTOM-GILLES] Début : Ajout du contrôle d'accès marque {% endcomment %}
+{% render 'brand-access-control', collection: collection %}
+{% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <results-list
   class="section product-grid-container color-{{ section.settings.color_scheme }}"
@@ -49,17 +54,35 @@
     {% paginate collection.products by products_per_page %}
       {% capture children %}
         {% for product in collection.products %}
-          <li
-            id="{{ section.id }}-{{ product.id }}"
-            class="product-grid__item product-grid__item--{{ forloop.index0 }}"
-            data-page="{{ paginate.current_page }}"
-            data-product-id="{{ product.id }}"
-            ref="cards[]"
-          >
-            {% # theme-check-disable %}
-            {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
-            {% # theme-check-enable %}
-          </li>
+          
+          {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
+          {% assign show_item = true %}
+          {% assign product_vendor = product.vendor | downcase %}
+          {% if product_vendor contains 'dior' %}
+            {% if customer == blank and localization.country.iso_code == 'FR' %}
+              {% assign show_item = false %}
+            {% endif %}
+          {% endif %}
+          
+          {% if show_item %}
+          {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
+
+            <li
+              id="{{ section.id }}-{{ product.id }}"
+              class="product-grid__item product-grid__item--{{ forloop.index0 }}"
+              data-page="{{ paginate.current_page }}"
+              data-product-id="{{ product.id }}"
+              ref="cards[]"
+            >
+              {% # theme-check-disable %}
+              {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
+              {% # theme-check-enable %}
+            </li>
+
+          {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
+          {% endif %}
+          {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+
         {% endfor %}
       {% endcapture %}
 

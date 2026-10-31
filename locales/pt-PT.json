@@ -1,5 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
+    "delivery_estimate": {
+      "order_before": "Encomende antes de",
+      "order_before_short": "Antes de",
+      "receive_by": "receba-o a partir de",
+      "receive_by_short": "Entrega",
+      "receive_by_today": "Entrega hoje",
+      "receive_by_tomorrow": "Entrega amanhã",
+      "home_delivery": "Entrega ao domicílio",
+      "relay_point": "Ponto de recolha",
+      "express_eu": "Expresso UE",
+      "worldwide": "Envio internacional",
+      "monday": "segunda-feira",
+      "today": "hoje",
+      "tomorrow": "amanhã",
+      "delivery_info": "Prazos de entrega estimados por transportadora",
+      "fallback": "Enviado em 1 dia útil · Entrega em {{ days }} dias úteis"
+    },
     "load_video": "Carregar vídeo: {{ description }}",
     "sold_out": "Esgotado",
     "email_signup": {
@@ -16,6 +42,11 @@
       "comment": "Comentário",
       "post_success": "Agradecemos o seu contacto. Responder-lhe-emos logo que possível.",
       "error_heading": "Ajuste o seguinte:"
+    },
+    "klarna": {
+      "installments_before": "3 pagamentos de",
+      "installments_after": "sem juros com Klarna",
+      "learn_more": "Saber mais"
     }
   },
   "accessibility": {
@@ -61,7 +92,9 @@
     "increase_quantity": "Aumentar quantidade",
     "rating": "A classificação deste produto é de {{ rating }}/5",
     "quantity": "Quantidade",
-    "nested_product": "{{ product_title }} para {{ parent_title }}"
+    "nested_product": "{{ product_title }} para {{ parent_title }}",
+    "open_cart_drawer": "Abrir carrinho",
+    "open_search_modal": "Abrir pesquisa"
   },
   "actions": {
     "add_to_cart": "Adicionar ao carrinho",
@@ -238,7 +271,8 @@
       "previous": "Anterior",
       "next": "Seguinte",
       "page": "Página {{ page }}"
-    }
+    },
+    "taxes_duties_at_checkout": "Impostos e direitos de importação não incluídos."
   },
   "gift_cards": {
     "issued": {
@@ -304,5 +338,65 @@
       "success_moderated": "Comentário publicado, a aguardar moderação",
       "success": "Comentário publicado"
     }
-  }
+  },
+  "loyalty": {
+    "reward_ready": {
+      "description": "Este artigo é elegível para os seguintes benefícios:",
+      "offer_1": "Poupe 10% em mais de {{ count }} produtos normalmente não descontados ao inscrever-se na newsletter",
+      "offer_2": "Descontos através de troca de pontos de fidelidade",
+      "offer_3": "Descontos baseados no estatuto: membros Silver, Gold ou Platinum"
+    },
+    "cashback": {
+      "description": "Ganhe cashback ao comprar este artigo, desde que as condições do programa sejam cumpridas (ex. nível Silver/Gold/Platinum, sem descontos em curso)."
+    },
+    "conditions": {
+      "notice": "Consulte os termos completos no nosso programa de fidelidade ou FAQ.",
+      "link": "Ver as FAQ"
+    },
+    "program": {
+      "cta": "Explorar o Programa"
+    }
+  },
+  "countdown": {
+    "days": "DIAS",
+    "hours": "HORAS",
+    "minutes": "MINUTOS",
+    "seconds": "SEGUNDOS",
+    "ended": "Terminado!"
+  },
+  "bf": {
+    "last_hours_title": "Últimas horas a este preço",
+    "last_hours_subtitle": "A Black Friday está a terminar — última oportunidade para aproveitar as melhores ofertas.",
+    "extended_title": "Seleção exclusiva — 10% de desconto",
+    "extended_subtitle": "Utilize o código BFCM25 no checkout antes que a oferta termine."
+  },
+  "product": {
+    "dimensions": {
+      "height": "Altura",
+      "width": "Largura",
+      "length": "Comprimento",
+      "depth": "Profundidade",
+      "strap_length": "Comprimento da alça",
+      "handle_drop": "Altura da pega",
+      "heel_height": "Altura do salto",
+      "sole_height": "Altura da sola"
+    }
+  },
+  "size_guide": {
+  "title": "Guia de tamanhos",
+  "female": "Mulher",
+  "male": "Homem",
+  "unisex": "Unissexo",
+  "shoes": "Calçado",
+  "ready_to_wear": "Pronto-a-vestir",
+  "jeans": "Jeans",
+  "shirts": "Camisas",
+  "numeric": "Numeração",
+  "general": "Geral",
+  "foot_size": "Tamanho do pé"
+},
+"custom": {
+  "size_system_info": "O tamanho {{ size }} corresponde ao sistema {{ system }} – Consulte o guia de tamanhos para conversões."
+}
+
 }
