@@ -23,7 +23,7 @@ Règles de fusion (`.gitattributes`) :
    ./update-theme.sh 4.4.0 <ID_du_brouillon>
    ```
 3. Si le script liste des fichiers en conflit : ouvre-les et cherche les marqueurs `<<<<<<<`. Le bloc `|||||||` montre l'original, `=======` la nouvelle version Shopify. Garde l'une ou l'autre, ou combine les deux, puis lance `git add -A && git commit`.
-4. Le script affiche aussi les « réglages incompatibles » : des réglages que la nouvelle version ne reconnaît plus. Il devrait n'en rester aucun quand l'ID du brouillon a été fourni.
+4. Le script réinjecte automatiquement ce que la migration Shopify efface : tes sections créées remplacées par une section standard, les réglages ajoutés par ton code, les textes vidés. Il affiche aussi les « réglages incompatibles » : des réglages que la nouvelle version ne reconnaît plus. Il devrait n'en rester aucun quand l'ID du brouillon a été fourni.
 5. **Test** : `shopify theme push --unpublished --theme "Horizon 4.4.0 (test)"`, puis prévisualise.
 6. **Validation** : `git checkout main && git merge update-4.4.0`, puis publie.
 
