@@ -4,9 +4,18 @@
   {% assign full_width = true %}
 {% endif %}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
 <div
-  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+
+<div
+  class="section section--{{ section.settings.section_width }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
   data-testid="divider-{{ section.id }}"
 >
   {% render 'divider', id: section.id, settings: section.settings, attributes: true, full_width: full_width %}
@@ -17,10 +26,16 @@
   "name": "t:names.divider",
   "settings": [
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:settings.color_scheme",
-      "default": "scheme-1"
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "placeholder": "t:settings.default"
+    },
+    {
+      "type": "color",
+      "id": "divider_color",
+      "label": "t:settings.color",
+      "placeholder": "t:settings.default"
     },
     {
       "type": "select",
@@ -82,15 +97,15 @@
       "options": [
         {
           "value": "flex-start",
-          "label": "t:options.left"
+          "label": "t:options.direction_start"
         },
         {
           "value": "center",
-          "label": "t:options.center"
+          "label": "t:options.direction_center"
         },
         {
           "value": "flex-end",
-          "label": "t:options.right"
+          "label": "t:options.direction_end"
         }
       ],
       "default": "center",

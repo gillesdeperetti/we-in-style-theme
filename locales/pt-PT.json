@@ -1,31 +1,5 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "blocks": {
-    "delivery_estimate": {
-      "order_before": "Encomende antes de",
-      "order_before_short": "Antes de",
-      "receive_by": "receba-o a partir de",
-      "receive_by_short": "Entrega",
-      "receive_by_today": "Entrega hoje",
-      "receive_by_tomorrow": "Entrega amanhã",
-      "home_delivery": "Entrega ao domicílio",
-      "relay_point": "Ponto de recolha",
-      "express_eu": "Expresso UE",
-      "worldwide": "Envio internacional",
-      "monday": "segunda-feira",
-      "today": "hoje",
-      "tomorrow": "amanhã",
-      "delivery_info": "Prazos de entrega estimados por transportadora",
-      "fallback": "Enviado em 1 dia útil · Entrega em {{ days }} dias úteis"
-    },
     "load_video": "Carregar vídeo: {{ description }}",
     "sold_out": "Esgotado",
     "email_signup": {
@@ -42,6 +16,24 @@
       "comment": "Comentário",
       "post_success": "Agradecemos o seu contacto. Responder-lhe-emos logo que possível.",
       "error_heading": "Ajuste o seguinte:"
+    },
+    "slider_label": "Slider",
+    "delivery_estimate": {
+      "order_before": "Encomende antes de",
+      "order_before_short": "Antes de",
+      "receive_by": "receba-o a partir de",
+      "receive_by_short": "Entrega",
+      "receive_by_today": "Entrega hoje",
+      "receive_by_tomorrow": "Entrega amanhã",
+      "home_delivery": "Entrega ao domicílio",
+      "relay_point": "Ponto de recolha",
+      "express_eu": "Expresso UE",
+      "worldwide": "Envio internacional",
+      "monday": "segunda-feira",
+      "today": "hoje",
+      "tomorrow": "amanhã",
+      "delivery_info": "Prazos de entrega estimados por transportadora",
+      "fallback": "Enviado em 1 dia útil · Entrega em {{ days }} dias úteis"
     },
     "klarna": {
       "installments_before": "3 pagamentos de",
@@ -93,6 +85,20 @@
     "rating": "A classificação deste produto é de {{ rating }}/5",
     "quantity": "Quantidade",
     "nested_product": "{{ product_title }} para {{ parent_title }}",
+    "remove": "Remover",
+    "view_pricing_info": "Ver informações sobre preços",
+    "slideshow": "Apresentação de diapositivos",
+    "header_navigation_label": "Principal",
+    "home_logo_alt": "{{ store_name }} - Início",
+    "active_filters": "Filtros ativos:",
+    "featured_product": "Produto em destaque",
+    "product_details": "Detalhes do produto",
+    "show_product_details": "Mostrar detalhes do produto para {{ product_name }}",
+    "search_suggestions_available": "Sugestões de pesquisa disponíveis para \"{{ query }}\"",
+    "price_filter_low": "Preço baixo",
+    "price_filter_high": "Preço elevado",
+    "view_disclosure_information_for_product": "Ver informações de divulgação de {{ product_title }}",
+    "show_submenu": "Mostrar submenu de {{ title }}",
     "open_cart_drawer": "Abrir carrinho",
     "open_search_modal": "Abrir pesquisa"
   },
@@ -100,7 +106,7 @@
     "add_to_cart": "Adicionar ao carrinho",
     "clear_all": "Limpar tudo",
     "remove": "Remover",
-    "view_in_your_space": "Ver no seu espaço",
+    "view_in_your_space": "Ver no espaço",
     "show_filters": "Filtrar",
     "clear": "Limpar",
     "continue_shopping": "Continuar a comprar",
@@ -135,7 +141,10 @@
     "sign_up": "Registar-se",
     "sort": "Ordenar",
     "show_all_options": "Mostrar todas as opções",
-    "open": "Abrir"
+    "open": "Abrir",
+    "back_to": "Regressar a {{ title }}",
+    "zoom_media": "Ampliar conteúdo multimédia {{ index }}",
+    "back_to_main_menu": "Voltar ao menu principal"
   },
   "content": {
     "reviews": "avaliações",
@@ -235,7 +244,7 @@
     "taxes_included_shipping_at_checkout_with_policy_without_discounts_html": "Impostos incluídos. Os portes são calculados na finalização da compra.",
     "taxes_included_shipping_at_checkout_without_policy_without_discounts": "Impostos incluídos. Os portes são calculados na finalização da compra.",
     "wrong_password": "Palavra-passe incorreta",
-    "view_more_details": "Ver mais informações",
+    "view_more_details": "Ver mais detalhes",
     "page_placeholder_title": "Título da página",
     "page_placeholder_content": "Selecione uma página para apresentar o conteúdo.",
     "powered_by": "Esta loja terá tecnologia",
@@ -267,11 +276,37 @@
     "product_custom_property_character_count": "{{ used_chars }}/{{ max_chars }} caracteres utilizados",
     "terms_and_policies": "Termos e políticas",
     "pagination": {
-      "nav_label": "Navegação por paginação",
+      "nav_label": "Paginação",
       "previous": "Anterior",
       "next": "Seguinte",
       "page": "Página {{ page }}"
     },
+    "volume_pricing_available": "Preços baseados em volume disponíveis",
+    "volume_pricing": "Preços baseados em volume",
+    "at_price_each": "a {{ price }}/cada",
+    "each": "{{ price }}/cada",
+    "each_abbreviation": "cada",
+    "price_at": "a",
+    "price_range": "Intervalo de preços",
+    "item_count_cutoff": "Mais de {{ count }} itens",
+    "cancel": "Cancelar",
+    "product_subtotal": "Subtotal dos produtos",
+    "quantity_per_item": "/cada",
+    "remove_all": "Remover tudo",
+    "remove_all_items_confirmation": "Remover todos os {{ count }} itens do seu carrinho?",
+    "remove_one_item_confirmation": "Remover 1 item do seu carrinho?",
+    "total_items": "Total de itens",
+    "variant": "Variante",
+    "variant_total": "Variante total",
+    "view_cart": "Ver carrinho",
+    "your_cart": "O seu carrinho",
+    "items_added_to_cart": {
+      "one": "1 item adicionado ao carrinho",
+      "other": "{{ count }} itens adicionados ao carrinho",
+      "many": "{{ count }} itens adicionados ao carrinho"
+    },
+    "quick_order_list": "Lista de encomendas rápidas",
+    "product_disclosures": "Divulgações do produto",
     "taxes_duties_at_checkout": "Impostos e direitos de importação não incluídos."
   },
   "gift_cards": {
@@ -283,9 +318,9 @@
       "add_to_apple_wallet": "Adicionar a Apple Wallet",
       "qr_image_alt": "Código QR — digitalizar para resgatar cartão de oferta",
       "copy_code": "Copiar código de cartão-de oferta",
-      "expiration_date": "Expira em {{ expires_on }}",
       "copy_code_success": "Código copiado com sucesso",
-      "expired": "Expirado"
+      "expired": "Expirado",
+      "expiration_date_html": "Expira a <bdi>{{ expires_on }}</bdi>"
     }
   },
   "placeholders": {
@@ -312,7 +347,9 @@
       "quantity_increments": "Incrementos de {{ increment }}",
       "quantity_minimum": "Mínimo de {{ minimum }}",
       "quantity_maximum": "Máximo de {{ maximum }}",
-      "in_cart": "no carrinho"
+      "in_cart": "no carrinho",
+      "default_title": "Título predefinido",
+      "sticky_add_to_cart": "Barra de adição rápida ao carrinho"
     }
   },
   "fields": {
@@ -383,20 +420,19 @@
     }
   },
   "size_guide": {
-  "title": "Guia de tamanhos",
-  "female": "Mulher",
-  "male": "Homem",
-  "unisex": "Unissexo",
-  "shoes": "Calçado",
-  "ready_to_wear": "Pronto-a-vestir",
-  "jeans": "Jeans",
-  "shirts": "Camisas",
-  "numeric": "Numeração",
-  "general": "Geral",
-  "foot_size": "Tamanho do pé"
-},
-"custom": {
-  "size_system_info": "O tamanho {{ size }} corresponde ao sistema {{ system }} – Consulte o guia de tamanhos para conversões."
-}
-
+    "title": "Guia de tamanhos",
+    "female": "Mulher",
+    "male": "Homem",
+    "unisex": "Unissexo",
+    "shoes": "Calçado",
+    "ready_to_wear": "Pronto-a-vestir",
+    "jeans": "Jeans",
+    "shirts": "Camisas",
+    "numeric": "Numeração",
+    "general": "Geral",
+    "foot_size": "Tamanho do pé"
+  },
+  "custom": {
+    "size_system_info": "O tamanho {{ size }} corresponde ao sistema {{ system }} – Consulte o guia de tamanhos para conversões."
+  }
 }

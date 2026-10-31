@@ -1,0 +1,23 @@
+{%- doc -%}
+  [CUSTOM-GILLES] Affiche "restricted" si l'élément doit être masqué :
+  marque Dior, visiteur en France, client non connecté.
+  Usage :
+    {%- capture r -%}{% render 'custom-restricted', product: product %}{%- endcapture -%}
+    {%- unless r == 'restricted' -%} ... {%- endunless -%}
+
+  @param {object} [product] - Produit à tester (vendor)
+  @param {object} [collection] - Collection à tester (titre)
+{%- enddoc -%}
+{%- liquid
+  if customer == blank and localization.country.iso_code == 'FR'
+    assign custom_name = ''
+    if product
+      assign custom_name = product.vendor | downcase
+    elsif collection
+      assign custom_name = collection.title | downcase
+    endif
+    if custom_name contains 'dior'
+      echo 'restricted'
+    endif
+  endif
+-%}

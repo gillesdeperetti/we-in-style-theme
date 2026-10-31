@@ -1,0 +1,40 @@
+    {% comment %} [CUSTOM-GILLES] Interaction Loader pour Scripts Tiers (TBT Killer) {% endcomment %}
+    <script>
+      (function() {
+        let userInteracted = false;
+        
+        function loadLazyScripts() {
+          if (userInteracted) return;
+          userInteracted = true;
+          
+          console.log('[Performance] Chargement des scripts tiers...');
+          
+          // 1. Charger les scripts marqués avec type="text/lazy-load"
+          const lazyScripts = document.querySelectorAll('script[type="text/lazy-load"]');
+          lazyScripts.forEach(script => {
+            const newScript = document.createElement('script');
+            if (script.dataset.src) newScript.src = script.dataset.src;
+            if (script.innerHTML) newScript.innerHTML = script.innerHTML;
+            Array.from(script.attributes).forEach(attr => {
+              if (attr.name !== 'type' && attr.name !== 'data-src') {
+                newScript.setAttribute(attr.name, attr.value);
+              }
+            });
+            script.parentNode.replaceChild(newScript, script);
+          });
+
+          // 2. Exemple pour charger dynamiquement Facebook ou Toki s'ils ne sont pas dans le HTML
+          // if (!document.getElementById('facebook-jssdk')) {
+          //   const fjs = document.createElement('script'); 
+          //   fjs.src = "https://connect.facebook.net/en_US/fbevents.js";
+          //   document.body.appendChild(fjs);
+          // }
+        }
+
+        const events = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'];
+        events.forEach(event => window.addEventListener(event, loadLazyScripts, { once: true, passive: true }));
+        
+        // Fallback de sécurité : charger après 6 secondes quoi qu'il arrive
+        setTimeout(loadLazyScripts, 6000);
+      })();
+    </script>

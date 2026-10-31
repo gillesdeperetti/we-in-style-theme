@@ -1,31 +1,5 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "blocks": {
-    "delivery_estimate": {
-      "order_before": "Bestellen Sie bis",
-      "order_before_short": "Bis",
-      "receive_by": "erhalten Sie es ab dem",
-      "receive_by_short": "Lieferung",
-      "receive_by_today": "Lieferung heute",
-      "receive_by_tomorrow": "Lieferung morgen",
-      "home_delivery": "Lieferung nach Hause",
-      "relay_point": "Abholstation",
-      "express_eu": "Express EU",
-      "worldwide": "Weltweiter Versand",
-      "monday": "Montag",
-      "today": "heute",
-      "tomorrow": "morgen",
-      "delivery_info": "Geschätzte Lieferzeiten nach Versanddienstleister",
-      "fallback": "Versand innerhalb von 1 Werktag · Lieferung in {{ days }} Werktagen"
-    },
     "load_video": "Video laden: {{ description }}",
     "sold_out": "Ausverkauft",
     "email_signup": {
@@ -43,6 +17,24 @@
       "post_success": "Danke, dass du uns kontaktiert hast. Wir werden uns so schnell wie möglich bei dir melden.",
       "error_heading": "Bitte passe Folgendes an:"
     },
+    "slider_label": "Slider",
+    "delivery_estimate": {
+      "order_before": "Bestellen Sie bis",
+      "order_before_short": "Bis",
+      "receive_by": "erhalten Sie es ab dem",
+      "receive_by_short": "Lieferung",
+      "receive_by_today": "Lieferung heute",
+      "receive_by_tomorrow": "Lieferung morgen",
+      "home_delivery": "Lieferung nach Hause",
+      "relay_point": "Abholstation",
+      "express_eu": "Express EU",
+      "worldwide": "Weltweiter Versand",
+      "monday": "Montag",
+      "today": "heute",
+      "tomorrow": "morgen",
+      "delivery_info": "Geschätzte Lieferzeiten nach Versanddienstleister",
+      "fallback": "Versand innerhalb von 1 Werktag · Lieferung in {{ days }} Werktagen"
+    },
     "klarna": {
       "installments_before": "3 Zahlungen von",
       "installments_after": "mit 0 % Zinsen bei Klarna",
@@ -52,7 +44,7 @@
   "accessibility": {
     "play_model": "3D-Modell abspielen",
     "play_video": "Video abspielen",
-    "unit_price": "Grundpreis",
+    "unit_price": "Stückpreis",
     "country_results_count": "{{ count }} Ergebnisse",
     "slideshow_pause": "Slideshow pausieren",
     "slideshow_play": "Slideshow abspielen",
@@ -92,23 +84,37 @@
     "quantity": "Anzahl",
     "rating": "Die Bewertung für dieses Produkts lautet {{ rating }} von 5 Sternen",
     "nested_product": "{{ product_title }} für {{ parent_title }}",
+    "remove": "Entfernen",
+    "view_pricing_info": "Preisinformationen anzeigen",
+    "slideshow": "Slideshow",
+    "header_navigation_label": "Primär",
+    "home_logo_alt": "{{ store_name }} - Startseite",
+    "active_filters": "Aktive Filter:",
+    "product_details": "Produktdetails",
+    "show_product_details": "Produktdetails für {{ product_name }} anzeigen",
+    "featured_product": "Vorgestelltes Produkt",
+    "search_suggestions_available": "Nach Vorschlägen für „{{ query }}“ suchen",
+    "price_filter_low": "Niedriger Preis",
+    "price_filter_high": "Hoher Preis",
+    "view_disclosure_information_for_product": "Offenlegungsinformationen für {{ product_title }} anzeigen",
+    "show_submenu": "Untermenü {{ title }} anzeigen",
     "open_cart_drawer": "Warenkorb öffnen",
     "open_search_modal": "Suche öffnen"
   },
   "actions": {
     "add_to_cart": "In den Warenkorb legen",
-    "clear_all": "Alles löschen",
+    "clear_all": "Alle löschen",
     "remove": "Entfernen",
-    "view_in_your_space": "In deinem Bereich anzeigen",
+    "view_in_your_space": "In deinem Raum ansehen",
     "show_filters": "Filtern",
     "clear": "Löschen",
     "continue_shopping": "Weiter einkaufen",
     "log_in_html": "Hast du ein Konto? <a href=\"{{ link }}\">Logge dich ein</a>, damit es beim Checkout schneller geht.",
     "see_items": {
       "one": "{{ count }} Artikel anzeigen",
-      "other": "{{ count }} Artikel anzeigen"
+      "other": "{{ count }} Artikel ansehen"
     },
-    "view_all": "Alle anzeigen",
+    "view_all": "Alle ansehen",
     "add": "Hinzufügen",
     "choose": "Auswählen",
     "added": "Hinzugefügt",
@@ -133,7 +139,10 @@
     "open_image_in_full_screen": "Bild im Vollbildmodus öffnen",
     "sort": "Sortieren",
     "show_all_options": "Alle Optionen anzeigen",
-    "open": "Öffnen"
+    "open": "Öffnen",
+    "back_to": "Zurück zu {{ title }}",
+    "zoom_media": "Medien {{ index }} zoomen",
+    "back_to_main_menu": "Zurück zum Hauptmenü"
   },
   "content": {
     "reviews": "Reviews",
@@ -147,7 +156,7 @@
     "quantity": "Anzahl",
     "product_total": "Produkt insgesamt",
     "cart_estimated_total": "Geschätzter Gesamtbetrag",
-    "seller_note": "Besondere Anweisungen",
+    "seller_note": "Besondere Hinweise",
     "cart_subtotal": "Zwischensumme",
     "discounts": "Rabatte",
     "discount": "Rabatt",
@@ -181,7 +190,7 @@
     "search_results_resource_pages": "Seiten",
     "search_results_resource_products": "Produkte",
     "search_results_resource_queries": "Suchvorschläge",
-    "search_results_view_all": "Alle anzeigen",
+    "search_results_view_all": "Alle ansehen",
     "search_results_view_all_button": "Alle anzeigen",
     "search_results_resource_products_count": {
       "one": "{{ count }} Produkt",
@@ -262,11 +271,36 @@
     "product_custom_property_character_count": "{{ used_chars }}/{{ max_chars }} Zeichen verwendet",
     "terms_and_policies": "Geschäftsbedingungen und Richtlinien",
     "pagination": {
-      "nav_label": "Seitennavigation",
+      "nav_label": "Seitennummerierung",
       "previous": "Zurück",
       "next": "Weiter",
       "page": "Seite {{ page }}"
     },
+    "volume_pricing_available": "Volumenabhängige Preisgestaltung verfügbar",
+    "volume_pricing": "Mengenrabatte",
+    "at_price_each": "bei {{ price }}/Stück",
+    "each": "({{ price }}/Stück)",
+    "each_abbreviation": "Stück",
+    "price_at": "bei",
+    "price_range": "Preisspanne",
+    "item_count_cutoff": "Mehr als {{ count }} Artikel",
+    "cancel": "Abbrechen",
+    "product_subtotal": "Produktzwischensumme",
+    "quantity_per_item": "/Stk.",
+    "remove_all": "Alle entfernen",
+    "remove_all_items_confirmation": "Alle {{ count }} Artikel aus deinem Warenkorb entfernen?",
+    "remove_one_item_confirmation": "1 Artikel aus dem Warenkorb entfernen?",
+    "total_items": "Artikel gesamt",
+    "variant": "Variante",
+    "variant_total": "Varianten insgesamt",
+    "view_cart": "Warenkorb ansehen",
+    "your_cart": "Dein Warenkorb",
+    "items_added_to_cart": {
+      "one": "1 Artikel zum Warenkorb hinzugefügt",
+      "other": "{{ count }} Artikel zum Warenkorb hinzugefügt"
+    },
+    "quick_order_list": "Schnellbestellliste",
+    "product_disclosures": "Produktoffenlegungen",
     "taxes_duties_at_checkout": "Steuern und Einfuhrzölle nicht enthalten."
   },
   "gift_cards": {
@@ -278,9 +312,9 @@
       "add_to_apple_wallet": "Zu Apple Wallet hinzufügen",
       "qr_image_alt": "QR-Code – Scannen, um Gutschein einzulösen",
       "copy_code": "Geschenkgutscheincode kopieren",
-      "expiration_date": "Gültig bis {{ expires_on }}",
       "copy_code_success": "Code erfolgreich kopiert",
-      "expired": "Abgelaufen"
+      "expired": "Abgelaufen",
+      "expiration_date_html": "Läuft ab am <bdi>{{ expires_on }}</bdi>"
     }
   },
   "placeholders": {
@@ -307,7 +341,9 @@
       "quantity_increments": "In {{ increment }}er Schritten",
       "quantity_minimum": "Mindestens {{ minimum }}",
       "quantity_maximum": "Maximal {{ maximum }}",
-      "in_cart": "im Warenkorb"
+      "in_cart": "im Warenkorb",
+      "default_title": "Standardtitel",
+      "sticky_add_to_cart": "Leiste „Schnell in den Warenkorb“"
     }
   },
   "fields": {
@@ -377,19 +413,19 @@
     }
   },
   "size_guide": {
-  "title": "Größenguide",
-  "female": "Damen",
-  "male": "Herren",
-  "unisex": "Unisex",
-  "shoes": "Schuhe",
-  "ready_to_wear": "Ready-to-wear",
-  "jeans": "Jeans",
-  "shirts": "Hemden",
-  "numeric": "Numerische Größen",
-  "general": "Allgemein",
-  "foot_size": "Fußgröße"
-},
-"custom": {
-  "size_system_info": "Größe {{ size }} entspricht dem {{ system }}-System – Bitte beachten Sie den Größenguide für Umrechnungen."
-}
+    "title": "Größenguide",
+    "female": "Damen",
+    "male": "Herren",
+    "unisex": "Unisex",
+    "shoes": "Schuhe",
+    "ready_to_wear": "Ready-to-wear",
+    "jeans": "Jeans",
+    "shirts": "Hemden",
+    "numeric": "Numerische Größen",
+    "general": "Allgemein",
+    "foot_size": "Fußgröße"
+  },
+  "custom": {
+    "size_system_info": "Größe {{ size }} entspricht dem {{ system }}-System – Bitte beachten Sie den Größenguide für Umrechnungen."
+  }
 }

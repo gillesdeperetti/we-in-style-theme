@@ -1,107 +1,19 @@
 {% assign block_settings = block.settings %}
-{% comment %} [CUSTOM-GILLES] ne pas afficher les accordeons avec valeurs dynamiques vides  {% endcomment %}
+{% comment %} [CUSTOM-GILLES] Début : ne pas afficher les accordéons avec valeurs dynamiques vides {% endcomment %}
 {% capture accordion_content %}
   {% content_for 'blocks' %}
 {% endcapture %}
-{% assign stripped_content = accordion_content
-  | strip
-  | strip_newlines
-  | replace: '&nbsp;', ''
-  | replace: ' ', ''
-  | replace: '&#160;', ''
-  | replace: '<p></p>', ''
-  | replace: '<p> </p>', ''
-  | replace: '<p><br></p>', ''
-  | replace: '<br>', ''
-  | replace: '<br/>', ''
-  | strip
-%}
-{% assign has_visible_content = false %}
-{% assign content_without_html = stripped_content | strip_html | strip %}
-{% assign text_lc = content_without_html | downcase %}
+{%- capture custom_accordion_visible -%}{% render 'custom-accordion-visibility', content: accordion_content, heading: block_settings.heading %}{%- endcapture -%}
+{%- if custom_accordion_visible == 'visible' -%}
+{% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
 
-{% comment %}
-  CORRECTIF 1 : On désactive le forçage d'affichage par défaut pour laisser la logique faire son travail.
-{% endcomment %}
-{% comment %}
-{% if block.blocks.size > 0 %}
-  {% assign has_visible_content = true %}
-{% endif %}
-{% endcomment %}
-
-{% comment %}
-  FIX: Si le contenu contient la classe 'product-dimensions' générée par le snippet,
-  on considère que ce sont des dimensions produit.
-{% endcomment %}
-{% assign has_product_dims = false %}
-{% if accordion_content contains 'product-dimensions' %}
-  {% assign check_real_content = content_without_html | strip_newlines | replace: ' ', '' %}
-  {% if check_real_content != '' %}
-    {% assign has_product_dims = true %}
-  {% endif %}
-{% endif %}
-
-{% if content_without_html != '' or has_product_dims %}
-  {% assign has_visible_content = true %}
-  
-  {%- comment -%}
-    Détection multilingue des mentions de dimensions du mannequin
-  {%- endcomment -%}
-  {% assign mentions_model_dims = false %}
-  {% if text_lc contains 'tall' or text_lc contains 'bust' or text_lc contains 'hips' or text_lc contains 'poitrine' or text_lc contains 'hanches' or text_lc contains 'busto' or text_lc contains 'caderas' or text_lc contains 'fianchi' or text_lc contains 'körpergröße' or text_lc contains 'brust' or text_lc contains 'hüfte' or text_lc contains '身長' or text_lc contains 'バスト' or text_lc contains 'ヒップ' or text_lc contains '키' or text_lc contains '가슴' or text_lc contains '엉덩이' or text_lc contains 'quadril' %}
-    {% assign mentions_model_dims = true %}
-  {% endif %}
-  
-  {% comment %}
-    CORRECTIF MAJOR : On ajoute une condition de longueur.
-    Si le texte fait plus de 350 caractères, c'est une description produit, pas juste la phrase du mannequin.
-    On ne cache le bloc QUE si c'est court (donc la phrase mannequin) ET qu'il manque des infos.
-  {% endcomment %}
-  {% if mentions_model_dims and content_without_html.size < 350 %}
-    {% assign model_height = product.metafields.custom.product_model_dimension.value.model_height %}
-    {% assign model_bust = product.metafields.custom.product_model_dimension.value.model_bust %}
-    {% assign model_hips = product.metafields.custom.product_model_dimension.value.model_hips %}
-    {% assign model_waist = product.metafields.custom.product_model_dimension.value.model_waist %}
-    {% assign wearing_size = product.metafields.custom.product_model_dimension.value.wearing_size %}
-    
-    {% comment %}
-      Utilisation de 'or' : Si l'une des valeurs est vide, on cache le bloc.
-    {% endcomment %}
-    {% if model_height == blank or model_bust == blank or model_hips == blank or model_waist == blank or wearing_size == blank %}
-      {% assign has_visible_content = false %}
-    {% endif %}
-    
-  {% else %}
-    {% comment %}
-      Bloc standard (ou description longue contenant des mots clés comme 'waist')
-    {% endcomment %}
-    {% assign compact = content_without_html | replace: ',', '' | replace: '/', '' | replace: '-', '' | replace: '|', '' | replace: '•', '' | replace: '·', '' | replace: '・', '' | strip %}
-    {% if content_without_html.size < 100 %}
-      {% if content_without_html contains ' , ' or compact == '' %}
-        {% assign has_visible_content = false %}
-      {% endif %}
-    {% endif %}
-  {% endif %}
-{% endif %}
-
-{% assign is_collection_page = false %}
-{% if template contains 'collection' %}
-  {% assign is_collection_page = true %}
-{% endif %}
-{% if is_collection_page and block_settings.heading != blank and block_settings.heading != '' %}
-  {% assign has_visible_content = true %}
-{% endif %}
-
-{% if has_visible_content %}
-<accordion-custom
-  {% if block_settings.open_by_default %}
-    open-by-default-on-desktop
-    open-by-default-on-mobile
-  {% endif %}
->
+{% capture accordion_row_children %}
   <details
     class="details"
     data-testid="accordion-details"
+    {% if block_settings.open_by_default %}
+      open
+    {% endif %}
     {{ block.shopify_attributes }}
   >
     <summary class="details__header">
@@ -121,18 +33,16 @@
     </summary>
 
     <div class="details-content">
-      {{ accordion_content }}
+      {{ accordion_content }} {% # [CUSTOM-GILLES] %}
     </div>
   </details>
-</accordion-custom>
-{% endif %}
-{% comment %} [CUSTOM-GILLES] ne pas afficher les accordeons avec valeurs dynamiques vides  {% endcomment %}
-{% stylesheet %}
-  .details__icon {
-    height: auto;
-    margin-inline-end: var(--margin-xs);
-  }
-{% endstylesheet %}
+{% endcapture %}
+{% render 'accordion-custom-component',
+  children: accordion_row_children,
+  open_by_default_on_desktop: block_settings.open_by_default,
+  open_by_default_on_mobile: block_settings.open_by_default
+%}
+{%- endif -%} {% # [CUSTOM-GILLES] %}
 
 {% schema %}
 {
@@ -430,14 +340,14 @@
         "text-1": {
           "type": "text",
           "settings": {
-            "text": "<p>We will work quickly to ship your order as soon as possible. Once your order has shipped, you will receive an email with further information. Delivery times vary depending on your location.</p>",
+            "text": "t:html_defaults.work_quickly_to_ship",
             "width": "100%"
           }
         }
       },
       "block_order": ["text-1"],
       "settings": {
-        "heading": "When will I get my order?"
+        "heading": "t:text_defaults.when_will_order_arrive"
       }
     }
   ]

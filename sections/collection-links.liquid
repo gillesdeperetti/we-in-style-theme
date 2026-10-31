@@ -20,9 +20,17 @@
   fetchpriority="low"
 ></script>
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
 <div
-  class="section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }} spacing-style"
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<div
+  class="section section--{{ section.settings.section_width }}{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %} spacing-style"
   style="{% render 'spacing-style', settings: section.settings %}"
   data-testid="collection-links-{{ section.id }}"
 >
@@ -45,33 +53,16 @@
             assign current = true
           endif
         %}
-
-        {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
-        {% assign show_collection = true %}
-        {% if collection and collection.title %}
-          {% assign collection_title = collection.title | downcase %}
-          {% if collection_title contains 'dior' %}
-            {% if customer == blank and localization.country.iso_code == 'FR' %}
-              {% assign show_collection = false %}
-            {% endif %}
-          {% endif %}
-        {% endif %}
-        
-        {% if show_collection %}
-        {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
-
-          {% content_for 'block',
-            type: '_collection-link',
-            id: 'link',
-            closest.collection: collection,
-            index: forloop.index0,
-            current: current
-          %}
-
-        {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
-        {% endif %}
-        {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
-
+        {%- capture custom_restricted -%}{% render 'custom-restricted', collection: collection %}{%- endcapture -%}
+        {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
+        {% content_for 'block',
+          type: '_collection-link',
+          id: 'link',
+          closest.collection: collection,
+          index: forloop.index0,
+          current: current
+        %}
+        {%- endunless -%} {% # [CUSTOM-GILLES] fin %}
       {% endfor %}
     </div>
 
@@ -87,39 +78,21 @@
             endif
           %}
 
-          {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR (Slideshow) {% endcomment %}
-          {% assign show_collection = true %}
-          {% if collection and collection.title %}
-            {% assign collection_title = collection.title | downcase %}
-            {% if collection_title contains 'dior' %}
-              {% if customer == blank and localization.country.iso_code == 'FR' %}
-                {% assign show_collection = false %}
-              {% endif %}
-            {% endif %}
-          {% endif %}
+          {%- capture custom_restricted -%}{% render 'custom-restricted', collection: collection %}{%- endcapture -%}
+          {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
+          {% capture slide %}
+            {% content_for 'block',
+              type: '_collection-link',
+              id: 'link',
+              closest.collection: collection,
+              index: forloop.index0,
+              current: current,
+              image_only: true
+            %}
+          {% endcapture %}
 
-          {% if show_collection %}
-          {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
-
-            {% capture slide %}
-              {% # theme-check-disable UniqueStaticBlockId %}
-              {% content_for 'block',
-                type: '_collection-link',
-                id: 'link',
-                closest.collection: collection,
-                index: forloop.index0,
-                current: current,
-                image_only: true
-              %}
-              {% # theme-check-enable UniqueStaticBlockId %}
-            {% endcapture %}
-
-            {% render 'slideshow-slide', children: slide, index: forloop.index0 %}
-
-          {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
-          {% endif %}
-          {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
-
+          {% render 'slideshow-slide', children: slide, index: forloop.index0 %}
+          {%- endunless -%} {% # [CUSTOM-GILLES] fin %}
         {% endfor %}
       {% endcapture %}
 
@@ -133,7 +106,6 @@
   </collection-links-component>
 </div>
 
-{% # theme-check-disable ValidBlockTarget %}
 {% stylesheet %}
   collection-links-component {
     --alignment: flex-start;
@@ -166,7 +138,7 @@
       --alignment: flex-end;
 
       .text-block {
-        text-align: right;
+        text-align: end;
       }
     }
 
@@ -175,7 +147,7 @@
       grid-template-columns: 1fr var(--template-column-ratio);
       grid-template-areas: 'text image';
 
-      @media (min-width: 749px) {
+      @media screen and (min-width: 750px) {
         &[reverse] {
           grid-template-areas: 'image text';
           grid-template-columns: var(--template-column-ratio) 1fr;
@@ -186,7 +158,7 @@
         align-items: var(--alignment);
       }
 
-      @media (max-width: 749px) {
+      @media screen and (max-width: 749px) {
         grid-template-columns: 1fr;
         grid-template-areas: 'text' 'image';
         grid-gap: var(--gap-2xl);
@@ -221,7 +193,7 @@
     overflow: hidden;
     grid-area: image;
 
-    @media (max-width: 749px) {
+    @media screen and (max-width: 749px) {
       image-block {
         max-width: 100%;
       }
@@ -284,15 +256,15 @@
       "options": [
         {
           "value": "left",
-          "label": "t:options.left"
+          "label": "t:options.direction_start"
         },
         {
           "value": "center",
-          "label": "t:options.center"
+          "label": "t:options.direction_center"
         },
         {
           "value": "right",
-          "label": "t:options.right"
+          "label": "t:options.direction_end"
         }
       ],
       "default": "left"
@@ -304,21 +276,21 @@
       "options": [
         {
           "value": "left",
-          "label": "t:options.left"
+          "label": "t:options.direction_start"
         },
         {
           "value": "right",
-          "label": "t:options.right"
+          "label": "t:options.direction_end"
         }
       ],
       "default": "right",
       "visible_if": "{{ section.settings.layout == \"spotlight\" }}"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:settings.color_scheme",
-      "default": "scheme-1"
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "placeholder": "t:settings.default"
     },
     {
       "type": "header",
@@ -408,4 +380,3 @@
   ]
 }
 {% endschema %}
-{% # theme-check-enable ValidBlockTarget %}

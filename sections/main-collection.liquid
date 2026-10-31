@@ -21,52 +21,49 @@
 {% endjavascript %}
 
 {% comment %} We always render this full-width, as the child blocks have width: page/full settings {% endcomment %}
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
 
-{% comment %} [CUSTOM-GILLES] Début : Ajout du contrôle d'accès marque {% endcomment %}
-{% render 'brand-access-control', collection: collection %}
-{% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
+{% render 'collection-wrapper-styles' %}
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
-<results-list
-  class="section product-grid-container color-{{ section.settings.color_scheme }}"
-  style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
-  section-id="{{ section.id }}"
-  infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
->
-  {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
+{% render 'brand-access-control', collection: collection %} {% # [CUSTOM-GILLES] contrôle d'accès marque %}
 
-  <div
-    class="collection-wrapper grid gap-style"
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
+<collection-component view-event-payload="{{ collection | standard_event_data: 'view' | escape }}">
+  <results-list
+    class="section product-grid-container{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+    style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
+    section-id="{{ section.id }}"
+    infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
   >
-    {% content_for 'block',
-      type: 'filters',
-      id: 'filters',
-      results: collection,
-      results_size: collection.products_count
-    %}
+    {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
 
-    {% assign products_per_page = 24 %}
+    <div
+      class="collection-wrapper grid gap-style{% if section.settings.product_grid_width == 'full-width' %} collection-wrapper--grid-full-width{% endif %}"
+    >
+      {% content_for 'block',
+        type: 'filters',
+        id: 'filters',
+        results: collection,
+        results_size: collection.products_count
+      %}
 
-    {% if section.settings.enable_infinite_scroll == false %}
-      {% assign products_per_page = section.settings.products_per_page %}
-    {% endif %}
+      {% assign products_per_page = 24 %}
 
-    {% paginate collection.products by products_per_page %}
-      {% capture children %}
-        {% for product in collection.products %}
-          
-          {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
-          {% assign show_item = true %}
-          {% assign product_vendor = product.vendor | downcase %}
-          {% if product_vendor contains 'dior' %}
-            {% if customer == blank and localization.country.iso_code == 'FR' %}
-              {% assign show_item = false %}
-            {% endif %}
-          {% endif %}
-          
-          {% if show_item %}
-          {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
+      {% if section.settings.enable_infinite_scroll == false %}
+        {% assign products_per_page = section.settings.products_per_page %}
+      {% endif %}
 
+      {% paginate collection.products by products_per_page %}
+        {% capture children %}
+          {% for product in collection.products %}
+            {%- capture custom_restricted -%}{% render 'custom-restricted', product: product %}{%- endcapture -%}
+            {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
             <li
               id="{{ section.id }}-{{ product.id }}"
               class="product-grid__item product-grid__item--{{ forloop.index0 }}"
@@ -74,102 +71,28 @@
               data-product-id="{{ product.id }}"
               ref="cards[]"
             >
-              {% # theme-check-disable %}
-              {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
-              {% # theme-check-enable %}
+              {% content_for 'block',
+                type: '_product-card',
+                id: 'product-card',
+                closest.product: product,
+                product_view_context: 'collection'
+              %}
             </li>
+            {%- endunless -%} {% # [CUSTOM-GILLES] fin %}
+          {% endfor %}
+        {% endcapture %}
 
-          {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
-          {% endif %}
-          {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
-
-        {% endfor %}
-      {% endcapture %}
-
-      {% render 'product-grid',
-        section: section,
-        children: children,
-        products: collection.products,
-        paginate: paginate,
-        enable_infinite_scroll: section.settings.enable_infinite_scroll
-      %}
-    {% endpaginate %}
-  </div>
-</results-list>
-
-{% stylesheet %}
-  .main-collection-grid {
-    grid-column: var(--grid-column--mobile);
-
-    @media screen and (min-width: 750px) {
-      grid-column: var(--grid-column--desktop);
-    }
-  }
-
-  .collection-wrapper {
-    @media screen and (min-width: 750px) {
-      grid-template-columns:
-        1fr repeat(
-          var(--centered-column-number),
-          minmax(0, calc((var(--page-width) - var(--page-margin) * 2) / var(--centered-column-number)))
-        )
-        1fr;
-    }
-  }
-
-  .collection-wrapper:has(.facets-block-wrapper--full-width),
-  .collection-wrapper:has(.collection-wrapper--full-width) {
-    @media screen and (min-width: 750px) {
-      grid-column: 1 / -1;
-      grid-template-columns:
-        minmax(var(--page-margin), 1fr) repeat(
-          var(--centered-column-number),
-          minmax(0, calc((var(--page-width) - var(--page-margin) * 2) / var(--centered-column-number)))
-        )
-        minmax(var(--page-margin), 1fr);
-    }
-  }
-
-  .collection-wrapper:has(.facets--vertical) .facets-block-wrapper--vertical:not(.hidden) ~ .main-collection-grid {
-    @media screen and (min-width: 750px) {
-      grid-column: var(--facets-vertical-col-width) / var(--full-width-column-number);
-    }
-  }
-
-  .collection-wrapper:has(.facets-block-wrapper--vertical:not(#filters-drawer)):has(.collection-wrapper--full-width) {
-    @media screen and (min-width: 750px) {
-      grid-column: 1 / -1;
-      grid-template-columns: 0fr repeat(var(--centered-column-number), minmax(0, 1fr)) 0fr;
-    }
-  }
-
-  :is(.collection-wrapper--full-width, .collection-wrapper--full-width-on-mobile)
-    [product-grid-view='default']
-    .product-grid__card {
-    @media screen and (max-width: 749px) {
-      padding-inline-start: max(var(--padding-xs), var(--padding-inline-start));
-      padding-inline-end: max(var(--padding-xs), var(--padding-inline-end));
-    }
-  }
-
-  :is(.collection-wrapper--full-width, .collection-wrapper--full-width-on-mobile)
-    [product-grid-view='mobile-single']
-    .product-grid__card {
-    @media screen and (max-width: 749px) {
-      padding-inline-start: max(var(--padding-xs), var(--padding-inline-start));
-      padding-inline-end: max(var(--padding-xs), var(--padding-inline-end));
-    }
-  }
-
-  /* Make product media go edge-to-edge by using negative margins */
-  :is(.collection-wrapper--full-width) .card-gallery,
-  :is(.collection-wrapper--full-width-on-mobile) .card-gallery {
-    @media screen and (max-width: 749px) {
-      margin-inline-start: calc(-1 * max(var(--padding-xs), var(--padding-inline-start)));
-      margin-inline-end: calc(-1 * max(var(--padding-xs), var(--padding-inline-end)));
-    }
-  }
-{% endstylesheet %}
+        {% render 'product-grid',
+          section: section,
+          children: children,
+          products: collection.products,
+          paginate: paginate,
+          enable_infinite_scroll: section.settings.enable_infinite_scroll
+        %}
+      {% endpaginate %}
+    </div>
+  </results-list>
+</collection-component>
 
 {% schema %}
 {
@@ -323,10 +246,10 @@
       "content": "t:content.section_layout"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:settings.color_scheme",
-      "default": "scheme-1"
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "placeholder": "t:settings.default"
     },
     {
       "type": "range",

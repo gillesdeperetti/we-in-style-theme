@@ -1,0 +1,32 @@
+    {% comment %} [CUSTOM-GILLES] Preload Image LCP - Syntaxe Shopify recommandée (preload_tag) {% endcomment %}
+    {%- if template.name == 'product' and product.selected_or_first_available_variant.featured_media -%}
+      {{ product.selected_or_first_available_variant.featured_media | image_url: width: 1500 | preload_tag: as: 'image' }}
+    {%- elsif template.name == 'collection' and collection.image -%}
+      {{ collection.image | image_url: width: 1500 | preload_tag: as: 'image' }}
+    {%- elsif template.name == 'index' -%}
+      {%- comment -%} Homepage : Chercher l'image de la première section hero active {%- endcomment -%}
+      {%- for section in sections -%}
+        {%- if section.type == 'hero' and section.settings.image_1 != blank and section.disabled != true -%}
+          {{ section.settings.image_1 | image_url: width: 1500 | preload_tag: as: 'image' }}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+
+    {% comment %} [CUSTOM-GILLES] Preconnect pour accélérer le CDN Shopify et Fonts {% endcomment %}
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    <link rel="dns-prefetch" href="https://fonts.shopifycdn.com">
+
+    <style>
+      /* [CUSTOM-GILLES] Optimisation Rendu : Sauter le rendu des éléments hors écran */
+      .product-grid, .collection-list, .footer {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 1000px; /* Estimation de hauteur pour éviter le scroll jump */
+      }
+      /* [CUSTOM-GILLES] CLS : Fond gris léger pour les images en chargement */
+      .media--loading, .product-card__image-wrapper {
+        background-color: #f4f4f4;
+      }
+    </style>

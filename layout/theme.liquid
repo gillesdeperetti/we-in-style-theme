@@ -1,41 +1,13 @@
 <!doctype html>
 <html
-  class="no-js{% if request.design_mode %} shopify-design-mode{% endif %}"
+  {% if request.design_mode %}
+    class="shopify-design-mode"
+  {% endif %}
   lang="{{ request.locale.iso_code }}"
+  dir="{{ request.locale.direction | default: 'ltr' }}"
 >
   <head>
-    {% comment %} [CUSTOM-GILLES] Preload Image LCP - Syntaxe Shopify recommandée (preload_tag) {% endcomment %}
-    {%- if template.name == 'product' and product.selected_or_first_available_variant.featured_media -%}
-      {{ product.selected_or_first_available_variant.featured_media | image_url: width: 1500 | preload_tag: as: 'image' }}
-    {%- elsif template.name == 'collection' and collection.image -%}
-      {{ collection.image | image_url: width: 1500 | preload_tag: as: 'image' }}
-    {%- elsif template.name == 'index' -%}
-      {%- comment -%} Homepage : Chercher l'image de la première section hero active {%- endcomment -%}
-      {%- for section in sections -%}
-        {%- if section.type == 'hero' and section.settings.image_1 != blank and section.disabled != true -%}
-          {{ section.settings.image_1 | image_url: width: 1500 | preload_tag: as: 'image' }}
-          {%- break -%}
-        {%- endif -%}
-      {%- endfor -%}
-    {%- endif -%}
-
-    {% comment %} [CUSTOM-GILLES] Preconnect pour accélérer le CDN Shopify et Fonts {% endcomment %}
-    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdn.shopify.com">
-    <link rel="dns-prefetch" href="https://fonts.shopifycdn.com">
-
-    <style>
-      /* [CUSTOM-GILLES] Optimisation Rendu : Sauter le rendu des éléments hors écran */
-      .product-grid, .collection-list, .footer {
-        content-visibility: auto;
-        contain-intrinsic-size: 1px 1000px; /* Estimation de hauteur pour éviter le scroll jump */
-      }
-      /* [CUSTOM-GILLES] CLS : Fond gris léger pour les images en chargement */
-      .media--loading, .product-card__image-wrapper {
-        background-color: #f4f4f4;
-      }
-    </style>
+    {%- render 'custom-head-start' -%} {% # [CUSTOM-GILLES] preload LCP, preconnect, CSS perf %}
 
     {%- if settings.favicon != blank -%}
       <link
@@ -45,19 +17,15 @@
       >
     {%- endif -%}
 
-    {% comment %} [CUSTOM-GILLES] Suppression de blocking="render" sur rel=expect pour LCP {% endcomment %}
-    <link
-      rel="expect"
-      href="#MainContent"
-      id="view-transition-render-blocker"
-    >
+    {%- render 'view-transition-opt-in' -%}
 
     {%- render 'meta-tags' -%}
     {%- render 'stylesheets' -%}
-    {%- render 'fonts' -%}
+    {%- render 'custom-font-preload' -%} {% # [CUSTOM-GILLES] %}
+    {%- render 'card-hover-effect-styles' -%}
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
-    {%- render 'color-schemes' -%}
+    {%- render 'color-palette' -%}
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
@@ -65,303 +33,146 @@
 
     {{ content_for_header }}
 
-    {% comment %} [CUSTOM-GILLES]  Schema JSON LD - Collection avec Brand / Organization via Brand Infos / Fil ariane global {% endcomment %}
-    {% if request.path contains 'collections' %}
-  
-    {% comment %} --- 1. SCHEMA EXISTANT : COLLECTION PAGE (Toujours affiché) --- {% endcomment %}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": {{ collection.title | json }},
-      "url": "{{ shop.url }}{{ collection.url }}",
-      {% assign meta_description = collection.metafields.global.description_tag | default: collection.metafields.seo.description_tag %}
-      {% if collection.description != blank %}
-        "description": {{ collection.description | strip_html | truncatewords: 25 | json }},
-      {% elsif meta_description != blank %}
-        "description": {{ meta_description | strip_html | truncatewords: 25 | json }},
-      {% else %}
-        "description": {{ collection.title | append: " - myCompañero" | json }},
-      {% endif %}
-
-      {% if collection.image %}
-        "image": "{{ collection.image | image_url: width: 1200 | prepend: 'https:' }}",
-      {% else %}
-        {% assign product_images = '' %}
-        {% for product in collection.products limit: 5 %}
-          {% if product.featured_image %}
-            {% if product_images != '' %}{% assign product_images = product_images | append: ', ' %}{% endif %}
-            {% assign image_url = product.featured_image | image_url: width: 1200 | prepend: 'https:' %}
-            {% assign product_images = product_images | append: '"' | append: image_url | append: '"' %}
-          {% endif %}
-        {% endfor %}
-        {% if product_images != '' %}
-          "image": [ {{ product_images }} ],
-        {% endif %}
-      {% endif %}
-
-      "inLanguage": "{{ shop.locale }}",
-      "publisher": {
-        "@type": "OnlineStore",
-        "name": {{ shop.name | json }},
-        "url": "{{ shop.url }}"
-      },
-      "mainEntity": {
-          "@type": "ItemList",
-          "itemListElement": [
-            {% for product in collection.products limit: 10 %}
-            {
-              "@type": "ListItem",
-              "position": {{ forloop.index }},
-              "item": {
-                "@type": "Product",
-                "name": {{ product.title | json }},
-                "brand": {
-                  "@type": "Brand",
-                  "name": {{ product.vendor | json }}
-                },
-                "url": "{{ shop.url }}{{ product.url }}", 
-                "description": {{ product.description | strip_html | strip | truncatewords: 30 | json }},
-                {% if product.featured_image %}
-                  "image": "{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' }}",
-                {% endif %}
-                "offers": {
-                  "@type": "Offer",
-                  "price": "{{ product.price | divided_by: 100.00 }}",
-                  "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 | append: '-12-31' }}",
-                  "priceCurrency": "{{ shop.currency }}",
-                  "availability": "{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
-                  {% assign eu_countries = "AT,BE,BG,CY,CZ,DE,DK,EE,ES,FI,FR,GR,HR,HU,IE,IT,LT,LU,LV,MT,NL,PL,PT,RO,SE,SI,SK" | split: "," %}
-                  {% assign other_countries = "US,CA,KR,JP,CN,IN,AU,NZ,BR,MX,RU,AR,ZA,SA,TR,TH,SG,MY,VN,ID,AE" | split: "," %}
-                  {% assign shipping_json = "" %}
-                  {% assign rate_eu = "9.90" %}
-                  {% if product.price > 30000 %}
-                    {% assign rate_eu = "0" %}
-                  {% endif %}
-                  {% for country in eu_countries %}
-                    {% if shipping_json != "" %}{% assign shipping_json = shipping_json | append: ", " %}{% endif %}
-                    {% assign shipping_json = shipping_json
-                      | append: '{ "@type": "OfferShippingDetails", "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "' 
-                      | append: country 
-                      | append: '" }, "shippingRate": { "@type": "MonetaryAmount", "value": "' 
-                      | append: rate_eu 
-                      | append: '", "currency": "' | append: shop.currency 
-                      | append: '" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "d" } } }' %}
-                  {% endfor %}
-                  {% assign rate_row = "19.90" %}
-                  {% if product.price > 50000 %}
-                    {% assign rate_row = "0" %}
-                  {% endif %}
-                  {% for country in other_countries %}
-                    {% if shipping_json != "" %}{% assign shipping_json = shipping_json | append: ", " %}{% endif %}
-                    {% assign shipping_json = shipping_json
-                      | append: '{ "@type": "OfferShippingDetails", "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "' 
-                      | append: country 
-                      | append: '" }, "shippingRate": { "@type": "MonetaryAmount", "value": "' 
-                      | append: rate_row 
-                      | append: '", "currency": "' | append: shop.currency 
-                      | append: '" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "d" } } }' %}
-                  {% endfor %}
-                "shippingDetails": [ {{ shipping_json }} ],
-                  "hasMerchantReturnPolicy": {
-                    "@type": "MerchantReturnPolicy",
-                    "url": "{{ shop.url }}{% unless request.locale.iso_code == 'en' %}/{{ request.locale.iso_code }}{% endunless %}/policies/refund-policy",
-                    "merchantReturnDays": 30,
-                    "applicableCountry": [
-                      "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK",
-                      "US", "CA", "KR", "JP", "CN", "IN", "AU", "NZ", "BR", "MX", "RU", "AR", "ZA", "SA", "TR", "TH", "SG", "MY", "VN", "ID", "AE"
-                    ],
-                    "returnFees": "ReturnFeesCustomerResponsibility",
-                    "returnMethod": "ReturnByMail",
-                    "returnPolicyCategory": "MerchantReturnFiniteReturnWindow"
-                  }
-                }
-              }
-            }{% unless forloop.last %},{% endunless %}
-            {% endfor %}
-          ]
-        }
-      }
-    </script>
-
-  
-    {% comment %} 
-  --- BLOC BRAND / ORGANIZATION ---
-  Condition : Vérifie le metafield de collection "custom.brand_infos" (Boolean)
-{% endcomment %}
-
-{% if collection.metafields.custom.brand_infos == true %}
-
-  {% assign product_sample = collection.products.first %}
-  
-  {% comment %} 
-    Note : Ici on utilise 'brands_infos' (avec un S) car c'est la clé du metafield 
-    sur le PRODUIT telle que décrite dans votre premier message.
-  {% endcomment %}
-  {% assign brand_metaobject = product_sample.metafields.custom.brands_infos.value %}
-
-  {% if brand_metaobject %}
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": ["Brand", "Organization"],
-      
-      {% comment %} Nom de la marque {% endcomment %}
-      {% if brand_metaobject.name.value %}
-        "name": {{ brand_metaobject.name.value.title | json }},
-        "url": "{{ shop.url }}{{ brand_metaobject.name.value.url }}",
-      {% else %}
-        "name": {{ collection.title | json }},
-        "url": "{{ shop.url }}{{ collection.url }}",
-      {% endif %}
-      
-      {% comment %} Logo {% endcomment %}
-      {% if brand_metaobject.logo %}
-        "logo": "{{ brand_metaobject.logo | image_url: width: 600 | prepend: 'https:' }}",
-      {% endif %}
-
-      {% comment %} Description Riche {% endcomment %}
-      {% capture full_description %}
-        {{ brand_metaobject.description }}
-        {% if brand_metaobject.success_stories.value != blank %}
-           Key milestones: {{ brand_metaobject.success_stories.value | join: '. ' }}.
-        {% endif %}
-        {% if brand_metaobject.collabs_list.value != blank %}
-           Collaborations: 
-           {% for collab in brand_metaobject.collabs_list.value %}
-             {{ collab.partner }} ({{ collab.about }}){% unless forloop.last %}, {% endunless %}
-           {% endfor %}
-        {% endif %}
-      {% endcapture %}
-      "description": {{ full_description | strip_html | strip_newlines | json }},
-
-      {% comment %} Année de fondation {% endcomment %}
-      {% if brand_metaobject.founded_year %}
-        "foundingDate": "{{ brand_metaobject.founded_year }}",
-      {% endif %}
-
-      {% comment %} Pays d'origine {% endcomment %}
-      {% if brand_metaobject.origin_country %}
-        "location": {
-          "@type": "Place",
-          "name": {{ brand_metaobject.origin_country | json }}
-        },
-      {% endif %}
-
-      {% comment %} Fondateurs {% endcomment %}
-      {% if brand_metaobject.founders.value != blank %}
-        "founders": [
-          {% for founder in brand_metaobject.founders.value %}
-          {
-            "@type": "Person",
-            "name": {{ founder | json }}
-          }{% unless forloop.last %},{% endunless %}
-          {% endfor %}
-        ],
-      {% endif %}
-
-      {% comment %} Directeurs {% endcomment %}
-      {% if brand_metaobject.directors.value != blank %}
-        "employees": [
-          {% for director in brand_metaobject.directors.value %}
-          {
-            "@type": "Person",
-            "name": {{ director | json }},
-            "jobTitle": "Director"
-          }{% unless forloop.last %},{% endunless %}
-          {% endfor %}
-        ],
-      {% endif %}
-
-      {% comment %} Prix et récompenses {% endcomment %}
-      {% if brand_metaobject.awards_list.value != blank %}
-        "awards": [
-          {% for award in brand_metaobject.awards_list.value %}
-            {{ award.name | append: " (" | append: award.year | append: ")" | json }}
-          {% unless forloop.last %},{% endunless %}
-          {% endfor %}
-        ],
-      {% endif %}
-
-      "mainEntityOfPage": {
-         "@type": "CollectionPage",
-         "@id": "{{ shop.url }}{{ collection.url }}"
-      }
-    }
-    </script>
-  {% endif %}
-  
-{% endif %}
-  {% endif %}
-
-  {% comment %} --- 3. BREADCRUMBS (GLOBAL) --- {% endcomment %}
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "{{ shop.url }}"
-        }
-        {%- if template == 'collection' or template contains 'collection.' -%}
-        ,{
-          "@type": "ListItem",
-          "position": 2,
-          "name": {{ collection.title | json }},
-          "item": "{{ shop.url }}{{ collection.url }}"
-        }
-        {%- elsif template == 'product' -%}
-        ,{
-          "@type": "ListItem",
-          "position": 2,
-          "name": {{ product.title | json }},
-          "item": "{{ shop.url }}{{ product.url }}"
-        }
-        {%- else -%}
-        ,{
-          "@type": "ListItem",
-          "position": 2,
-          "name": {{ page_title | json }},
-          "item": "{{ shop.url }}{{ request.path }}"
-        }
-        {%- endif -%}
-      ]
-    }
-  </script>
-  {% comment %} [CUSTOM-GILLES]  FIN : Schema JSON LD {% endcomment %}
+    {% render 'custom-structured-data' %} {% # [CUSTOM-GILLES] données structurées JSON-LD %}
   </head>
 
-  {% comment %} [CUSTOM-GILLES] Protection Anti-Bot et Filtrage Géographique {% endcomment %}
-  {% render 'geo-bot-protection' %}
-    
+  {% render 'geo-bot-protection' %} {% # [CUSTOM-GILLES] protection anti-bot et filtrage géographique %}
+
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
-    <div id="header-group">
-      {% sections 'header-group' %}
+
+    {% render 'chat-drawer' %}
+
+    <div class="page-wrapper">
+      <div id="header-group">
+        {% sections 'header-group' %}
+      </div>
+
+      <script>
+        /**
+         * Sets `--header-height` and `--header-group-height` to measured values before first paint.
+         *
+         * A few CSS rules position content relative to the header at first paint — a hero sized to
+         * the remaining viewport, a transparent header's negative margin. Without a measured value
+         * those rules use the `60px` fallback from `sections/header.liquid`, and the content visibly
+         * jumps once `header.js` corrects the values after load.
+         *
+         * Measuring forces layout mid-parse, so it only runs where a consuming rule exists.
+         * Callers opt in: the transparent-header branch below, or `snippets/measure-header-heights.liquid`,
+         * which any new first-paint consumer must render too.
+         *
+         * Measures once per page; after load, header.js's ResizeObservers keep the values fresh.
+         * The group-height walk mimics calculateHeaderGroupHeight() in utilities.js — keep them
+         * in sync.
+         */
+        window.measureHeaderHeights = (function () {
+          let measured = false;
+
+          return function measureHeaderHeights() {
+            if (measured) return;
+
+            const header = document.querySelector('#header-component');
+            const headerGroup = document.querySelector('#header-group');
+
+            if (!header || !headerGroup) return;
+            measured = true;
+
+            const headerHeight = header.offsetHeight;
+
+            let headerGroupHeight = 0;
+            for (const element of headerGroup.children) {
+              if (element instanceof HTMLElement) headerGroupHeight += element.offsetHeight;
+            }
+
+            /**
+             * A transparent header is absolutely positioned, so the loop above counts its section
+             * wrapper as 0px. When a section follows it in the group, header.liquid pushes that
+             * section down by the header's height using a margin, which offsetHeight also
+             * excludes — so the header's height has to be added back manually.
+             */
+            if (header.hasAttribute('transparent') && header.parentElement?.nextElementSibling) {
+              headerGroupHeight += headerHeight;
+            }
+
+            document.body.style.setProperty('--header-height', `${headerHeight}px`);
+            document.body.style.setProperty('--header-group-height', `${headerGroupHeight}px`);
+          };
+        })();
+
+        /**
+         * Transparent-header rules consume the measured heights at first paint on every
+         * template, so the transparent case opts in globally here instead of per-section.
+         */
+        if (document.querySelector('#header-component')?.hasAttribute('transparent')) {
+          measureHeaderHeights();
+        }
+
+        /**
+         * Sets `--top-row-height`, consumed by the header underlays and submenus. Deferred to a
+         * rAF so the height read doesn't force layout mid-parse, and scoped to the
+         * header, where all consumers live, so the write only invalidates the header subtree.
+         * Mimics the `--top-row-height` write in updateHeaderHeights() in utilities.js
+         */
+        (function setTopRowHeight() {
+          const header = document.querySelector('#header-component');
+          const headerTopRow = header?.querySelector('.header__row--top');
+          if (!headerTopRow) return;
+
+          window.requestAnimationFrame(function () {
+            header.style.setProperty('--top-row-height', `${headerTopRow.getBoundingClientRect().height}px`);
+          });
+        })();
+
+        /**
+         * Sets `--transparent-header-offset-boolean` when the first section must offset itself
+         * under a transparent header. The non-offset case relies on the `0` default declared in
+         * sections/header.liquid — unlike updateTransparentHeaderOffset() in utilities.js, which
+         * re-runs on editor changes and must write '0' to reset a previously written '1'.
+         */
+        (function updateTransparentHeaderOffset() {
+          const header = document.querySelector('#header-component');
+          const headerSection = document.querySelector('#header-group .header-section');
+          if (!headerSection || !header?.hasAttribute('transparent')) return;
+
+          const hasImmediateSection = headerSection.nextElementSibling?.classList.contains('shopify-section');
+          if (!hasImmediateSection) {
+            document.body.style.setProperty('--transparent-header-offset-boolean', '1');
+          }
+        })();
+
+        /**
+         * Sets the initial menu style (inline menu vs. drawer) on the header component.
+         * Mimics setHeaderMenuStyle() in utilities.js
+         */
+        (function setHeaderMenuStyle() {
+          const headerComponent = document.querySelector('#header-component');
+          if (headerComponent) {
+            const isTouchDevice = 'ontouchstart' in window && navigator.maxTouchPoints > 0;
+            const overflowList = headerComponent.querySelector('overflow-list');
+            const hasReachedMinimum = overflowList && overflowList.hasAttribute('minimum-reached');
+            headerComponent.dataset.menuStyle = isTouchDevice || hasReachedMinimum ? 'drawer' : 'menu';
+          }
+        })();
+      </script>
+
+      <main
+        id="MainContent"
+        class="content-for-layout"
+        role="main"
+        data-page-transition-enabled="{{ settings.page_transition_enabled }}"
+        data-product-transition="{{ settings.transition_to_main_product }}"
+        data-template="{{ template }}"
+      >
+        {{ content_for_layout }}
+      </main>
+
+      <footer>
+        {% sections 'footer-group' %}
+      </footer>
     </div>
 
-    {% comment %} [CUSTOM-GILLES] Suppression de blocking="render" pour le LCP {% endcomment %}
-    <script
-      src="{{ 'critical.js' | asset_url }}"
-      type="module"
-      async
-    ></script>
-
-    <main
-      id="MainContent"
-      class="content-for-layout"
-      role="main"
-      data-page-transition-enabled="{{ settings.page_transition_enabled }}"
-      data-product-transition="{{ settings.transition_to_main_product }}"
-      data-template="{{ template }}"
-    >
-      {{ content_for_layout }}
-    </main>
-
-    {% sections 'footer-group' %}
+    {% render 'cart-drawer', render_wrapper: true %}
+    {% render 'theme-drawer' %}
 
     {% render 'search-modal' %}
 
@@ -369,45 +180,6 @@
       {% render 'quick-add-modal' %}
     {% endif %}
 
-    {% comment %} [CUSTOM-GILLES] Interaction Loader pour Scripts Tiers (TBT Killer) {% endcomment %}
-    <script>
-      (function() {
-        let userInteracted = false;
-        
-        function loadLazyScripts() {
-          if (userInteracted) return;
-          userInteracted = true;
-          
-          console.log('[Performance] Chargement des scripts tiers...');
-          
-          // 1. Charger les scripts marqués avec type="text/lazy-load"
-          const lazyScripts = document.querySelectorAll('script[type="text/lazy-load"]');
-          lazyScripts.forEach(script => {
-            const newScript = document.createElement('script');
-            if (script.dataset.src) newScript.src = script.dataset.src;
-            if (script.innerHTML) newScript.innerHTML = script.innerHTML;
-            Array.from(script.attributes).forEach(attr => {
-              if (attr.name !== 'type' && attr.name !== 'data-src') {
-                newScript.setAttribute(attr.name, attr.value);
-              }
-            });
-            script.parentNode.replaceChild(newScript, script);
-          });
-
-          // 2. Exemple pour charger dynamiquement Facebook ou Toki s'ils ne sont pas dans le HTML
-          // if (!document.getElementById('facebook-jssdk')) {
-          //   const fjs = document.createElement('script'); 
-          //   fjs.src = "https://connect.facebook.net/en_US/fbevents.js";
-          //   document.body.appendChild(fjs);
-          // }
-        }
-
-        const events = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart'];
-        events.forEach(event => window.addEventListener(event, loadLazyScripts, { once: true, passive: true }));
-        
-        // Fallback de sécurité : charger après 6 secondes quoi qu'il arrive
-        setTimeout(loadLazyScripts, 6000);
-      })();
-    </script>
+    {% render 'custom-lazy-scripts' %} {% # [CUSTOM-GILLES] chargement différé des scripts tiers %}
   </body>
 </html>

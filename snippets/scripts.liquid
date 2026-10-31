@@ -1,11 +1,18 @@
+{% doc %}
+  Renders all global scripts, module preloads, and importmaps for the theme.
+
+  @param {object} [product] - The product object, available on product pages.
+{% enddoc %}
+
 <script type="importmap">
   {
     "imports": {
-      "@theme/critical": "{{ 'critical.js' | asset_url }}",
-      "@theme/product-title": "{{ 'product-title-truncation.js' | asset_url }}",
+      "@theme/overflow-list": "{{ 'overflow-list.js' | asset_url }}",
       "@theme/component": "{{ 'component.js' | asset_url }}",
       "@theme/dialog": "{{ 'dialog.js' | asset_url }}",
       "@theme/events": "{{ 'events.js' | asset_url }}",
+      "@shopify/events": "https://cdn.shopify.com/storefront/standard-events.js",
+      "@theme/view-event-elements": "{{ 'view-event-elements.js' | asset_url }}",
       "@theme/focus": "{{ 'focus.js' | asset_url }}",
       "@theme/morph": "{{ 'morph.js' | asset_url }}",
       "@theme/paginated-list": "{{ 'paginated-list.js' | asset_url }}",
@@ -15,33 +22,51 @@
       "@theme/scrolling": "{{ 'scrolling.js' | asset_url }}",
       "@theme/section-renderer": "{{ 'section-renderer.js' | asset_url }}",
       "@theme/section-hydration": "{{ 'section-hydration.js' | asset_url }}",
+      "@theme/money-formatting": "{{ 'money-formatting.js' | asset_url }}",
       "@theme/utilities": "{{ 'utilities.js' | asset_url }}",
       "@theme/variant-picker": "{{ 'variant-picker.js' | asset_url }}",
+      "@theme/variant-resolution": "{{ 'variant-resolution.js' | asset_url }}",
       "@theme/media-gallery": "{{ 'media-gallery.js' | asset_url }}",
       "@theme/quick-add": "{{ 'quick-add.js' | asset_url }}",
       "@theme/paginated-list-aspect-ratio": "{{ 'paginated-list-aspect-ratio.js' | asset_url }}",
-      "@theme/popover-polyfill": "{{ 'popover-polyfill.js' | asset_url }}",
-      "@theme/component-quantity-selector": "{{ 'component-quantity-selector.js' | asset_url }}"
+      "@theme/component-cart-items": "{{ 'component-cart-items.js' | asset_url }}",
+      "@theme/component-quantity-selector": "{{ 'component-quantity-selector.js' | asset_url }}",
+      "@theme/comparison-slider": "{{ 'comparison-slider.js' | asset_url }}",
+      "@theme/sticky-add-to-cart": "{{ 'sticky-add-to-cart.js' | asset_url }}",
+      "@theme/fly-to-cart": "{{ 'fly-to-cart.js' | asset_url }}",
+      "@theme/scroll-container": "{{ 'scroll-container.js' | asset_url }}",
+      "@theme/theme-drawer": "{{ 'theme-drawer.js' | asset_url }}"
     }
   }
 </script>
 
-{% if settings.transition_to_main_product %}
-  {% # theme-check-disable ParserBlockingScript %}
-    {% comment %} [CUSTOM-GILLES] Suppression de blocking="render" {% endcomment %}
-    <script
-      src="{{ 'view-transitions.js' | asset_url }}"
-      async
-    ></script>
-  {% # theme-check-enable %}
+{%- comment -%}
+  Registers Horizon's cart-drawer behaviour against the standard-actions
+  bundle (loaded separately into <head>). Module scripts execute in
+  document order, so this runs after the bundle regardless of where it
+  lands in <head>.
+{%- endcomment -%}
+<script
+  src="{{ 'standard-actions-override.js' | asset_url }}"
+  type="module"
+></script>
+
+<script
+  src="{{ 'page-view-event.js' | asset_url }}"
+  type="module"
+  defer
+></script>
+
+{% if settings.transition_to_main_product or settings.page_transition_enabled %}
+  {%- comment -%}
+    Inlined to avoid a network round trip for a render blocking asset.
+  {%- endcomment -%}
+  <script>
+    {{- 'view-transitions.js' | inline_asset_content -}}
+  </script>
 {% endif %}
 
-{% comment %} [CUSTOM-GILLES] Suppression des modulepreload non-essentiels pour libérer la bande passante (LCP) {% endcomment %}
-<link
-  rel="modulepreload"
-  href="{{ 'critical.js' | asset_url }}"
->
-
+{% comment %} [CUSTOM-GILLES] Début : modulepreload non essentiels désactivés pour libérer la bande passante (LCP) {% endcomment %}
 {% comment %}
 <link
   rel="modulepreload"
@@ -68,10 +93,8 @@
   href="{{ 'morph.js' | asset_url }}"
   fetchpriority="low"
 >
-{% endcomment %}
 
 {% if template.name == 'collection' or template.name == 'search' %}
-  {% comment %}
   <link
     rel="modulepreload"
     href="{{ 'paginated-list-aspect-ratio.js' | asset_url }}"
@@ -82,16 +105,8 @@
     href="{{ 'paginated-list.js' | asset_url }}"
     fetchpriority="low"
   >
-
-  <link
-    rel="modulepreload"
-    href="{{ 'product-title-truncation.js' | asset_url }}"
-    fetchpriority="low"
-  >
-  {% endcomment %}
 {% endif %}
 
-{% comment %}
 <link
   rel="modulepreload"
   href="{{ 'focus.js' | asset_url }}"
@@ -113,17 +128,26 @@
   fetchpriority="low"
 >
 {% endcomment %}
-{% comment %} [CUSTOM-GILLES] Chargement conditionnel du Polyfill Popover {% endcomment %}
-<script>
-  if (!('showPopover' in document.createElement('div'))) {
-    import("{{ 'popover-polyfill.js' | asset_url }}");
-  }
-</script>
+{% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
 <script
-  src="{{ 'quick-add.js' | asset_url }}"
+  src="{{ 'overflow-list.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
+{% if settings.quick_add or settings.mobile_quick_add %}
+  <script
+    src="{{ 'quick-add.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
+{% endif %}
+{% if settings.show_cart_note %}
+  <script
+    src="{{ 'cart-note.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
+{% endif %}
 {% if settings.show_add_discount_code %}
   <script
     src="{{ 'cart-discount.js' | asset_url }}"
@@ -131,6 +155,7 @@
     fetchpriority="low"
   ></script>
 {% endif %}
+
 <script
   src="{{ 'dialog.js' | asset_url }}"
   type="module"
@@ -152,12 +177,12 @@
   fetchpriority="low"
 ></script>
 <script
-  src="{{ 'accordion-custom.js' | asset_url }}"
+  src="{{ 'fly-to-cart.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
 <script
-  src="{{ 'disclosure-custom.js' | asset_url }}"
+  src="{{ 'accordion-custom.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
@@ -172,7 +197,7 @@
   fetchpriority="low"
 ></script>
 <script
-  src="{{ 'product-title-truncation.js' | asset_url }}"
+  src="{{ 'product-sku.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
@@ -188,6 +213,11 @@
 ></script>
 <script
   src="{{ 'slideshow.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+<script
+  src="{{ 'layered-slideshow.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
@@ -222,7 +252,17 @@
   fetchpriority="low"
 ></script>
 <script
-  src="{{ 'gift-card-recipient-form.js' | asset_url }}"
+  src="{{ 'volume-pricing.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+<script
+  src="{{ 'price-per-item.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+<script
+  src="{{ 'volume-pricing-info.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
@@ -235,19 +275,16 @@
   ></script>
 {% endif %}
 
-{% if template == 'product' %}
+{% if template == 'product' or template.name == 'product' or request.page_type == 'product' %}
+  <script
+    src="{{ 'sticky-add-to-cart.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
   <script type="module">
     import { RecentlyViewed } from '@theme/recently-viewed-products';
     RecentlyViewed.addProduct('{{ product.id }}');
   </script>
-{% endif %}
-
-{% if settings.transition_to_main_product %}
-  <script
-    src="{{ 'product-card-link.js' | asset_url }}"
-    type="module"
-    fetchpriority="low"
-  ></script>
 {% endif %}
 
 <script
@@ -256,26 +293,21 @@
 ></script>
 
 <script>
-  const basePath = 'https://cdn.shopify.com/static/themes/horizon/placeholders';
+  const supportsNativePopover = 'popover' in HTMLElement.prototype;
   const Theme = {
-    placeholders: {
-      general: [
-        `${basePath}/general-1.png`,
-        `${basePath}/general-2.png`,
-        `${basePath}/general-3.png`,
-        `${basePath}/general-4.png`,
-        `${basePath}/general-5.png`,
-        `${basePath}/general-6.png`,
-        `${basePath}/general-7.png`,
-      ],
-      product: [`${basePath}/product-ball.png`, `${basePath}/product-cone.png`, `${basePath}/product-cube.png`],
-    },
+    supportsNativePopover,
+    popoverPolyfillReady: supportsNativePopover
+      ? Promise.resolve()
+      : import("{{ 'popover-polyfill.js' | asset_url }}").then(() => {}),
     translations: {
       placeholder_image: `{{ 'content.placeholder_image' | t }}`,
       added: `{{ 'actions.added' | t }}`,
       recipient_form_fields_visible: `{{ 'content.recipient_form_fields_visible' | t }}`,
       recipient_form_fields_hidden: `{{ 'content.recipient_form_fields_hidden' | t }}`,
       recipient_form_error: `{{ 'content.recipient_form_error' | t }}`,
+      items_added_to_cart_one: `{{ 'content.items_added_to_cart.one' | t }}`,
+      items_added_to_cart_other: `{{ 'content.items_added_to_cart.other' | t }}`,
+      cart_count: `{{ 'accessibility.cart_count' | t }}`,
     },
     routes: {
       cart_add_url: '{{ routes.cart_add_url | append: '.js' }}',

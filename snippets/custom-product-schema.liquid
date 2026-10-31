@@ -1,0 +1,255 @@
+{% comment %} [CUSTOM-GILLES]   Schema JSON LD - Product {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ product.title | strip_html | escape }}",
+  "url": "{{ shop.url }}{{ product.url }}",
+  "sku": "{{ product.selected_or_first_available_variant.sku }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "{{ product.vendor | escape }}"
+  },
+  "inProductGroupWithID": "{{ product.metafields.global.reference | default: product.id | replace: ' ', '-' | replace: '/', '-' | replace: '_', '-' | truncate: 50 | escape }}",
+  "category": "{{ product.metafields.custom.categories | escape }}",
+  "description": {{ product.description | strip_html | default: "Product description not available" | json }},
+  "image": [
+    "https:{{ product.featured_image.src | image_url }}"
+    {% for image in product.images offset: 1 limit: 2 %}
+    , "https:{{ image | image_url }}"
+    {% endfor %}
+  ],
+  "keywords": {{ product.featured_image.alt | json }}
+
+  {%- assign dim_obj = product.metafields.custom.product_dimensions.value -%}
+  
+  {%- if dim_obj -%}
+    {%- assign raw_h = dim_obj.height_cm.value | default: dim_obj.height_cm -%}
+    {%- assign raw_l = dim_obj.length_cm.value | default: dim_obj.length_cm -%}
+    {%- assign raw_w = dim_obj.width_cm.value | default: dim_obj.width_cm -%}
+    {%- assign raw_d = dim_obj.depth_cm.value | default: dim_obj.depth_cm -%}
+
+    {%- assign final_h = raw_h -%}
+    {%- assign final_l = raw_l -%}
+    {%- assign final_w = raw_w -%}
+
+    {%- if final_l == blank and raw_w != blank and raw_d != blank -%}
+      {%- assign final_l = raw_w -%}
+      {%- assign final_w = raw_d -%}
+    {%- elsif final_w == blank and raw_d != blank -%}
+      {%- assign final_w = raw_d -%}
+    {%- endif -%}
+
+    {%- assign final_w = final_w | downcase | remove: 'cm' | remove: 'mm' | replace: ',', '.' | strip -%}
+    {%- assign final_h = final_h | downcase | remove: 'cm' | remove: 'mm' | replace: ',', '.' | strip -%}
+    {%- assign final_l = final_l | downcase | remove: 'cm' | remove: 'mm' | replace: ',', '.' | strip -%}
+
+    {%- if final_w != blank -%}
+    , "width": {
+      "@type": "QuantitativeValue",
+      "value": {{ final_w | plus: 0 }},
+      "unitCode": "CMT"
+    }
+    {%- endif -%}
+    {%- if final_h != blank -%}
+    , "height": {
+      "@type": "QuantitativeValue",
+      "value": {{ final_h | plus: 0 }},
+      "unitCode": "CMT"
+    }
+    {%- endif -%}
+    {%- if final_l != blank -%}
+    , "depth": {
+      "@type": "QuantitativeValue",
+      "value": {{ final_l | plus: 0 }},
+      "unitCode": "CMT"
+    }
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- assign comp_list = product.metafields.custom.composition.value -%}
+  {%- if comp_list -%}
+    {%- capture material_string -%}
+      {%- for item in comp_list -%}
+        {{ item.name }}{% unless forloop.last %}, {% endunless %}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if material_string != blank -%}
+    , "material": {{ material_string | strip | json }}
+    {%- endif -%}
+  {%- endif -%}
+
+  {% assign season_raw = product.metafields.custom.saison %}
+  {% assign season_prefix = '' %}
+  {% assign season_year2 = '' %}
+  {% assign season_year4 = '' %}
+  {% assign season_code = '' %}
+  {% assign season_label = '' %}
+
+  {% if season_raw %}
+    {% assign raw_up = season_raw | upcase %}
+    {% for j in (0..99) %}
+      {% if season_year2 == '' and season_prefix == '' %}
+        {% assign jj = j | prepend: '0' | slice: -2, 2 %}
+        {% assign token_p = 'P' | append: jj %}
+        {% assign token_h = 'H' | append: jj %}
+        {% if raw_up contains token_p %}
+          {% assign season_prefix = 'SS' %}
+          {% assign season_year2 = jj %}
+        {% endif %}
+        {% if season_year2 == '' and raw_up contains token_h %}
+          {% assign season_prefix = 'FW' %}
+          {% assign season_year2 = jj %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if season_prefix == '' %}
+      {% if season_raw contains 'Spring' or season_raw contains 'Summer' %}
+        {% assign season_prefix = 'SS' %}
+      {% elsif season_raw contains 'Fall' or season_raw contains 'Winter' %}
+        {% assign season_prefix = 'FW' %}
+      {% endif %}
+    {% endif %}
+    {% if season_year2 == '' %}
+      {% for i in (1980..2099) %}
+        {% assign y = i | append: '' %}
+        {% if season_raw contains y %}
+          {% assign season_year4 = y %}
+          {% assign season_year2 = y | slice: 2, 2 %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if season_prefix != '' and season_year2 != '' %}
+      {% assign season_code = season_prefix | append: season_year2 %}
+      {% if season_year4 == '' %}
+        {% assign season_year4 = '20' | append: season_year2 %}
+      {% endif %}
+      {% if season_prefix == 'FW' %}
+        {% assign season_label = 'Fall Winter ' | append: season_year4 %}
+      {% else %}
+        {% assign season_label = 'Spring Summer ' | append: season_year4 %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% assign props = '' %}
+  {% assign season_display = season_label | default: season_raw %}
+  {% if season_display %}
+    {% assign props = props | append: '{ "@type": "PropertyValue", "name": "Season", "value": "' | append: season_display | append: '" }' %}
+    {% if season_code %}
+      {% assign props = props | append: ', { "@type": "PropertyValue", "name": "SeasonCode", "value": "' | append: season_code | append: '" }' %}
+    {% endif %}
+  {% endif %}
+
+  {% if props != '' %}
+  , "additionalProperty": [ {{ props }} ]
+  {% endif %}
+
+  {% if product.metafields.custom.fabrication %}
+  , "countryOfOrigin": "{{ product.metafields.custom.fabrication | escape }}"
+  {% endif %}
+
+  , "audience": {
+    "@type": "PeopleAudience",
+    "suggestedGender": "{{ product.metafields.custom.genre.name | default: 'Unisex' }}",
+    "suggestedMinAge": 13
+  },
+
+  "offers": [
+  {%- for variant in product.variants -%}
+    {
+      "@type": "Offer",
+      "priceCurrency": "{{ shop.currency }}",
+      "price": "{{ variant.price | divided_by: 100.00 }}",
+      "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 | append: '-12-31' }}",
+      "itemCondition": "NewCondition",
+      "availability": "{% if variant.available %}InStock{% elsif variant.inventory_quantity == 0 and variant.incoming %}PreOrder{% else %}OutOfStock{% endif %}",
+      "url": "{{ shop.url }}{{ product.url }}",
+      "sku": "{{ variant.sku }}",
+      {% if variant.barcode %}
+        "gtin": "{{ variant.barcode }}",
+      {% endif %}
+      {% if variant.metafields.custom.mpn %}
+        "mpn": "{{ variant.metafields.custom.mpn | escape }}",
+      {% endif %}
+      {% if variant.image %}
+        "image": "https:{{ variant.image.src | image_url }}",
+      {% elsif product.featured_image %}
+        "image": "https:{{ product.featured_image.src | image_url }}",
+      {% endif %}
+      "name": "{{ product.title | strip_html | escape }}{% if variant.title != 'Default Title' %} - {{ variant.title | escape }}{% endif %}",
+      "seller": {
+        "@type": "OnlineStore",
+        "name": "{{ shop.name | escape }}",
+        "url": "{{ shop.url }}"
+      },
+      "availableDeliveryMethod": "https://schema.org/ParcelService",
+      {% assign eu_countries = "AT,BE,BG,CY,CZ,DE,DK,EE,ES,FI,FR,GR,HR,HU,IE,IT,LT,LU,LV,MT,NL,PL,PT,RO,SE,SI,SK" | split: "," %}
+      {% assign other_countries = "US,CA,KR,JP,CN,IN,AU,NZ,BR,MX,RU,AR,ZA,SA,TR,TH,SG,MY,VN,ID,AE" | split: "," %}
+      {% assign shipping_json = "" %}
+      {% assign rate_eu = "9.90" %}
+      {% if variant.price > 30000 %}
+        {% assign rate_eu = "0" %}
+      {% endif %}
+      {% for country in eu_countries %}
+        {% if shipping_json != "" %}{% assign shipping_json = shipping_json | append: ", " %}{% endif %}
+        {% assign shipping_json = shipping_json
+          | append: '{ "@type": "OfferShippingDetails", "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "' 
+          | append: country 
+          | append: '" }, "shippingRate": { "@type": "MonetaryAmount", "value": "' 
+          | append: rate_eu 
+          | append: '", "currency": "' | append: shop.currency | append: '" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "d" } } }' %}
+      {% endfor %}
+      {% assign rate_row = "19.90" %}
+      {% if variant.price > 50000 %}
+        {% assign rate_row = "0" %}
+      {% endif %}
+      {% for country in other_countries %}
+        {% if shipping_json != "" %}{% assign shipping_json = shipping_json | append: ", " %}{% endif %}
+        {% assign shipping_json = shipping_json
+          | append: '{ "@type": "OfferShippingDetails", "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "' 
+          | append: country 
+          | append: '" }, "shippingRate": { "@type": "MonetaryAmount", "value": "' 
+          | append: rate_row 
+          | append: '", "currency": "' | append: shop.currency | append: '" }, "deliveryTime": { "@type": "ShippingDeliveryTime", "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "d" }, "transitTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 5, "unitCode": "d" } } }' %}
+     {% endfor %}
+      "shippingDetails": [ {{ shipping_json }} ],
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": [
+          "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK",
+          "US", "CA", "KR", "JP", "CN", "IN", "AU", "NZ", "BR", "MX", "RU", "AR", "ZA", "SA", "TR", "TH", "SG", "MY", "VN", "ID", "AE"
+        ],
+        "url": "{{ shop.url }}{% unless request.locale.iso_code == 'fr' %}/{{ request.locale.iso_code }}{% endunless %}/policies/refund-policy",
+        "merchantReturnDays": 30,
+        "returnFees": "ReturnFeesCustomerResponsibility",
+        "returnMethod": "ReturnByMail",
+        "returnPolicyCategory": "MerchantReturnFiniteReturnWindow"
+      }
+    }{% unless forloop.last %},{% endunless %}
+  {%- endfor -%}
+  ],
+
+  "hasMerchantReturnPolicy": {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": [
+      "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI", "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT", "NL", "PL", "PT", "RO", "SE", "SI", "SK",
+      "US", "CA", "KR", "JP", "CN", "IN", "AU", "NZ", "BR", "MX", "RU", "AR", "ZA", "SA", "TR", "TH", "SG", "MY", "VN", "ID", "AE"
+    ],
+    "url": "{{ shop.url }}{% unless request.locale.iso_code == 'en' %}/{{ request.locale.iso_code }}{% endunless %}/policies/refund-policy",
+    "merchantReturnDays": 30,
+    "returnFees": "ReturnFeesCustomerResponsibility",
+    "returnMethod": "ReturnByMail",
+    "returnPolicyCategory": "MerchantReturnFiniteReturnWindow"
+  }{% if review_count > 0 and review_value > 0 %},
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": {{ review_value }},
+    "reviewCount": {{ review_count }},
+    "bestRating": 5,
+    "worstRating": 1
+  }
+  {% endif %}
+}
+</script>
+{% comment %} [CUSTOM-GILLES]  FIN Schema JSON LD - Product {% endcomment %}

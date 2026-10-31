@@ -1,16 +1,24 @@
-{% comment %} [CUSTOM-GILLES] Ajout du contrôle d'accès marque {% endcomment %}
-{% render 'brand-access-control' %}
-
+{% render 'brand-access-control' %} {% # [CUSTOM-GILLES] contrôle d'accès marque %}
 <script
   src="{{ 'results-list.js' | asset_url }}"
   type="module"
   fetchpriority="low"
 ></script>
 
-<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+{% liquid
+  if section.settings.background_color != blank
+    render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+  endif
+%}
+
+{% render 'collection-wrapper-styles' %}
+
+<div
+  class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+></div>
 
 <results-list
-  class="section product-grid-container spacing-style color-{{ section.settings.color_scheme }}"
+  class="section product-grid-container spacing-style{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
   style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
   section-id="{{ section.id }}"
   infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
@@ -39,34 +47,23 @@
 
       {% capture children %}
         {% for product in products %}
-          
-          {% comment %} [CUSTOM-GILLES] Début : Logique pour cacher Dior en FR si non connecté {% endcomment %}
-          {% assign product_vendor = product.vendor | downcase %}
-          {% assign show_product = true %}
-          
-          {% if product_vendor contains 'dior' %}
-            {% if customer == blank and localization.country.iso_code == 'FR' %}
-              {% assign show_product = false %}
-            {% endif %}
-          {% endif %}
-          
-          {% if show_product %}
-          {% comment %} [CUSTOM-GILLES] Fin logique (Condition ouverte) {% endcomment %}
-
-            <li
-              id="{{ section.id }}-{{ product.id }}"
-              class="product-grid__item product-grid__item--{{ forloop.index0 }}"
-              data-page="{{ paginate.current_page }}"
-              data-product-id="{{ product.id }}"
-              ref="cards[]"
-            >
-              {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
-            </li>
-
-          {% comment %} [CUSTOM-GILLES] Fermeture de la condition {% endcomment %}
-          {% endif %}
-          {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
-
+          {%- capture custom_restricted -%}{% render 'custom-restricted', product: product %}{%- endcapture -%}
+          {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
+          <li
+            id="{{ section.id }}-{{ product.id }}"
+            class="product-grid__item product-grid__item--{{ forloop.index0 }}"
+            data-page="{{ paginate.current_page }}"
+            data-product-id="{{ product.id }}"
+            ref="cards[]"
+          >
+            {% content_for 'block',
+              type: '_product-card',
+              id: 'product-card',
+              closest.product: product,
+              product_view_context: 'search'
+            %}
+          </li>
+          {%- endunless -%} {% # [CUSTOM-GILLES] fin %}
         {% endfor %}
       {% endcapture %}
 
@@ -235,10 +232,10 @@
       "content": "t:content.section_layout"
     },
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:settings.color_scheme",
-      "default": "scheme-1"
+      "type": "color",
+      "id": "background_color",
+      "label": "t:settings.background_color",
+      "placeholder": "t:settings.default"
     },
     {
       "type": "range",

@@ -1,0 +1,24 @@
+{%- doc -%}
+  [CUSTOM-GILLES] Badge « CLUB REWARDS » pour les produits tagués reward-ready.
+  Remplace le badge Épuisé/Promo sur la carte produit.
+{%- enddoc -%}
+<div class="product-badges__badge product-badges__badge--rectangle product-badges__badge--reward color-custom-badge-sale">
+  <span class="product-badges__badge-text">CLUB REWARDS</span>
+</div>
+
+{% stylesheet %}
+  .product-badges__badge--reward {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-foreground);
+    border-radius: var(--badge-border-radius);
+    padding: var(--padding-xs);
+    text-decoration: none;
+    gap: var(--padding-xs);
+  }
+
+  .product-badges__badge-text {
+    font-size: var(--font-size--xs);
+  }
+{% endstylesheet %}
