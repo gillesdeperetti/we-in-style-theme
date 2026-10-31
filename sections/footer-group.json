@@ -114,7 +114,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 },
@@ -139,7 +140,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 },
@@ -164,7 +166,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 }
@@ -307,7 +310,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 },
@@ -326,7 +330,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 }
@@ -395,7 +400,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 },
@@ -414,7 +420,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 }
@@ -483,7 +490,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 },
@@ -508,7 +516,8 @@
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
-                    "padding-inline-end": 0
+                    "padding-inline-end": 0,
+                    "text_color": "#000000"
                   },
                   "blocks": {}
                 }
@@ -592,7 +601,8 @@
                 "image_upload": "shopify://shop_images/Bitcoin_svg.webp",
                 "width": 24,
                 "link": "",
-                "open_in_new_tab": false
+                "open_in_new_tab": false,
+                "icon_color": "#000000"
               },
               "blocks": {}
             },
@@ -604,7 +614,8 @@
                 "image_upload": "shopify://shop_images/Ethereum_Logo.webp",
                 "width": 24,
                 "link": "",
-                "open_in_new_tab": false
+                "open_in_new_tab": false,
+                "icon_color": "#000000"
               },
               "blocks": {}
             },
@@ -616,7 +627,8 @@
                 "image_upload": "shopify://shop_images/pyusd.png",
                 "width": 28,
                 "link": "",
-                "open_in_new_tab": false
+                "open_in_new_tab": false,
+                "icon_color": "#000000"
               },
               "blocks": {}
             },
@@ -628,7 +640,8 @@
                 "image_upload": "shopify://shop_images/binance.png",
                 "width": 28,
                 "link": "",
-                "open_in_new_tab": false
+                "open_in_new_tab": false,
+                "icon_color": "#000000"
               },
               "blocks": {}
             },
@@ -640,7 +653,8 @@
                 "image_upload": "shopify://shop_images/eurc.webp",
                 "width": 28,
                 "link": "",
-                "open_in_new_tab": false
+                "open_in_new_tab": false,
+                "icon_color": "#000000"
               },
               "blocks": {}
             },
@@ -652,7 +666,8 @@
                 "image_upload": "shopify://shop_images/usdc.webp",
                 "width": 28,
                 "link": "",
-                "open_in_new_tab": false
+                "open_in_new_tab": false,
+                "icon_color": "#000000"
               },
               "blocks": {}
             }
@@ -711,7 +726,8 @@
           "settings": {
             "show_powered_by": false,
             "font_size": "0.75rem",
-            "case": "none"
+            "case": "none",
+            "text_color": "#000000"
           },
           "blocks": {}
         },
@@ -719,7 +735,8 @@
           "type": "footer-policy-list",
           "settings": {
             "font_size": "0.75rem",
-            "case": "none"
+            "case": "none",
+            "text_color": "#000000"
           },
           "blocks": {}
         },
@@ -738,7 +755,8 @@
             "pinterest_url": "https://pinterest.com/we_in_style/",
             "tumblr_url": "",
             "vimeo_url": "",
-            "custom_url": ""
+            "custom_url": "",
+            "icon_color": "#000000"
           },
           "blocks": {}
         }

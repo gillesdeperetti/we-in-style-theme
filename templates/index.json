@@ -46,7 +46,8 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "text_color": "#afa26a"
               },
               "blocks": {}
             }
@@ -236,7 +237,8 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-end": 0,
+                "text_color": "#ffffff"
               },
               "blocks": {}
             }
@@ -544,7 +546,8 @@
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-inline-end": 0,
+            "text_color": "#ffffff"
           },
           "blocks": {}
         },
