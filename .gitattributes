@@ -1,0 +1,7 @@
+# Contenu/réglages de la boutique : toujours garder la version de la boutique lors d'une mise à jour
+config/settings_data.json merge=ours
+templates/*.json merge=ours
+templates/**/*.json merge=ours
+sections/*.json merge=ours
+# Fichiers de langue : fusionnés clé par clé par tools/merge_locales.py
+locales/*.json merge=ours
