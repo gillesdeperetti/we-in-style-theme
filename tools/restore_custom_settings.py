@@ -41,8 +41,13 @@ for d in ('templates', 'sections'):
                 old_v = (s.get('settings') or {}).get(key, None)
                 if old_v is None: continue
                 new_s = b[k].get('settings') or {}
-                # 2) réglage ajouté par ton code (supprimé par la migration) ou 3) valeur effacée par la migration
-                if (key in custom and new_s.get(key) != old_v) or (key not in custom and key not in new_s):
+                # 3) valeur effacée par la migration : Shopify l'a jugée invalide, la remettre ferait rejeter
+                #    le template entier au téléversement -> on la signale seulement, à refaire dans l'éditeur
+                if key not in custom and key not in new_s:
+                    print(f"  ⚠️  À refaire dans l'éditeur : {d}/{f} > {t}.{key} = {json.dumps(old_v, ensure_ascii=False)[:80]}")
+                    continue
+                # 2) réglage ajouté par ton code (supprimé par la migration)
+                if key in custom and new_s.get(key) != old_v:
                     b[k].setdefault('settings', {})[key] = s['settings'][key]; changed = True; n += 1
                     print(f"  {d}/{f}: {s['type']}.{key} = {json.dumps(s['settings'][key], ensure_ascii=False)[:60]}")
         if changed: json.dump(doc, open(fp, 'w', encoding='utf-8'), ensure_ascii=False, indent=2)
