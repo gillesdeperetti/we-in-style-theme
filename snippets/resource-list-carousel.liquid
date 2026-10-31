@@ -146,4 +146,39 @@
       content-visibility: visible;
     }
   }
+
+  /*
+    Touch: keep this scroller horizontal only.
+    overflow-x: scroll otherwise computes overflow-y to auto. With the 16px
+    padding above, iOS then treats the carousel as a vertical scroller too:
+    after a sideways swipe, the page no longer moves up or down.
+  */
+  @media (hover: none) {
+    .resource-list__carousel > slideshow-container {
+      overflow-block: clip;
+    }
+
+    .resource-list__carousel > slideshow-container > slideshow-slides {
+      margin-block: 0;
+      padding-block: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      scroll-behavior: auto;
+      touch-action: pan-x pan-y pinch-zoom;
+      /* Safari réajuste la page vers le bas dès qu'une carte change de taille. */
+      overflow-anchor: none;
+    }
+
+    /*
+      Inactive slides use content-visibility: hidden. On iPhone Safari they
+      blink in and out while scrolling, the row changes height, and the page
+      fights an upward swipe.
+    */
+    .resource-list__carousel slideshow-slide,
+    .resource-list__carousel slideshow-slide:not([aria-hidden='false']) {
+      content-visibility: visible;
+      overflow-anchor: none;
+    }
+  }
 {% endstylesheet %}

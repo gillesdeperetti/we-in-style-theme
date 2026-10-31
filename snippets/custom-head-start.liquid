@@ -32,8 +32,30 @@
       /* [CUSTOM-GILLES] Mobile : dans les carrousels de produits, toujours la 1re image de la carte.
          Sans ça, le glissement du doigt fait défiler les images à l'intérieur des cartes. */
       @media (hover: none) {
+        html {
+          scroll-behavior: auto !important;
+        }
+
         .card-gallery slideshow-component[disabled='true'] slideshow-slide:not(:first-of-type) {
           display: none !important;
+        }
+
+        /* overflow: hidden crée un conteneur de défilement. Sur iOS il avale
+           le geste vertical même quand la carte ne doit plus glisser. */
+        .card-gallery slideshow-component[disabled='true'] slideshow-slides {
+          overflow: clip;
+          touch-action: pan-x pan-y pinch-zoom;
+        }
+
+        /* Safari iPhone fait clignoter les blocs dont la hauteur est estimée,
+           et le saut empêche de remonter. On ne saute plus le rendu au toucher. */
+        .product-grid,
+        .collection-list,
+        .footer,
+        .footer-content {
+          content-visibility: visible !important;
+          contain: none;
+          contain-intrinsic-size: none;
         }
       }
     </style>
