@@ -53,7 +53,7 @@
   {% capture list_items %}
     {% for collection in section_collections limit: max_items %}
       {%- capture custom_restricted -%}{% render 'custom-restricted', collection: collection %}{%- endcapture -%}
-      {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
+      {%- unless custom_restricted contains 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
       <div class="resource-list__item">
         {% content_for 'block', type: '_collection-card', id: 'static-collection-card', closest.collection: collection %}
       </div>

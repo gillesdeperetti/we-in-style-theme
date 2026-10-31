@@ -3,7 +3,7 @@
   marque Dior, visiteur en France, client non connecté.
   Usage :
     {%- capture r -%}{% render 'custom-restricted', product: product %}{%- endcapture -%}
-    {%- unless r == 'restricted' -%} ... {%- endunless -%}
+    {%- unless r contains 'restricted' -%} ... {%- endunless -%}
 
   @param {object} [product] - Produit à tester (vendor)
   @param {object} [collection] - Collection à tester (titre)

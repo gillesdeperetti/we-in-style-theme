@@ -32,7 +32,7 @@
       {% paginate section.settings.collection.products by max_items %}
         {% for product in section.settings.collection.products limit: max_items %}
         {%- capture custom_restricted -%}{% render 'custom-restricted', product: product %}{%- endcapture -%}
-        {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
+        {%- unless custom_restricted contains 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
         <div
           class="resource-list__item"
         >

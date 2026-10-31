@@ -54,7 +54,7 @@
           endif
         %}
         {%- capture custom_restricted -%}{% render 'custom-restricted', collection: collection %}{%- endcapture -%}
-        {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
+        {%- unless custom_restricted contains 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
         {% content_for 'block',
           type: '_collection-link',
           id: 'link',
@@ -79,7 +79,7 @@
           %}
 
           {%- capture custom_restricted -%}{% render 'custom-restricted', collection: collection %}{%- endcapture -%}
-          {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
+          {%- unless custom_restricted contains 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
           {% capture slide %}
             {% content_for 'block',
               type: '_collection-link',

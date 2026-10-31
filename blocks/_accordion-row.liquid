@@ -4,7 +4,7 @@
   {% content_for 'blocks' %}
 {% endcapture %}
 {%- capture custom_accordion_visible -%}{% render 'custom-accordion-visibility', content: accordion_content, heading: block_settings.heading %}{%- endcapture -%}
-{%- if custom_accordion_visible == 'visible' -%}
+{%- if custom_accordion_visible contains 'visible' -%}
 {% comment %} [CUSTOM-GILLES] Fin {% endcomment %}
 
 {% capture accordion_row_children %}

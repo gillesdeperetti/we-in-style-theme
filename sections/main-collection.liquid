@@ -63,7 +63,7 @@
         {% capture children %}
           {% for product in collection.products %}
             {%- capture custom_restricted -%}{% render 'custom-restricted', product: product %}{%- endcapture -%}
-            {%- unless custom_restricted == 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
+            {%- unless custom_restricted contains 'restricted' -%} {% # [CUSTOM-GILLES] masque Dior FR non connecté %}
             <li
               id="{{ section.id }}-{{ product.id }}"
               class="product-grid__item product-grid__item--{{ forloop.index0 }}"
