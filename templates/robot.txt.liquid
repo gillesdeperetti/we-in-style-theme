@@ -1,92 +1,17 @@
-# we use Shopify as our ecommerce platform
 {%- comment -%}
-  Caution! Please read
-  https://help.shopify.com/en/manual/promoting-marketing/seo/editing-robots-txt
-  before proceeding to make changes to this file.
+  WE IN STYLE - robots.txt.liquid
+  Principe : on garde les règles par défaut de Shopify (maintenues et mises à jour
+  automatiquement, déjà adaptées aux agents IA), on bloque seulement les scrapers
+  agressifs, et on ajoute le blocage shopifybooster au groupe "*".
+  Tous les bots IA utiles (Googlebot, Google-Extended, Bingbot, Meta-WebIndexer,
+  Meta-ExternalFetcher, GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Applebot...)
+  suivent le groupe "*" : pages produits, collections, blogs ET politiques accessibles,
+  zones transactionnelles bloquées.
 {%- endcomment -%}
-
-{%- comment -%}
-  Règles "standard" : plus restrictives (tri, filtres, search, etc. bloqués)
-{%- endcomment -%}
-{%- assign disallow_rules = "
-Disallow: /a/downloads/-/*
-Disallow: /admin
-Disallow: /cart
-Disallow: /orders
-Disallow: /checkouts/
-Disallow: /checkout
-Disallow: /65011581085/checkouts
-Disallow: /65011581085/orders
-Disallow: /carts
-Disallow: /account
-Disallow: /collections/*sort_by*
-Disallow: /*/collections/*sort_by*
-Disallow: /collections/*+*
-Disallow: /collections/*%2B*
-Disallow: /collections/*%2b*
-Disallow: /*/collections/*+*
-Disallow: /*/collections/*%2B*
-Disallow: /*/collections/*%2b*
-Disallow: */collections/*filter*&*filter*
-Disallow: /blogs/*+*
-Disallow: /blogs/*%2B*
-Disallow: /blogs/*%2b*
-Disallow: /*/blogs/*+*
-Disallow: /*/blogs/*%2B*
-Disallow: /*/blogs/*%2b*
-Disallow: /*?*oseid=*
-Disallow: /*preview_theme_id*
-Disallow: /*preview_script_id*
-Disallow: /policies/
-Disallow: /*/policies/
-Disallow: /*/*?*ls=*&ls=*
-Disallow: /*/*?*ls%3D*%3Fls%3D*
-Disallow: /*/*?*ls%3d*%3fls%3d*
-Disallow: /search
-Disallow: /apple-app-site-association
-Disallow: /.well-known/shopify/monorail
-Disallow: /cdn/wpm/*.js
-Disallow: /recommendations/products
-Disallow: /*/recommendations/products
-Disallow: /customer_authentication
-Disallow: /*?return_to=
-Disallow: /*/customer_authentication
-" -%}
-
-{%- comment -%}
-  Règles "AI-friendly" :
-  - on protège seulement les zones sensibles (checkout, compte, etc.)
-  - on laisse l'accès à /search, /collections avec tri, filtres, recommandations...
-  Idéal pour OpenAI, Perplexity, Claude, etc.
-{%- endcomment -%}
-{%- assign disallow_rules_ai = "
-Disallow: /a/downloads/-/*
-Disallow: /admin
-Disallow: /cart
-Disallow: /orders
-Disallow: /checkouts/
-Disallow: /checkout
-Disallow: /65011581085/checkouts
-Disallow: /65011581085/orders
-Disallow: /carts
-Disallow: /account
-Disallow: /policies/
-Disallow: /*/policies/
-Disallow: /apple-app-site-association
-Disallow: /.well-known/shopify/monorail
-Disallow: /cdn/wpm/*.js
-Disallow: /customer_authentication
-Disallow: /*?return_to=
-Disallow: /*/customer_authentication
-" -%}
 
 # --------------------------------------------------------------------
-#  BOTS CHINOIS / SCRAPERS AGRESSIFS → BLOQUÉS
+#  SCRAPERS AGRESSIFS -> BLOQUÉS
 # --------------------------------------------------------------------
-User-agent: *
-Disallow: /?ref=shopifybooster
-Disallow: /?source=shopifybooster
-Disallow: /shopifybooster
 User-agent: PetalBot
 Disallow: /
 
@@ -99,129 +24,31 @@ Disallow: /
 User-agent: YisouSpider
 Disallow: /
 
-User-agent: AhrefsBot
-Disallow: /
-
-# (optionnel) Common Crawl si tu veux limiter la réutilisation large de ton contenu
 User-agent: CCBot
 Disallow: /
 
-
 # --------------------------------------------------------------------
-#  BOTS IA AVEC ACCÈS ÉTENDU (SAFE)
-#  → accès à la structure produit, search, filtres, recommandations, etc.
+#  OPTIONNEL : refuser l'entraînement des modèles Meta
+#  (sans impact sur les citations Meta AI, gérées par Meta-WebIndexer)
+#  Décommenter les 2 lignes ci-dessous pour activer.
 # --------------------------------------------------------------------
-
-# OpenAI
-User-agent: GPTBot
-{{ disallow_rules_ai }}
-
-User-agent: OAI-SearchBot
-{{ disallow_rules_ai }}
-
-User-agent: ChatGPT-User
-{{ disallow_rules_ai }}
-
-User-agent: ChatGPT-User/2.0
-{{ disallow_rules_ai }}
-
-# Anthropic / Claude
-User-agent: anthropic-ai
-{{ disallow_rules_ai }}
-
-User-agent: ClaudeBot
-{{ disallow_rules_ai }}
-
-User-agent: claude-web
-{{ disallow_rules_ai }}
-
-# Perplexity
-User-agent: PerplexityBot
-{{ disallow_rules_ai }}
-
-User-agent: Perplexity-User
-{{ disallow_rules_ai }}
-
-# Autres IA / crawlers "assistants"
-User-agent: cohere-ai
-{{ disallow_rules_ai }}
-
-User-agent: AI2Bot
-{{ disallow_rules_ai }}
-
-User-agent: DuckAssistBot
-{{ disallow_rules_ai }}
-
-User-agent: Diffbot
-{{ disallow_rules_ai }}
-
-User-agent: omgili
-{{ disallow_rules_ai }}
-
-User-agent: TimpiBot
-{{ disallow_rules_ai }}
-
-User-agent: YouBot
-{{ disallow_rules_ai }}
-
-User-agent: Google-Extended
-{{ disallow_rules_ai }}
-
-
-# --------------------------------------------------------------------
-#  AUTRES BOTS / RÉSEAUX SOCIAUX / MOTEURS
-# --------------------------------------------------------------------
-
-# Google : on laisse Shopify gérer via robots.default_groups (ci-dessous)
-
-# Bing : on aligne sur Google (accès large, zones sensibles seulement)
-User-agent: BingBot
-Disallow: /admin
-Disallow: /cart
-Disallow: /orders
-Disallow: /checkouts/
-Disallow: /checkout
-Disallow: /65011581085/checkouts
-Disallow: /65011581085/orders
-Disallow: /carts
-Disallow: /account
-Disallow: /customer_authentication
-Disallow: /*?return_to=
-Disallow: /*/customer_authentication
-
-# Amazon, Apple, Meta, LinkedIn... → règles standard (plus restrictives)
-User-agent: Amazonbot
-{{ disallow_rules }}
-
-User-agent: Applebot
-{{ disallow_rules }}
-
-User-agent: Applebot-Extended
-{{ disallow_rules }}
-
-User-agent: FacebookBot
-{{ disallow_rules }}
 
 User-agent: meta-externalagent
-{{ disallow_rules }}
+Disallow: /
 
-User-agent: LinkedInBot
-{{ disallow_rules }}
-
-User-agent: CCBot
-{{ disallow_rules }}
-
-
-{%- comment -%}
-  Groupes par défaut Shopify (Googlebot + autres bots principaux)
-  On les laisse à la fin pour compatibilité maximale.
-{%- endcomment -%}
+# --------------------------------------------------------------------
+#  GROUPES PAR DÉFAUT SHOPIFY (+ ajout shopifybooster au groupe "*")
+# --------------------------------------------------------------------
 {% for group in robots.default_groups %}
-  {{- group.user_agent -}}
+  {{- group.user_agent }}
 
-  {% for rule in group.rules %}
-    {{- rule -}}
-  {% endfor %}
+  {%- for rule in group.rules -%}
+    {{ rule }}
+  {%- endfor -%}
+
+  {%- if group.user_agent.value == '*' -%}
+    {{ 'Disallow: /*shopifybooster' }}
+  {%- endif -%}
 
   {%- if group.sitemap != blank -%}
     {{ group.sitemap }}
