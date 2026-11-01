@@ -371,7 +371,6 @@
       "name": "t:names.collection_links_spotlight",
       "settings": {
         "collection_list": [
-          "alexander-mcqueen",
           "ami-paris",
           "birkenstock",
           "burberry",
@@ -400,7 +399,16 @@
           "stella-mccartney",
           "tods",
           "valentino-garavani",
-          "versace"
+          "versace",
+          "beaubleu",
+          "fair",
+          "khaite",
+          "marine-serre",
+          "max-mara",
+          "maison-kitsune",
+          "miu-miu",
+          "officine-generale",
+          "ugg"
         ],
         "layout": "text",
         "section_width": "page-width",
