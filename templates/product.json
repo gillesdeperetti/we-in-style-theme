@@ -825,6 +825,7 @@
                 "accordion_row_yjf3YH": {
                   "type": "_accordion-row",
                   "name": "t:names.accordion_row",
+                  "disabled": true,
                   "settings": {
                     "heading": "Materials",
                     "open_by_default": false,
