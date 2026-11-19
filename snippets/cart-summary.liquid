@@ -18,7 +18,7 @@
           class="cart-totals__original-value cart-secondary-typography"
           data-testid="cart-subtotal-value"
         >
-          <bdi>{{- cart.items_subtotal_price | money -}}</bdi>
+          <bdi>{{- cart.items_subtotal_price | money_without_trailing_zeros -}}</bdi>
         </span>
       </span>
       <ul
@@ -33,7 +33,7 @@
               <bdi>{{ discount.title | escape }}</bdi>
             </span>
             <span class="cart-discounts__value cart-secondary-typography"
-              ><bdi>-{{ discount.total_allocated_amount | money }}</bdi>
+              ><bdi>-{{ discount.total_allocated_amount | money_without_trailing_zeros }}</bdi>
             </span>
           </li>
         {%- endfor -%}
@@ -216,9 +216,9 @@
 
   {%- liquid
     if settings.currency_code_enabled_cart_total
-      assign total_price = cart.total_price | money_with_currency
+      assign total_price = cart.total_price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code
     else
-      assign total_price = cart.total_price | money
+      assign total_price = cart.total_price | money_without_trailing_zeros
     endif
   -%}
 
@@ -611,3 +611,5 @@
     }
   }
 {% endstylesheet %}
+
+{%- comment -%}[CUSTOM-GILLES] Prix sans ,00 : money -> money_without_trailing_zeros (+ code devise si activé){%- endcomment -%}

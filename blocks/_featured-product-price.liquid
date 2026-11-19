@@ -1,3 +1,4 @@
+{%- comment -%}[CUSTOM-GILLES] Prix sans ,00 : money -> money_without_trailing_zeros (+ code devise si activé){%- endcomment -%}
 {% render 'price-styles' %}
 
 {% liquid
@@ -5,9 +6,9 @@
   assign block_settings = block.settings
 
   if settings.currency_code_enabled_product_cards
-    assign price_min = product.price_min | money_with_currency
+    assign price_min = product.price_min | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code
   else
-    assign price_min = product.price_min | money
+    assign price_min = product.price_min | money_without_trailing_zeros
   endif
 
   if product.price_varies

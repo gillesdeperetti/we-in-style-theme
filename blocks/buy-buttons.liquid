@@ -1,3 +1,4 @@
+{%- comment -%}[CUSTOM-GILLES] Prix sans ,00 : money -> money_without_trailing_zeros (+ code devise si activé){%- endcomment -%}
 {% render 'theme-drawer-styles' %}
 {% liquid
   assign block_settings = block.settings
@@ -150,9 +151,9 @@
                   <span>
                     <bdi>
                       {%- if use_currency -%}
-                        {{- variant.price | money_with_currency | strip -}}
+                        {{- variant.price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code | strip -}}
                       {%- else -%}
-                        {{- variant.price | money | strip -}}
+                        {{- variant.price | money_without_trailing_zeros | strip -}}
                       {%- endif -%}</bdi
                     >/{{ 'content.each_abbreviation' | t -}}
                   </span>
@@ -171,9 +172,9 @@
                     <span>
                       <bdi>
                         {%- if use_currency -%}
-                          {{- price_break.price | money_with_currency | strip -}}
+                          {{- price_break.price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code | strip -}}
                         {%- else -%}
-                          {{- price_break.price | money | strip -}}
+                          {{- price_break.price | money_without_trailing_zeros | strip -}}
                         {%- endif -%}</bdi
                       >/{{ 'content.each_abbreviation' | t -}}
                     </span>
@@ -198,9 +199,9 @@
                         <span>
                           <bdi>
                             {%- if use_currency -%}
-                              {{- price_break.price | money_with_currency | strip -}}
+                              {{- price_break.price | money_without_trailing_zeros | append: ' ' | append: cart.currency.iso_code | strip -}}
                             {%- else -%}
-                              {{- price_break.price | money | strip -}}
+                              {{- price_break.price | money_without_trailing_zeros | strip -}}
                             {%- endif -%}</bdi
                           >/{{ 'content.each_abbreviation' | t -}}
                         </span>

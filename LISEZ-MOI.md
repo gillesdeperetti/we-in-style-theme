@@ -49,4 +49,5 @@ Règles de fusion (`.gitattributes`) :
 | Filtre prix fermé par défaut | `snippets/price-filter` |
 | Anti-bot / filtrage géographique | `snippets/geo-bot-protection` (appelé dans `layout/theme.liquid`) |
 | Icônes de paiement perso, tailles de police, etc. | `blocks/payment-icons`, `blocks/_inline-collection-title`, `blocks/accordion`, `snippets/tax-info`, `assets/slideshow.js` |
+| Prix sans décimales inutiles (1 890 € au lieu de 1 890,00 €) : filtre `money_without_trailing_zeros` | `snippets/price`, `format-price`, `cart-products`, `cart-summary`, `quantity-selector`, `volume-pricing-info`, `price-filter`, `filter-remove-buttons`, `blocks/buy-buttons`, `blocks/_featured-product-price` |
 | Fichiers créés (guides des tailles, FAQ, Klarna, estimation de livraison…) | 24 fichiers propres à la boutique, jamais touchés par les mises à jour |
