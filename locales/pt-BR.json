@@ -373,6 +373,9 @@
       "sole_height": "Altura da sola"
     }
   },
+  "custom": {
+    "size_system_info": "O tamanho {{ size }} corresponde ao sistema {{ system }} – Consulte o guia de tamanhos para conversões."
+  },
   "size_guide": {
     "title": "Guia de tamanhos",
     "female": "Mulher",
