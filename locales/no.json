@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "accessibility": {
     "account": "Konto",
@@ -350,11 +359,9 @@
     "ended": "Avsluttet!"
   },
   "bf": {
-    "last_hours_title": "Siste timer til denne prisen",
-    "last_hours_subtitle": "Black Friday avsluttes snart — siste sjanse til å handle de beste tilbudene.",
-    "extended_title": "Eksklusiv utgave — 10% rabatt",
-    "extended_subtitle": "Bruk kode BFCM25 i kassen før tilbudet avsluttes."
-  },
+  "last_hours_title": "The Black Friday Edit: 30 % rabatt",
+  "last_hours_subtitle": "Ingen kode nødvendig: rabatten trekkes automatisk i handlekurven."
+},
   "product": {
     "dimensions": {
       "height": "Høyde",
