@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "Cargar video: {{ description }}",
@@ -402,11 +411,9 @@
     "ended": "Finalizado!"
   },
   "bf": {
-    "last_hours_title": "Últimas horas a este precio",
-    "last_hours_subtitle": "El Black Friday termina pronto: última oportunidad para conseguir las mejores ofertas.",
-    "extended_title": "Edición exclusiva — 10 % de descuento",
-    "extended_subtitle": "Utiliza el código BFCM25 al finalizar la compra antes de que termine la oferta."
-  },
+  "last_hours_title": "The Black Friday Edit: 30 % de descuento",
+  "last_hours_subtitle": "Sin código: el descuento se aplica automáticamente en tu carrito."
+},
   "product": {
     "dimensions": {
       "height": "Altura",
