@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "동영상 로드: {{ description }}",
@@ -395,11 +404,9 @@
     "ended": "종료!"
   },
   "bf": {
-    "last_hours_title": "이 가격으로 구매할 수 있는 마지막 시간",
-    "last_hours_subtitle": "블랙 프라이데이가 곧 종료됩니다 — 최고의 딜을 만나볼 마지막 기회입니다.",
-    "extended_title": "익스클루시브 에디트 — 10% 할인",
-    "extended_subtitle": "결제 시 코드 BFCM25를 입력하고, 프로모션 종료 전에 이용하세요."
-  },
+  "last_hours_title": "블랙 프라이데이 에디트: 30% 할인",
+  "last_hours_subtitle": "코드 입력 불필요. 할인은 장바구니에서 자동으로 적용됩니다."
+},
   "product": {
     "dimensions": {
       "height": "높이",
