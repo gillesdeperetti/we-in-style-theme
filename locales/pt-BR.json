@@ -361,6 +361,13 @@
       "success": "Comentário publicado"
     }
   },
+  "countdown": {
+    "days": "DIAS",
+    "hours": "HORAS",
+    "minutes": "MINUTOS",
+    "seconds": "SEGUNDOS",
+    "ended": "Terminado!"
+  },
   "bf": {
   "last_hours_title": "The Black Friday Edit: 30% de desconto",
   "last_hours_subtitle": "Sem código: o desconto é aplicado automaticamente no seu carrinho."
