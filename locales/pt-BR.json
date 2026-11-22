@@ -361,6 +361,31 @@
       "success": "Comentário publicado"
     }
   },
+  "product": {
+    "dimensions": {
+      "height": "Altura",
+      "width": "Largura",
+      "length": "Comprimento",
+      "depth": "Profundidade",
+      "strap_length": "Comprimento da alça",
+      "handle_drop": "Altura da pega",
+      "heel_height": "Altura do salto",
+      "sole_height": "Altura da sola"
+    }
+  },
+  "size_guide": {
+    "title": "Guia de tamanhos",
+    "female": "Mulher",
+    "male": "Homem",
+    "unisex": "Unissexo",
+    "shoes": "Calçado",
+    "ready_to_wear": "Pronto-a-vestir",
+    "jeans": "Jeans",
+    "shirts": "Camisas",
+    "numeric": "Numeração",
+    "general": "Geral",
+    "foot_size": "Tamanho do pé"
+  },
   "countdown": {
     "days": "DIAS",
     "hours": "HORAS",
