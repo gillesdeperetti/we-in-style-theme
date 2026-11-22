@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "blocks": {
     "load_video": "ビデオを読み込む: {{ description }}",
@@ -395,11 +404,9 @@
     "ended": "終了!"
   },
   "bf": {
-    "last_hours_title": "この価格でのご提供は残りわずか",
-    "last_hours_subtitle": "ブラックフライデーはまもなく終了 — お得なアイテムを手に入れるラストチャンスです。",
-    "extended_title": "エクスクルーシブセレクション — 10％オフ",
-    "extended_subtitle": "ご購入時にコード「BFCM25」を入力し、終了前にご利用ください。"
-  },
+  "last_hours_title": "ブラックフライデー特集：30%オフ",
+  "last_hours_subtitle": "クーポンコード不要。割引はカートで自動的に適用されます。"
+},
   "product": {
     "dimensions": {
       "height": "高さ",
