@@ -38,7 +38,7 @@
     "merchantReturnDays": 30,
     "returnFees": "http://schema.org/ReturnFeesCustomerResponsibility",
     "returnMethod": "http://schema.org/ReturnByMail",
-    "restockingFee": "http://schema.org/NoRestockingFee",
+    "restockingFee": { "@type": "MonetaryAmount", "value": 0, "currency": "{{ shop.currency }}" }, {%- comment -%} [CUSTOM-GILLES] NoRestockingFee n'existe pas dans schema.org {%- endcomment -%}
     "returnPolicyCategory": "http://schema.org/MerchantReturnFiniteReturnWindow"
   },
   "contactPoint": [
