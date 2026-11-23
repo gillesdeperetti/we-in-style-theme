@@ -161,6 +161,14 @@
       "@type": "Offer",
       "priceCurrency": "{{ shop.currency }}",
       "price": "{{ variant.price | divided_by: 100.00 }}",
+      {%- if variant.compare_at_price > variant.price %} {%- comment -%} [CUSTOM-GILLES] prix barré (compare_at) {%- endcomment -%}
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "priceType": "https://schema.org/StrikethroughPrice",
+        "price": "{{ variant.compare_at_price | divided_by: 100.00 }}",
+        "priceCurrency": "{{ shop.currency }}"
+      },
+      {%- endif %}
       "priceValidUntil": "{{ 'now' | date: '%Y' | plus: 1 | append: '-12-31' }}",
       "itemCondition": "NewCondition",
       "availability": "{% if variant.available %}InStock{% elsif variant.inventory_quantity == 0 and variant.incoming %}PreOrder{% else %}OutOfStock{% endif %}",
